@@ -1,8 +1,7 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 
@@ -28,9 +27,9 @@ export default function Carousel() {
       spaceBetween={10}
       slidesPerView={3}
     >
-      {carousel.map((item, index) => (
+      {carousel.map((item: any, index: number) => (
         <SwiperSlide key={index}>
-          <Image src={item.image} width={100} height={100} alt="" layout="responsive" objectFit="contain" />
+          <Image src={item?.image} width={100} height={100} alt="" layout="responsive" objectFit="contain" />       
         </SwiperSlide>
       ))}
     </Swiper>

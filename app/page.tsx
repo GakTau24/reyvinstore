@@ -6,7 +6,7 @@ import Apps from "@/components/HomePage/Apps";
 import Carousel from "@/components/HomePage/Carousel";
 
 export const metadata: Metadata = {
-  title: `Topup Games - ${process.env.siteName}`,
+  title: `Topup Games - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
   description: 'Top-up game online dengan harga murah dan proses cepat. Dapatkan bonus menarik saat membeli game online di Reyvin Store.',
   keywords: [
     'top-up game online',
