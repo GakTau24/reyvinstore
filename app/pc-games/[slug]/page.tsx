@@ -19,7 +19,7 @@ export async function generateMetadata(
   const previousImages = (await parent)?.openGraph?.images || [];
 
   return {
-    title: product.pcgames.title,
+    title: `${product.pcgames.title} - Reyvin Store`,
     openGraph: {
       images: [product.pcgames.image, ...previousImages],
     },
