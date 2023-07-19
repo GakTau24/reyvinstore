@@ -108,12 +108,12 @@ const LoginForm = () => {
             {loading ? "Loading..." : "Login"}
           </button>
         </div>
-        <p className="text-gray-700 pt-3">
+        {/* <p className="text-gray-700 pt-3">
           Dont have an account?{" "}
           <Link href={"/signup"} className="text-sky-400">
             Sign Up
           </Link>
-        </p>
+        </p> */}
       </form>
     </div>
   );
