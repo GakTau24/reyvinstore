@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <div className="p-3 mt-6">
+      <div className="p-3 mt-10">
       </div>
       <div className="p-5 shadow-xl">
         <Carousel />
