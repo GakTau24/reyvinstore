@@ -34,7 +34,7 @@ export default function Home() {
     <>
       <div className="p-3 mt-6">
       </div>
-      <div className="p-5 m-4 shadow-xl">
+      <div className="p-5 shadow-xl">
         <Carousel />
         <Trending />
         <MobileGames />
