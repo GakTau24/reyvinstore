@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 function Sidebar() {
   return (
     <>
-      <div className="w-[10rem] bg-slate-800">
+      <div className="w-[10rem]">
         <div className="p-4">
         <motion.div
             whileHover={{ scale: 1.2 }}
@@ -13,6 +13,7 @@ function Sidebar() {
             onHoverEnd={(e) => {}}>
           <h1 className="text-xl font-bold mb-4">Reyvin <span className="text-sky-400">Store</span></h1>
           </motion.div>
+          <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
           <ul className="space-y-2">
             <li>
             <motion.div

@@ -1,5 +1,10 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: `404 Not found - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+}
 
 const Page404 = () => {
   return (

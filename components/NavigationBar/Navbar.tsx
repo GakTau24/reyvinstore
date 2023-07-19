@@ -155,13 +155,13 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              href={"/login"}
+              href={"/contact"}
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
-              login
+              Contact
             </Link>
           </div>
-          {session.data && (
+          {session.data ? (
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link
                 href={"/dashboard/admin"}
@@ -175,6 +175,15 @@ const Navbar = () => {
               >
                 Logout
               </button>
+            </div>
+          ) : (
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <Link
+              href={"/login"}
+              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >
+              login
+            </Link>
             </div>
           )}
         </div>

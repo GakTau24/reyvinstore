@@ -27,9 +27,10 @@ export default async function page({ params }: any) {
           <Link href={`https://wa.me/6285173125847`}>
             <h5 className="mb-2 text-xl font-bold tracking-tight dark:text-slate-300">{res.apps.title}</h5>
           </Link>
-          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-4 opacity-20" />
+          <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
           <h5 className="text-left font:bold text-lg dark:text-slate-300 py-3">Price List:</h5>
           <pre className="mb-3 font-normal text-left dark:text-slate-300">{res.apps.price}</pre>
+          <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
           <motion.div
             whileHover={{ scale: 1.2 }}
             onHoverStart={(e) => {}}

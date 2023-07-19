@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 import 'swiper/css';
-import 'swiper/css/effect-cards';
 
 async function getCarousel() {
   const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/carousel`, { cache: 'no-store' });
@@ -26,6 +25,10 @@ export default function Carousel() {
     <Swiper
       spaceBetween={10}
       slidesPerView={3}
+      autoplay={{
+        delay: 500,
+        disableOnInteraction: false
+    }}
     >
       {carousel.map((item: any, index: number) => (
         <SwiperSlide key={index}>
