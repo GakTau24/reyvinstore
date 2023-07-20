@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 export default function MobileGames() {
   const [mobileGames, setMobileGames] = useState([]);
@@ -29,11 +31,31 @@ export default function MobileGames() {
     <section>
       <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
       <h1 className="mb-3 font-semibold text-xl">● Mobile Games</h1>
-      <div className="grid grid-cols-10 max-md:grid-cols-3 md:p-3 gap-3 px-2 max-md:px-[5px] my-5">
+      <Swiper
+        spaceBetween={5}
+        slidesPerView={3}
+        loop={true}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 10,
+          },
+          1024: {
+            slidesPerView: 10,
+          },
+          1280: {
+            slidesPerView: 10,
+          },
+        }}
+      >
         {mobileGames.map((item, index) => (
-          <Cards data={item} key={index} />
+          <SwiperSlide key={index}>
+            <Cards data={item} />
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
     </section>
   );
 }

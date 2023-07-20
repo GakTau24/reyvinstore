@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 export default function PcGames() {
   const [pcGames, setPcGames] = useState([]);
@@ -10,7 +12,10 @@ export default function PcGames() {
   useEffect(() => {
     const fetchPcGames = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/pcgames`, { cache: 'no-store' });
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/pcgames`,
+          { cache: "no-store" }
+        );
         if (!res.ok) {
           throw new Error("Data not found!");
         }
@@ -29,11 +34,31 @@ export default function PcGames() {
     <section>
       <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
       <h1 className="mb-3 font-semibold text-xl">● PC Games</h1>
-      <div className="grid grid-cols-10 max-md:grid-cols-3 md:p-3 gap-3 px-2 max-md:px-[5px] my-5">
+      <Swiper
+        spaceBetween={5}
+        slidesPerView={3}
+        loop={true}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 10,
+          },
+          1024: {
+            slidesPerView: 10,
+          },
+          1280: {
+            slidesPerView: 10,
+          },
+        }}
+      >
         {pcGames.map((item, index) => (
-          <Cards data={item} key={index} />
+          <SwiperSlide key={index}>
+            <Cards data={item} />
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
     </section>
   );
 }
@@ -44,27 +69,28 @@ function Cards({ data }: any) {
     <motion.div
       whileHover={{ scale: 1.2 }}
       onHoverStart={(e) => {}}
-      onHoverEnd={(e) => {}}>
-    <div className="w-full rounded-lg shadow-xl lg:max-w-sm">
-      <Link href={`/pc-games/${slug}`}>
-        <Image
-          className="rounded-lg"
-          src={image}
-          width="100"
-          height="100"
-          layout="responsive"
-          objectFit="contain"
-          alt={title}
-        />
-      </Link>
-      <div className="md:p-3 max-md:py-2">
+      onHoverEnd={(e) => {}}
+    >
+      <div className="w-full rounded-lg shadow-xl lg:max-w-sm">
         <Link href={`/pc-games/${slug}`}>
-          <h4 className="text-lg text-center font-medium tracking-tight text-slate-800 dark:text-slate-300">
-            {title}
-          </h4>
+          <Image
+            className="rounded-lg"
+            src={image}
+            width="100"
+            height="100"
+            layout="responsive"
+            objectFit="contain"
+            alt={title}
+          />
         </Link>
+        <div className="md:p-3 max-md:py-2">
+          <Link href={`/pc-games/${slug}`}>
+            <h4 className="text-lg text-center font-medium tracking-tight text-slate-800 dark:text-slate-300">
+              {title}
+            </h4>
+          </Link>
+        </div>
       </div>
-    </div>
     </motion.div>
   );
 }
