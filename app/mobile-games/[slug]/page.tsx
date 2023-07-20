@@ -40,7 +40,7 @@ export default async function page({ params }: any) {
 
   return (
     <div className="flex justify-center items-center py-3 shadow-xl">
-      <div className="max-w-sm rounded-lg shadow">
+      <div className="max-w-sm rounded-lg shadow-2xl">
         <Image
           className="rounded-t-lg"
           src={res.mobileGame.image}

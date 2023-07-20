@@ -32,10 +32,12 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <div className="p-3 mt-10">
+      <div className="p-3 md:mt-10 lg:mt-10">
       </div>
       <div className="p-5 shadow-xl">
+        <div className="dark:bg-slate-900 rounded-xl">
         <Carousel />
+        </div>
         <Trending />
         <MobileGames />
         <PcGames />

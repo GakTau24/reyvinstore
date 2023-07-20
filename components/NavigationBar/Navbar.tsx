@@ -17,7 +17,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="dark:bg-gray-800 shadow-xl">
+    <nav className="dark:bg-gray-800 shadow-xl rounded-md">
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
       <motion.div

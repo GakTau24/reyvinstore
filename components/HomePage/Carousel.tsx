@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
 import Image from 'next/image';
 import 'swiper/css';
 
@@ -22,19 +23,23 @@ export default function Carousel() {
   }, []);
 
   return (
-    <Swiper
-      spaceBetween={10}
-      slidesPerView={3}
-      autoplay={{
-        delay: 500,
-        disableOnInteraction: false
-    }}
-    >
-      {carousel.map((item: any, index: number) => (
-        <SwiperSlide key={index}>
-          <Image src={item?.image} width={100} height={100} alt="" layout="responsive" objectFit="contain" />       
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <>
+      <Swiper
+        modules={[Autoplay]}
+        spaceBetween={3}
+        slidesPerView={3}
+        centeredSlides={true}
+        loop={true}
+        autoplay={{
+          delay: 3000,
+        }}
+      >
+        {carousel.map((item: any, index: number) => (
+          <SwiperSlide key={index}>
+            <Image src={item?.image} width={100} height={100} alt="" layout="responsive" objectFit="contain" />       
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </>
   );
 }
