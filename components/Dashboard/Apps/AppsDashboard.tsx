@@ -30,7 +30,7 @@ const AppsDashboard = () => {
   const handleDelete = async (id: any) => {
     const remove = confirm("Apakah anda yakin untuk menghapus?");
     if (remove) {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/pcgames?id=${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/apps?id=${id}`, {
         method: "DELETE"
       });
       if (res.ok) {
@@ -43,7 +43,7 @@ const AppsDashboard = () => {
     <div className="flex h-screen">
       <Sidebar />
       <div className="p-2">
-        <h1 className="text-3xl font-bold mb-5">Pc Games</h1>
+        <h1 className="text-3xl font-bold mb-5">Apps</h1>
         <Link href={"/dashboard/admin/pc-games/create"}>
           <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">Create</button>
         </Link>
