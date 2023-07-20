@@ -37,7 +37,6 @@ export default function Trending() {
       <Swiper
         spaceBetween={5}
         slidesPerView={3}
-        loop={true}
         breakpoints={{
           640: {
             slidesPerView: 1,

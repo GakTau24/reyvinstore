@@ -34,7 +34,6 @@ export default function MobileGames() {
       <Swiper
         spaceBetween={5}
         slidesPerView={3}
-        loop={true}
         breakpoints={{
           640: {
             slidesPerView: 1,
