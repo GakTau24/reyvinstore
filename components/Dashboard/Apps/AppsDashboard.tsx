@@ -44,7 +44,7 @@ const AppsDashboard = () => {
       <Sidebar />
       <div className="p-2">
         <h1 className="text-3xl font-bold mb-5">Apps</h1>
-        <Link href={"/dashboard/admin/pc-games/create"}>
+        <Link href={"/dashboard/admin/apps/create"}>
           <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">Create</button>
         </Link>
         {/* Table */}
