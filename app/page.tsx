@@ -4,6 +4,7 @@ import MobileGames from "@/components/HomePage/MobileGames";
 import PcGames from "@/components/HomePage/PcGames";
 import Apps from "@/components/HomePage/Apps";
 import Carousel from "@/components/HomePage/Carousel";
+import Voucher from "@/components/HomePage/Voucher";
 
 export const metadata: Metadata = {
   title: `Topup Games - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
@@ -42,6 +43,7 @@ export default function Home() {
         <MobileGames />
         <PcGames />
         <Apps />
+        <Voucher />
       </div>
     </>
   );
