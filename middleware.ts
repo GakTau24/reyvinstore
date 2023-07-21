@@ -9,4 +9,6 @@ export const config = { matcher: [
     '/dashboard/admin/pc-games/create',
     '/dashboard/admin/apps',
     '/dashboard/admin/apps/create',
+    '/dashboard/admin/voucher',
+    '/dashboard/admin/voucher/create',
 ] }
