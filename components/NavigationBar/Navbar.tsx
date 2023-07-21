@@ -40,7 +40,7 @@ const Navbar = () => {
             >
               <Link
                 href={"/"}
-                className="dark:text-gray-300 text-slate-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                className="dark:text-gray-300 text-slate-700 dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
                 Home
               </Link>
@@ -52,7 +52,7 @@ const Navbar = () => {
             >
               <Link
                 href={"/contact"}
-                className="dark:text-gray-300 text-slate-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                className="dark:text-gray-300 text-slate-700 dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
                 Contact
               </Link>
@@ -60,7 +60,7 @@ const Navbar = () => {
               {session.data ? (
                 <div className="relative inline-block text-left">
                   <button
-                    className="dark:text-gray-300 text-slate-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
+                    className="dark:text-gray-300 text-slate-700 dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
                     onClick={toggleDropdown}
                   >
                     <div className="flex">
@@ -77,7 +77,7 @@ const Navbar = () => {
                     </div>
                   </button>
                   {isOpen && (
-                    <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-xl-lg bg-white ring-1 ring-black ring-opacity-5">
+                    <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-xl-lg bg-slate-200 dark:bg-slate-800 ring-1 ring-black ring-opacity-5">
                       <div
                         className="py-1"
                         role="menu"
@@ -86,14 +86,14 @@ const Navbar = () => {
                       >
                         <Link
                           href={"/dashboard/admin"}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                          className="block px-4 py-2 text-sm dark:text-gray-300 dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-gray-900"
                           role="menuitem"
                         >
                           Dashboard
                         </Link>
                         <button
                           onClick={handleLogout}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 w-full text-left"
+                          className="block px-4 py-2 text-sm dark:text-gray-300 dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-gray-900 w-full text-left"
                           role="menuitem"
                         >
                           Logout

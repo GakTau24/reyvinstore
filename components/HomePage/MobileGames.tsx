@@ -62,11 +62,17 @@ export default function MobileGames() {
 
 function Cards({ data }: any) {
   const { slug, title, image } = data;
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 1 } },
+  };
   return (
     <motion.div
       whileHover={{ scale: 1.2 }}
       onHoverStart={(e) => {}}
-      onHoverEnd={(e) => {}}>
+      onHoverEnd={(e) => {}}
+      variants={containerVariants} initial="hidden" animate="visible"
+      >
     <div className="w-full rounded-lg shadow-xl lg:max-w-sm max-lg:h-[200px]">
       <Link href={`/mobile-games/${slug}`}>
         <Image
@@ -77,6 +83,7 @@ function Cards({ data }: any) {
           layout="responsive"
           objectFit="contain"
           alt={title}
+          loading="lazy"
         />
       </Link>
       <div className="md:p-3 max-md:py-2">
