@@ -17,7 +17,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="dark:bg-gray-800 shadow-xl rounded-md">
+    <nav className="dark:bg-gray-800 shadow-xl rounded-b-lg">
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
       <motion.div
@@ -161,6 +161,7 @@ const Navbar = () => {
               Contact
             </Link>
           </div>
+          <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
           {session.data ? (
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link
