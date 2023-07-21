@@ -35,8 +35,9 @@ export default function PcGames() {
       <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
       <h1 className="mb-3 font-semibold text-xl">● PC Games</h1>
       <Swiper
-        spaceBetween={5}
+        spaceBetween={8}
         slidesPerView={3}
+        grabCursor={true}
         breakpoints={{
           640: {
             slidesPerView: 1,
@@ -70,7 +71,7 @@ function Cards({ data }: any) {
       onHoverStart={(e) => {}}
       onHoverEnd={(e) => {}}
     >
-      <div className="w-full rounded-lg shadow-xl lg:max-w-sm">
+      <div className="w-full rounded-lg shadow-xl lg:max-w-sm max-lg:h-[175px]">
         <Link href={`/pc-games/${slug}`}>
           <Image
             className="rounded-lg"

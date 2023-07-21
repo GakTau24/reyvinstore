@@ -32,7 +32,8 @@ export default function Apps() {
       <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
       <h1 className="mb-3 font-semibold text-xl">● Apps</h1>
       <Swiper
-        spaceBetween={5}
+        spaceBetween={8}
+        grabCursor={true}
         slidesPerView={3}
         breakpoints={{
           640: {
@@ -66,7 +67,7 @@ function Cards({ data }: any) {
       whileHover={{ scale: 1.2 }}
       onHoverStart={(e) => {}}
       onHoverEnd={(e) => {}}>
-    <div className="w-full rounded-lg shadow-xl lg:max-w-sm">
+    <div className="w-full rounded-lg shadow-xl lg:max-w-sm max-lg:h-[200px]">
       <Link href={`/apps/${slug}`}>
         <Image
           className="rounded-lg"

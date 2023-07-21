@@ -28,15 +28,21 @@ export default function Carousel() {
         modules={[Autoplay]}
         spaceBetween={3}
         slidesPerView={3}
-        centeredSlides={true}
         loop={true}
+        grabCursor={true}
         autoplay={{
           delay: 3000,
         }}
+        breakpoints={{ 
+          1024: {
+            slidesPerView: 3,
+          }
+         }}
+         className="rounded-lg shadow-2xl"
       >
         {carousel.map((item: any, index: number) => (
           <SwiperSlide key={index}>
-            <Image src={item?.image} width={100} height={100} alt="" layout="responsive" objectFit="contain" />       
+            <Image src={item?.image} width={100} height={100} alt={item.title} layout="responsive" objectFit="contain" />       
           </SwiperSlide>
         ))}
       </Swiper>
