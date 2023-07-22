@@ -8,4 +8,5 @@ module.exports = {
         "media.discordapp.net",
       ],
     },
+    experimental: { esmExternals: true },
   };

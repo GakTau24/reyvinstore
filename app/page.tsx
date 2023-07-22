@@ -7,10 +7,13 @@ import Carousel from "@/components/HomePage/Carousel";
 import Voucher from "@/components/HomePage/Voucher";
 
 export const metadata: Metadata = {
-  title: `Topup Games - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+  title: `Top-up Game Online Murah | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
   description: 'Top-up game online dengan harga murah dan proses cepat. Dapatkan bonus menarik saat membeli game online di Reyvin Store.',
   keywords: [
-    'top-up game online',
+    'reyvin store',
+    'reyvinstore',
+    'topup reyvinsotre',
+    'top-up game online murah',
     'beli diamond murah',
     'topup mobile legends',
     'topup pubg mobile',

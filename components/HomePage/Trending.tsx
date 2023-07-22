@@ -91,9 +91,9 @@ function Cards({ data }: any) {
         </Link>
         <div className="md:p-3 max-md:py-2">
           <Link href={`/trending/${slug}`}>
-            <h4 className="text-lg text-center font-medium tracking-tight text-slate-800 dark:text-slate-300">
+            <h2 className="text-lg text-center font-medium tracking-tight text-slate-800 dark:text-slate-300">
               {title}
-            </h4>
+            </h2>
           </Link>
         </div>
       </div>

@@ -21,9 +21,31 @@ export async function generateMetadata(
   return {
     title: `${product.trending.title} - Reyvin Store`,
     openGraph: {
-      images: [product.trending.image, ...previousImages],
+      images: [
+        {
+          url: process.env.NEXT_PUBLIC_BASE_URL,
+          alt: product.trending.title,
+        },
+        product.trending.image, ...previousImages,
+      ],
+      title: `${product.trending.title} - Reyvin Store`,
+      description: `Beli top-up game online dengan harga paling murah hanya di Reyvin Store! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${product.trending.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
+      url: process.env.NEXT_PUBLIC_BASE_URL,
     },
-    description: product.trending.price,
+    description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${product.trending.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
+    keywords: [
+      'reyvin store',
+      'reyvinstore',
+      'top-up game online murah',
+      'beli diamond murah',
+      'topup mobile legends',
+      'topup pubg mobile',
+      'topup free fire',
+      'topup valorant',
+      'topup game termurah',
+      'game voucher',
+      'game online',
+    ],
   };
 }
 
@@ -50,13 +72,13 @@ export default async function page({ params }: any) {
           alt={res.trending.title}
         />
         <div className="p-3 text-center">
-          <h5 className="mb-2 text-xl font-bold tracking-tight dark:text-slate-300">
+          <h1 className="mb-2 text-xl font-bold tracking-tight dark:text-slate-300">
             {res.trending.title}
-          </h5>
+          </h1>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
-          <h5 className="text-left font:bold text-lg dark:text-slate-300 py-3">
+          <h2 className="text-left font:bold text-lg dark:text-slate-300 py-3">
             Price List:
-          </h5>
+          </h2>
           <pre className="mb-3 font-normal text-left dark:text-slate-300">
             {res.trending.price}
           </pre>

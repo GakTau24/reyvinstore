@@ -21,9 +21,31 @@ export async function generateMetadata(
   return {
     title: `${product.mobileGame.title} - Reyvin Store`,
     openGraph: {
-      images: [product.mobileGame.image, ...previousImages],
+      images: [
+        {
+          url: process.env.NEXT_PUBLIC_BASE_URL,
+          alt: product.mobileGame.title,
+        },
+        product.mobileGame.image, ...previousImages,
+      ],
+      title: `${product.mobileGame.title} - Reyvin Store`,
+      description: `Beli top-up game online dengan harga paling murah hanya di Reyvin Store! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${product.mobileGame.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
+      url: process.env.NEXT_PUBLIC_BASE_URL,
     },
-    description: product.mobileGame.price,
+    description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${product.mobileGame.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
+    keywords: [
+      'reyvin store',
+      'reyvinstore',
+      'top-up game online murah',
+      'beli diamond murah',
+      'topup mobile legends',
+      'topup pubg mobile',
+      'topup free fire',
+      'topup valorant',
+      'topup game termurah',
+      'game voucher',
+      'game online',
+    ],
   };
 }
 
