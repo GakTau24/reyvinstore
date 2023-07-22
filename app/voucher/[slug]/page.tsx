@@ -36,6 +36,7 @@ export async function generateMetadata(
     manifest: "/manifest.json",
     keywords: [
       'reyvin store',
+      `beli voucher ${product.voucher.title}`,
       'reyvinstore',
       'top-up game online murah',
       'beli diamond murah',
@@ -44,7 +45,7 @@ export async function generateMetadata(
       'topup free fire',
       'topup valorant',
       'topup game termurah',
-      'game voucher',
+      `game voucher ${product.voucher.title}`,
       'game online',
     ],
   };

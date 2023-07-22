@@ -37,15 +37,15 @@ export async function generateMetadata(
     keywords: [
       'reyvin store',
       'reyvinstore',
-      'top-up game online murah',
-      'beli diamond murah',
-      'topup mobile legends',
+      `top-up game ${product.trending.title} online murah`,
+      `beli diamond ${product.trending.title} murah`,
+      `topup games ${product.trending.title}`,
       'topup pubg mobile',
       'topup free fire',
       'topup valorant',
       'topup game termurah',
       'game voucher',
-      'game online',
+      `game online ${product.trending.title}`,
     ],
   };
 }
