@@ -9,6 +9,7 @@ import Voucher from "@/components/HomePage/Voucher";
 export const metadata: Metadata = {
   title: `Top-up Game Online Murah | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
   description: 'Top-up game online dengan harga murah dan proses cepat. Dapatkan bonus menarik saat membeli game online di Reyvin Store.',
+  manifest: "/manifest.json",
   keywords: [
     'reyvin store',
     'reyvinstore',

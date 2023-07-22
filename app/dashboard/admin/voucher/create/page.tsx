@@ -4,6 +4,7 @@ import FormVoucher from '@/components/Dashboard/Voucher/FormVoucher'
 export const metadata: Metadata = {
     title: `Create Voucher - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
     description: 'Create Voucher ReyvinStore',
+    manifest: "/manifest.json",
   }
 
 function page() {

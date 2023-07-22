@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: `404 Not found - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+  manifest: "/manifest.json",
 }
 
 const Page404 = () => {
