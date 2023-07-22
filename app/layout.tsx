@@ -13,8 +13,8 @@ export default function RootLayout({children}: { children: React.ReactNode}) {
       <body className="bg-white dark:bg-gradient-to-r from-slate-900 to-slate-500 dark:text-slate-300">
           <SessionProvider>
           <Navbar />
-          </SessionProvider>
           {children}
+          </SessionProvider>
           <Footer />
       </body>
     </html>

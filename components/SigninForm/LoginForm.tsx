@@ -44,8 +44,6 @@ const LoginForm = () => {
 
     setLoading(false);
   };
-
-  // Cek jika pengguna sudah login, maka arahkan ke halaman lain
   if (session) {
     router.push("/");
     return null;
