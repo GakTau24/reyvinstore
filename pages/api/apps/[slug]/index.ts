@@ -5,13 +5,13 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   if (request.method === "PUT") {
     try {
-      const { slug } = request.query;
+      const { slug: existingSlug } = request.query; // Menggunakan request.query untuk mendapatkan slug dari URL
       const { newSlug, newImage, newTitle, newPrice } = request.body;
 
       await connectToMongoDB();
 
       const updatedApps = await Apps.findOneAndUpdate(
-        { slug },
+        { slug: existingSlug }, // Menggunakan existingSlug untuk mencari data yang akan diubah
         { slug: newSlug, image: newImage, title: newTitle, price: newPrice },
         { new: true }
       );
@@ -20,13 +20,13 @@ export default async function handler(request: NextApiRequest, response: NextApi
         return response.status(404).json({ message: "Data tidak ditemukan" });
       }
 
-      return response.status(200).json({ message: "Data berhasil diupdate!", Apps: updatedApps });
+      return response.status(200).json({ message: "Data berhasil diupdate!", apps: updatedApps });
     } catch (error) {
       return response.status(500).json({ message: "Kesalahan Server Internal" });
     }
   } else if (request.method === "GET") {
     try {
-      const { slug } = request.query;
+      const { slug } = request.query; // Menggunakan request.query untuk mendapatkan slug dari URL
       await connectToMongoDB();
       const apps = await Apps.findOne({ slug });
       if (!apps) {

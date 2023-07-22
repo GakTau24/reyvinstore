@@ -5,13 +5,13 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   if (request.method === "PUT") {
     try {
-      const { slug } = request.query;
+      const { slug: existingSlug } = request.query; // Menggunakan request.query untuk mendapatkan slug dari URL
       const { newSlug, newImage, newTitle, newPrice } = request.body;
 
       await connectToMongoDB();
 
       const updatedTrending = await Trending.findOneAndUpdate(
-        { slug },
+        { slug: existingSlug }, // Menggunakan existingSlug untuk mencari data yang akan diubah
         { slug: newSlug, image: newImage, title: newTitle, price: newPrice },
         { new: true }
       );
@@ -26,7 +26,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
     }
   } else if (request.method === "GET") {
     try {
-      const { slug } = request.query;
+      const { slug } = request.query; // Menggunakan request.query untuk mendapatkan slug dari URL
       await connectToMongoDB();
       const trending = await Trending.findOne({ slug });
       if (!trending) {

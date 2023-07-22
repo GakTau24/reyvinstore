@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-function EditFormTrending() {
+function EditFormApps() {
   const [slug, setSlug] = useState("");
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
@@ -18,7 +18,7 @@ function EditFormTrending() {
     }
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/trending/${slug}`, // Gunakan slug yang ada di state sebagai bagian dari URL
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/apps/${slug}`, // Gunakan slug yang ada di state sebagai bagian dari URL
         {
           method: "PUT",
           headers: {
@@ -28,7 +28,7 @@ function EditFormTrending() {
         }
       );
       if (res.ok) {
-        router.push("/dashboard/admin/trending");
+        router.push("/dashboard/admin/apps");
       } else {
         throw new Error("Failed to edit data");
       }
@@ -40,7 +40,7 @@ function EditFormTrending() {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="w-[40rem]">
-        <h1 className="text-2xl font-bold mb-4 text-center">Edit Trending</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center">Edit Apps</h1>
 
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <div>
@@ -106,4 +106,4 @@ function EditFormTrending() {
   );
 }
 
-export default EditFormTrending;
+export default EditFormApps;

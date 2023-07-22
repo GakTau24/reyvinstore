@@ -2,7 +2,10 @@ import mongoose, { Schema } from "mongoose";
 
 const mobileSchema = new Schema(
     {
-        slug: String,
+        slug: {
+            type: String,
+            unique: true,
+          },
         image: String,
         title: String,
         price: String,

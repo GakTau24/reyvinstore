@@ -1,17 +1,20 @@
 import mongoose, { Schema } from "mongoose";
 
 const trendingSchema = new Schema(
-    {
-        slug: String,
-        image: String,
-        title: String,
-        price: String,
+  {
+    slug: {
+      type: String,
+      unique: true,
     },
-    {
-        timestamps: true
-    }
-)
+    image: String,
+    title: String,
+    price: String,
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Trending = mongoose.models.Trending || mongoose.model("Trending", trendingSchema)
+const Trending = mongoose.models.Trending || mongoose.model("Trending", trendingSchema);
 
-export default Trending
+export default Trending;
