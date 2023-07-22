@@ -23,10 +23,10 @@ export async function generateMetadata(
     openGraph: {
       images: [
         {
-          url: process.env.NEXT_PUBLIC_BASE_URL,
+          url: product.voucher.image,
           alt: product.voucher.title,
         },
-        product.voucher.image, ...previousImages,
+        ...previousImages,
       ],
       title: `${product.voucher.title} - Reyvin Store`,
       description: `Beli top-up game online dengan harga paling murah hanya di Reyvin Store! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${product.voucher.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
