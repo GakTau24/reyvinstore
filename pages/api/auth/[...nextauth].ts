@@ -21,11 +21,11 @@ const options: NextAuthOptions = {
                     email: credentials?.email
                 }).select("+password")
                 if(!user) {
-                    throw new Error("invalid credentials")
+                    throw new Error("Invalid Email or Password")
                 }
                 const isPasswordCorrect = await compare(credentials!.password, user.password)
                 if(!isPasswordCorrect) {
-                    throw new Error("Invalid credentials")
+                    throw new Error("Invalid Email or Password")
                 }
                 return user
             }

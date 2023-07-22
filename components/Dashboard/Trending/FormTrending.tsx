@@ -1,44 +1,47 @@
-"use client"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function FormTrending() {
-  const [slug, setSlug] = useState("")
-  const [image, setImage] = useState("")
-  const [title, setTitle] = useState("")
-  const [price, setPrice] = useState("")
+  const [slug, setSlug] = useState("");
+  const [image, setImage] = useState("");
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
 
-  const router = useRouter()
+  const router = useRouter();
 
   const handleSubmit = async (e: any) => {
-    e.preventDefault()
-    if(!slug || !image || !title || !price) {
-      alert("Slug, Image, Title dan Price harus diisi!")
-      return
+    e.preventDefault();
+    if (!slug || !image || !title || !price) {
+      alert("Slug, Image, Title dan Price harus diisi!");
+      return;
     }
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/trending`, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ slug, image, title, price })
-      })
-      if(res.ok) {
-        router.push("/dashboard/admin/trending")
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/trending`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ slug, image, title, price }),
+        }
+      );
+      if (res.ok) {
+        router.push("/dashboard/admin/trending");
       } else {
-        throw new Error("Gagal membuat data")
+        throw new Error("Gagal membuat data");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="w-[40rem]">
-      <Link href={"/dashboard/admin/trending"}>
+        <Link href={"/dashboard/admin/trending"}>
           <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">Back</button>
         </Link>
         <h1 className="text-2xl font-bold mb-4 text-center">Create Trending</h1>
@@ -47,8 +50,7 @@ function FormTrending() {
           <div>
             <label
               htmlFor="slug"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               slug
             </label>
             <input
@@ -63,8 +65,7 @@ function FormTrending() {
           <div>
             <label
               htmlFor="image"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Image
             </label>
             <input
@@ -79,8 +80,7 @@ function FormTrending() {
           <div>
             <label
               htmlFor="title"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Title
             </label>
             <input
@@ -95,8 +95,7 @@ function FormTrending() {
           <div>
             <label
               htmlFor="price"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Price
             </label>
             <textarea
@@ -109,8 +108,7 @@ function FormTrending() {
           </div>
           <button
             type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Submit
           </button>
         </form>

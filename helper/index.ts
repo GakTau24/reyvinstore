@@ -1,7 +1,7 @@
 export interface IUser {
     _id: string
     email: string
-    fullName: string
+    name: string
 }
 
 export interface LoginUserParams {

@@ -8,9 +8,19 @@ export default async function handler(request: NextApiRequest, response: NextApi
       await connectToMongoDB();
 
       const { image } = request.body;
-      await Carousel.create({ image });
 
-      response.status(201).json({ message: "Data telah berhasil dibuat!" });
+      // Check if the image already exists in the database
+      const existingCarousel = await Carousel.findOne({ image });
+
+      if (existingCarousel) {
+        // If the image already exists, update the existing entry
+        await Carousel.findByIdAndUpdate(existingCarousel._id, { image });
+        response.status(200).json({ message: "Data telah berhasil diupdate!" });
+      } else {
+        // If the image does not exist, create a new entry
+        await Carousel.create({ image });
+        response.status(201).json({ message: "Data telah berhasil dibuat!" });
+      }
     } catch (error) {
       response.status(500).json({ message: "Kesalahan Server Internal" });
     }

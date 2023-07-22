@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { useSession, signOut } from "next-auth/react";
+import { useSession, signOut, signIn } from "next-auth/react";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
@@ -69,7 +69,8 @@ const Navbar = () => {
                       onHoverStart={e => {}}
                       onHoverEnd={e => {}}
                     >
-                      Settings{" "}
+                      {/* Settings{" "} */}
+                      {session.data.user?.name}{""}
                       </motion.div>
                       <span>
                         <IoMdArrowDropdown />
@@ -103,12 +104,15 @@ const Navbar = () => {
                   )}
                 </div>
               ) : (
-                <Link
-                  href={"/login"}
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Login
-                </Link>
+                // <Link
+                //   href={"/login"}
+                //   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                // >
+                //   Login
+                // </Link>
+                <button className="" onClick={() => signIn()}>
+                Login
+              </button>
               )}
             </div>
           </div>

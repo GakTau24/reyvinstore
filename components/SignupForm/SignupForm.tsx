@@ -9,7 +9,7 @@ import { useSession, SessionProvider } from "next-auth/react";
 
 const SignupForm = () => {
   const [data, setData] = useState({
-    fullName: "",
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -23,10 +23,10 @@ const SignupForm = () => {
   const validateData = (): boolean => {
     const err = [];
 
-    if (data.fullName?.length < 4) {
-      err.push({ fullName: "Full name must be at least 4 characters long" });
-    } else if (data.fullName?.length > 30) {
-      err.push({ fullName: "Full name should be less than 30 characters" });
+    if (data.name?.length < 4) {
+      err.push({ name: "Full name must be at least 4 characters long" });
+    } else if (data.name?.length > 30) {
+      err.push({ name: "Full name should be less than 30 characters" });
     }
     if (data.password?.length < 6) {
       err.push({ password: "Password should be at least 6 characters long" });
@@ -92,21 +92,21 @@ const SignupForm = () => {
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="fullName"
+            htmlFor="name"
           >
             Full Name
           </label>
           <input
             className="shadow-xl appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-xl"
-            id="fullName"
+            id="name"
             type="text"
-            name="fullName"
+            name="name"
             placeholder="Full Name"
             onChange={handleInputChange}
           />
           {validationErrors.map((error, index) => (
             <p key={index} className="text-red-500 text-xs italic">
-              {error.fullName}
+              {error.name}
             </p>
           ))}
         </div>
