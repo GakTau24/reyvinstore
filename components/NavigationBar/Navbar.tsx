@@ -25,7 +25,7 @@ const Navbar = () => {
             onHoverStart={(e) => {}}
             onHoverEnd={(e) => {}}>
             <Link href={"/"}>
-              <h1 className="lg:text-xl font-bold">
+              <h1 className="lg:text-xl font-bold text-xl">
                 Reyvin <span className="text-sky-400">Store</span>
               </h1>
             </Link>
@@ -38,7 +38,7 @@ const Navbar = () => {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/"}
-                  className="dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                  className="hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                   Home
                 </Link>
               </motion.div>
@@ -48,14 +48,14 @@ const Navbar = () => {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/contact"}
-                  className="dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                  className="hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                   Contact
                 </Link>
               </motion.div>
               {session.data ? (
                 <div className="relative inline-block text-left">
                   <button
-                    className="dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
+                    className="hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
                     onClick={toggleDropdown}>
                     <div className="flex">
                       <motion.div
@@ -118,7 +118,7 @@ const Navbar = () => {
           <div className="-mr-2 flex md:hidden">
             <button
               type="button"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white inline-flex items-center justify-center p-2 rounded-md focus:outline-none"
+              className="hover:bg-sky-400 hover:text-white inline-flex items-center justify-center p-2 rounded-md focus:outline-none"
               onClick={toggleDropdown}>
               <svg
                 className="h-6 w-6"
@@ -151,12 +151,12 @@ const Navbar = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               href={"/"}
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+              className="hover:bg-sky-400 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
               Home
             </Link>
             <Link
               href={"/contact"}
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+              className="hover:bg-sky-400 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
               Contact
             </Link>
           </div>
@@ -165,12 +165,12 @@ const Navbar = () => {
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link
                 href={"/dashboard/admin"}
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                className="hover:bg-sky-400 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
                 Dashboard
               </Link>
               <button
                 onClick={handleLogout}
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left">
+                className="hover:bg-sky-400 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left">
                 Logout
               </button>
             </div>

@@ -24,7 +24,7 @@ function Sidebar() {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/dashboard/admin"}
-                  className="block p-2 rounded hover:bg-gray-700">
+                  className="block p-2 rounded hover:bg-sky-400">
                   Home
                 </Link>
               </motion.div>
@@ -36,7 +36,7 @@ function Sidebar() {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/dashboard/admin/carousel"}
-                  className="block p-2 rounded hover:bg-gray-700">
+                  className="block p-2 rounded hover:bg-sky-400">
                   Carousel
                 </Link>
               </motion.div>
@@ -48,7 +48,7 @@ function Sidebar() {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/dashboard/admin/trending"}
-                  className="block p-2 rounded hover:bg-gray-700">
+                  className="block p-2 rounded hover:bg-sky-400">
                   Trending
                 </Link>
               </motion.div>
@@ -60,7 +60,7 @@ function Sidebar() {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/dashboard/admin/mobile-games"}
-                  className="block p-2 rounded hover:bg-gray-700">
+                  className="block p-2 rounded hover:bg-sky-400">
                   Mobile Games
                 </Link>
               </motion.div>
@@ -72,7 +72,7 @@ function Sidebar() {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/dashboard/admin/pc-games"}
-                  className="block p-2 rounded hover:bg-gray-700">
+                  className="block p-2 rounded hover:bg-sky-400">
                   PC Games
                 </Link>
               </motion.div>
@@ -84,7 +84,7 @@ function Sidebar() {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/dashboard/admin/apps"}
-                  className="block p-2 rounded hover:bg-gray-700">
+                  className="block p-2 rounded hover:bg-sky-400">
                   Apps
                 </Link>
               </motion.div>
@@ -96,7 +96,7 @@ function Sidebar() {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/dashboard/admin/voucher"}
-                  className="block p-2 rounded hover:bg-gray-700">
+                  className="block p-2 rounded hover:bg-sky-400">
                   Voucher
                 </Link>
               </motion.div>
