@@ -17,7 +17,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="dark:bg-gray-800 shadow-xl rounded-b-lg">
+    <nav className="shadow-xl rounded-b-lg">
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <motion.div
@@ -25,7 +25,7 @@ const Navbar = () => {
             onHoverStart={(e) => {}}
             onHoverEnd={(e) => {}}>
             <Link href={"/"}>
-              <h1 className="lg:text-xl dark:text-white text-slate-700 font-bold">
+              <h1 className="lg:text-xl font-bold">
                 Reyvin <span className="text-sky-400">Store</span>
               </h1>
             </Link>
@@ -38,7 +38,7 @@ const Navbar = () => {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/"}
-                  className="dark:text-gray-300 text-slate-700 dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                  className="dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                   Home
                 </Link>
               </motion.div>
@@ -48,14 +48,14 @@ const Navbar = () => {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/contact"}
-                  className="dark:text-gray-300 text-slate-700 dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                  className="dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                   Contact
                 </Link>
               </motion.div>
               {session.data ? (
                 <div className="relative inline-block text-left">
                   <button
-                    className="dark:text-gray-300 text-slate-700 dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
+                    className="dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
                     onClick={toggleDropdown}>
                     <div className="flex">
                       <motion.div
@@ -72,7 +72,7 @@ const Navbar = () => {
                     </div>
                   </button>
                   {isOpen && (
-                    <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-xl-lg bg-slate-200 dark:bg-slate-800 ring-1 ring-black ring-opacity-5">
+                    <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md ring-1 ring-black ring-opacity-5">
                       <div
                         className="py-1"
                         role="menu"
@@ -80,13 +80,13 @@ const Navbar = () => {
                         aria-labelledby="options-menu">
                         <Link
                           href={"/dashboard/admin"}
-                          className="block px-4 py-2 text-sm dark:text-gray-300 dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-gray-900"
+                          className="block px-4 py-2 text-sm dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-gray-900"
                           role="menuitem">
                           Dashboard
                         </Link>
                         <button
                           onClick={handleLogout}
-                          className="block px-4 py-2 text-sm dark:text-gray-300 dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-gray-900 w-full text-left"
+                          className="block px-4 py-2 text-sm dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-gray-900 w-full text-left"
                           role="menuitem">
                           Logout
                         </button>
@@ -107,7 +107,7 @@ const Navbar = () => {
                 onHoverEnd={(e) => {}}
                 >
                   <button
-                    className="dark:text-gray-300 text-slate-700 dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    className="dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     onClick={() => signIn()}>
                     Login
                   </button>

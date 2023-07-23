@@ -11,7 +11,7 @@ function Contact() {
   return (
     <motion.div variants={containerVariants} initial="hidden" animate="visible">
       <div className="container mx-auto py-12">
-        <h1 className="text-3xl font-bold max-md:px-4 dark:text-slate-300 mb-4">
+        <h1 className="text-3xl font-bold max-md:px-4 mb-4">
           Contact Us
         </h1>
 
@@ -28,7 +28,7 @@ function Contact() {
                 className="rounded-xl"
               />
             </div>
-            <h3 className="text-lg font-bold text-center dark:text-slate-300 mb-4">
+            <h3 className="text-lg font-bold text-center mb-4">
               WhatsApp
             </h3>
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
@@ -52,7 +52,7 @@ function Contact() {
                 className="rounded-xl"
               />
             </div>
-            <h3 className="text-lg font-bold text-center dark:text-slate-300 mb-4">
+            <h3 className="text-lg font-bold text-center mb-4">
               Facebook Messenger
             </h3>
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
@@ -76,7 +76,7 @@ function Contact() {
                 className="rounded-xl"
               />
             </div>
-            <h3 className="text-lg font-bold text-center dark:text-slate-300 mb-4">
+            <h3 className="text-lg font-bold text-center mb-4">
               LINE
             </h3>
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>

@@ -73,14 +73,14 @@ export default async function page({ params }: any) {
           alt={res.trending.title}
         />
         <div className="p-3 text-center">
-          <h1 className="mb-2 text-xl font-bold tracking-tight dark:text-slate-300">
+          <h1 className="mb-2 text-xl font-bold tracking-tight">
             {res.trending.title}
           </h1>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
-          <h2 className="text-left font:bold text-lg dark:text-slate-300 py-3">
+          <h2 className="text-left font:bold text-lg py-3">
             Price List:
           </h2>
-          <p className="whitespace-pre font-mono leading-6 mb-3 font-normal text-left dark:text-slate-300">
+          <p className="whitespace-pre font-mono leading-6 mb-3 font-normal text-left ">
             {res.trending.price}
           </p>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />

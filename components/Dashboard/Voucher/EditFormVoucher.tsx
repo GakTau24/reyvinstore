@@ -44,7 +44,7 @@ function EditFormVoucher() {
 
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <div>
-            <label htmlFor="slug" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label htmlFor="slug" className="block mb-2 text-sm font-medium">
               Slug
             </label>
             <input
@@ -57,7 +57,7 @@ function EditFormVoucher() {
             />
           </div>
           <div>
-            <label htmlFor="image" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label htmlFor="image" className="block mb-2 text-sm font-medium">
               Image
             </label>
             <input
@@ -70,7 +70,7 @@ function EditFormVoucher() {
             />
           </div>
           <div>
-            <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label htmlFor="title" className="block mb-2 text-sm font-medium">
               Title
             </label>
             <input
@@ -83,7 +83,7 @@ function EditFormVoucher() {
             />
           </div>
           <div>
-            <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label htmlFor="price" className="block mb-2 text-sm font-medium">
               Price
             </label>
             <textarea

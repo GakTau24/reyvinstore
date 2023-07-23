@@ -51,7 +51,7 @@ const CarouselDashboard = () => {
         <div className="overflow-x-auto">
           <table className="w-full table-auto border-collapse">
             <thead>
-              <tr className="bg-gray-800">
+              <tr className="dark:bg-gray-800 dark:text-slate-300">
                 <th className="p-2 border-b">Image</th>
                 <th className="p-2 border-b">Actions</th>
               </tr>

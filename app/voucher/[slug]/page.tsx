@@ -74,14 +74,14 @@ export default async function page({ params }: any) {
           alt={res.voucher.title}
         />
         <div className="p-3 text-center">
-          <h5 className="mb-2 text-xl font-bold tracking-tight dark:text-slate-300">
+          <h5 className="mb-2 text-xl font-bold tracking-tight">
             {res.voucher.title}
           </h5>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
-          <h5 className="text-left font:bold text-lg dark:text-slate-300 py-3">
+          <h5 className="text-left font:bold text-lg py-3">
             Price List:
           </h5>
-          <pre className="mb-3 font-normal text-left dark:text-slate-300">
+          <pre className="mb-3 font-normal text-left">
             {res.voucher.price}
           </pre>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />

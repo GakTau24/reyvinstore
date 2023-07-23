@@ -4,6 +4,7 @@ import EditTrendingDashboard from '@/components/Dashboard/Trending/EditFormTrend
 export const metadata: Metadata = {
     title: `Dashboard Edit | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
     description: `Dashboard Edit Trending | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+    manifest: "/manifest.json",
   }
 
 function page() {

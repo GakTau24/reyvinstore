@@ -62,7 +62,7 @@ async function getDetailApps(slug: string) {
 export default async function page({ params }: any) {
   const res = await getDetailApps(params.slug);
   return (
-    <div className="flex justify-center items-center py-3 shadow-xl">
+    <div className="flex justify-center items-center py-3">
       <div className="max-w-sm rounded-lg shadow-2xl">
         <Image
           className="rounded-t-lg"
@@ -74,14 +74,14 @@ export default async function page({ params }: any) {
           alt={res.apps.title}
         />
         <div className="p-3 text-center">
-            <h2 className="mb-2 text-xl font-bold tracking-tight dark:text-slate-300">
+            <h2 className="mb-2 text-xl font-bold tracking-tight">
               {res.apps.title}
             </h2>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
-          <h3 className="text-left font:bold text-lg dark:text-slate-300 py-3">
+          <h3 className="text-left font:bold text-lg py-3">
             Price List:
           </h3>
-          <p className="whitespace-pre font-mono leading-6 mb-3 font-normal text-left dark:text-slate-300">
+          <p className="whitespace-pre font-mono leading-6 mb-3 font-normal text-left">
             {res.apps.price}
           </p>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />

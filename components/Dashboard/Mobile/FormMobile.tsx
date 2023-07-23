@@ -52,7 +52,7 @@ function FormMobile() {
           <div>
             <label
               htmlFor="slug"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              className="block mb-2 text-sm font-medium">
               slug
             </label>
             <input
@@ -67,7 +67,7 @@ function FormMobile() {
           <div>
             <label
               htmlFor="image"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              className="block mb-2 text-sm font-medium">
               Image
             </label>
             <input
@@ -82,7 +82,7 @@ function FormMobile() {
           <div>
             <label
               htmlFor="title"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              className="block mb-2 text-sm font-medium">
               Title
             </label>
             <input
@@ -97,7 +97,7 @@ function FormMobile() {
           <div>
             <label
               htmlFor="price"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              className="block mb-2 text-sm font-medium">
               Price
             </label>
             <textarea

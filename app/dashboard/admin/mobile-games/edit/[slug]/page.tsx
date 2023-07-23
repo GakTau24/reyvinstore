@@ -4,6 +4,7 @@ import EditFormMobileGames from '@/components/Dashboard/Mobile/EditFormMobilGame
 export const metadata: Metadata = {
     title: `Dashboard Edit | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
     description: `Dashboard Edit Mobile Games | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+    manifest: "/manifest.json",
   }
 
 function page() {

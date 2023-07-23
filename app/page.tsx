@@ -40,7 +40,7 @@ export default function Home() {
       <div className="md:mt-10 md:pt-10 md:px-3 pt-3 shadow-xl">
         <Carousel />
       </div>
-      <div className="p-5 shadow-xl">
+      <div className="p-5">
         <Trending />
         <MobileGames />
         <PcGames />

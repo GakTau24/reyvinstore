@@ -63,7 +63,7 @@ export default async function page({ params }: any) {
   const res = await getDetailMobile(params.slug);
 
   return (
-    <div className="flex justify-center items-center py-3 shadow-xl">
+    <div className="flex justify-center items-center py-3">
       <div className="max-w-sm rounded-lg shadow-2xl">
         <Image
           className="rounded-t-lg"
@@ -75,14 +75,14 @@ export default async function page({ params }: any) {
           alt={res.mobileGame.title}
         />
         <div className="p-3 text-center">
-            <h5 className="mb-2 text-xl font-bold tracking-tight dark:text-slate-300">
+            <h5 className="mb-2 text-xl font-bold tracking-tight">
               {res.mobileGame.title}
             </h5>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
-          <h5 className="text-left font:bold text-lg dark:text-slate-300 py-3">
+          <h5 className="text-left font:bold text-lg py-3">
             Price List:
           </h5>
-          <p className="whitespace-pre font-mono leading-6 mb-3 font-normal text-left dark:text-slate-300">
+          <p className="whitespace-pre font-mono leading-6 mb-3 font-normal text-left">
             {res.mobileGame.price}
           </p>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />

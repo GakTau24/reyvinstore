@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function EditFormTrending() {
   const [slug, setSlug] = useState("");
@@ -41,10 +42,12 @@ function EditFormTrending() {
     <div className="flex justify-center items-center h-screen">
       <div className="w-[40rem]">
         <h1 className="text-2xl font-bold mb-4 text-center">Edit Trending</h1>
-
+        <Link href={"/dashboard/admin/trending"}>
+          <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">Back</button>
+        </Link>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <div>
-            <label htmlFor="slug" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label htmlFor="slug" className="block mb-2 text-sm font-medium">
               Slug
             </label>
             <input
@@ -57,7 +60,7 @@ function EditFormTrending() {
             />
           </div>
           <div>
-            <label htmlFor="image" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label htmlFor="image" className="block mb-2 text-sm font-medium">
               Image
             </label>
             <input
@@ -70,7 +73,7 @@ function EditFormTrending() {
             />
           </div>
           <div>
-            <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label htmlFor="title" className="block mb-2 text-sm font-medium">
               Title
             </label>
             <input
@@ -83,7 +86,7 @@ function EditFormTrending() {
             />
           </div>
           <div>
-            <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label htmlFor="price" className="block mb-2 text-sm font-medium">
               Price
             </label>
             <textarea

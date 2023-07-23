@@ -1,17 +1,18 @@
 import { connectToMongoDB } from "@/lib/mongodb";
 import Trending from "@/models/trending";
 import { NextApiRequest, NextApiResponse } from "next";
+import { getSession } from "next-auth/react";
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   if (request.method === "PUT") {
     try {
-      const { slug: existingSlug } = request.query; // Menggunakan request.query untuk mendapatkan slug dari URL
+      const { slug: existingSlug } = request.query;
       const { newSlug, newImage, newTitle, newPrice } = request.body;
 
       await connectToMongoDB();
 
       const updatedTrending = await Trending.findOneAndUpdate(
-        { slug: existingSlug }, // Menggunakan existingSlug untuk mencari data yang akan diubah
+        { slug: existingSlug },
         { slug: newSlug, image: newImage, title: newTitle, price: newPrice },
         { new: true }
       );

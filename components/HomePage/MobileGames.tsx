@@ -88,7 +88,7 @@ function Cards({ data }: any) {
       </Link>
       <div className="md:p-3 max-md:py-2">
         <Link href={`/mobile-games/${slug}`}>
-          <h2 className="text-lg text-center font-medium tracking-tight text-slate-800 dark:text-slate-300">
+          <h2 className="text-lg text-center font-medium tracking-tight">
             {title}
           </h2>
         </Link>

@@ -4,6 +4,7 @@ import EditFormVoucher from '@/components/Dashboard/Voucher/EditFormVoucher'
 export const metadata: Metadata = {
     title: `Dashboard Edit | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
     description: `Dashboard Edit Voucher | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+    manifest: "/manifest.json",
   }
 
 function page() {
