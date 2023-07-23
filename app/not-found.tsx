@@ -4,9 +4,10 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: `404 Not found - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+  manifest: "/manifest.json",
 }
 
-const Page404 = () => {
+const NotFound = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen overflow-hidden">
       <div className="max-w-md mx-auto text-center items-center justify-center">
@@ -22,4 +23,4 @@ const Page404 = () => {
   );
 };
 
-export default Page404;
+export default NotFound;
