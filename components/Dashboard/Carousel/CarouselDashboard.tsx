@@ -77,8 +77,8 @@ function TableRow({ data, handleDelete }: any) {
 
   return (
     <tr>
-      <td className="p-2 border-b">{image}</td>
-      <td className="p-2 border-b">
+      <td className="p-2 border-current border-b">{image}</td>
+      <td className="p-2 border-current border-b">
       {/* <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">
           <Link href={`/dashboard/admin/carousel/edit/`}>Edit</Link>
         </button> */}

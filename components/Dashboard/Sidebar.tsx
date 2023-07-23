@@ -15,7 +15,7 @@ function Sidebar() {
               Reyvin <span className="text-sky-400">Store</span>
             </h1>
           </motion.div>
-          <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
+          <hr className="my-3 sm:mx-auto border-gray-500 lg:my-4 opacity-20" />
           <ul className="space-y-2">
             <li>
               <motion.div

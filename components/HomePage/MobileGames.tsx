@@ -29,7 +29,7 @@ export default function MobileGames() {
 
   return (
     <section>
-      <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
+      <hr className="my-6 sm:mx-auto border-gray-500 lg:my-4 opacity-30" />
       <h1 className="mb-3 font-semibold text-xl">● Mobile Games</h1>
       <Swiper
         spaceBetween={8}
