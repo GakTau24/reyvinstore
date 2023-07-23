@@ -41,7 +41,7 @@ const TrendingDashboard = () => {
                 <th className="p-2 border-b">Slug</th>
                 {/* <th className="p-2 border-b">Image</th> */}
                 <th className="p-2 border-b">Title</th>
-                <th className="p-2 border-b">Price</th>
+                {/* <th className="p-2 border-b">Price</th> */}
                 <th className="p-2 border-b">Actions</th>
               </tr>
             </thead>
@@ -79,12 +79,12 @@ function TableRow({ data }: any) {
       <td className="p-2 border-b">{slug}</td>
       {/* <td className="p-2 border-b">{image}</td> */}
       <td className="p-2 border-b">{title}</td>
-      <td className="p-2 border-b">{price}</td>
+      {/* <td className="p-2 border-b">{price}</td> */}
       <td className="p-2 border-b">
         <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">
           <Link href={`/dashboard/admin/trending/edit/${slug}`}>Edit</Link>
         </button>
-        <button className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded ml-2" onClick={handleDelete}>
+        <button className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded" onClick={handleDelete}>
           Delete
         </button>
       </td>
