@@ -71,7 +71,7 @@ export default async function page({ params }: any) {
           width="100"
           height="100"
           layout="responsive"
-          objectFit="contain"
+          objectFit="cover"
           alt={res.mobileGame.title}
         />
         <div className="p-3 text-center">
@@ -82,9 +82,9 @@ export default async function page({ params }: any) {
           <h5 className="text-left font:bold text-lg dark:text-slate-300 py-3">
             Price List:
           </h5>
-          <pre className="mb-3 font-normal text-left dark:text-slate-300">
+          <p className="whitespace-pre font-mono leading-6 mb-3 font-normal text-left dark:text-slate-300">
             {res.mobileGame.price}
-          </pre>
+          </p>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
           <Link
             href={`https://wa.me/6285173125847`}

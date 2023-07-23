@@ -34,7 +34,7 @@ export default function Apps() {
       <Swiper
         spaceBetween={8}
         grabCursor={true}
-        slidesPerView={3}
+        slidesPerView={3.5}
         breakpoints={{
           640: {
             slidesPerView: 1,
@@ -73,7 +73,7 @@ function Cards({ data }: any) {
       onHoverEnd={(e) => {}}
       variants={containerVariants} initial="hidden" animate="visible"
       >
-    <div className="w-full rounded-lg shadow-xl lg:max-w-sm max-lg:h-[200px]">
+    <div className="w-full rounded-lg shadow-xl lg:max-w-sm max-lg:h-[200px] md:h-[235px]">
       <Link href={`/apps/${slug}`}>
         <Image
           className="rounded-lg"

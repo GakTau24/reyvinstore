@@ -34,7 +34,7 @@ export default function Carousel() {
       <Swiper
         modules={[Autoplay]}
         spaceBetween={3}
-        slidesPerView={3}
+        slidesPerView={1}
         loop={true}
         grabCursor={true}
         autoplay={{

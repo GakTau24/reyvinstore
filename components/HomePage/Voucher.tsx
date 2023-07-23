@@ -36,7 +36,7 @@ export default function Voucher() {
       <h1 className="mb-3 font-semibold text-xl">● Voucher</h1>
       <Swiper
         spaceBetween={8}
-        slidesPerView={3}
+        slidesPerView={3.5}
         grabCursor={true}
         breakpoints={{
           640: {
@@ -70,7 +70,7 @@ function Cards({ data }: any) {
       whileHover={{ scale: 1.2 }}
       onHoverStart={(e) => {}}
       onHoverEnd={(e) => {}}>
-      <div className="w-full rounded-lg shadow-xl lg:max-w-sm max-lg:h-[200px]">
+      <div className="w-full rounded-lg shadow-xl lg:max-w-sm max-lg:h-[200px] md:h-[235px]">
         <Link href={`/voucher/${slug}`}>
           <Image
             className="rounded-lg"

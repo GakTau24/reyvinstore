@@ -70,7 +70,7 @@ export default async function page({ params }: any) {
           width="100"
           height="100"
           layout="responsive"
-          objectFit="contain"
+          objectFit="cover"
           alt={res.voucher.title}
         />
         <div className="p-3 text-center">
