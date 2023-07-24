@@ -3,6 +3,15 @@ import Link from "next/link";
 import { BsWhatsapp } from "react-icons/bs";
 import { Metadata } from "next";
 
+async function getDetailPc(slug: string) {
+  const data = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/pcgames/${slug}`,
+    { cache: "no-store" }
+  );
+  return data.json();
+}
+
+
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -12,14 +21,10 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: any
 ): Promise<Metadata> {
-  const slug = params.slug;
-  const product = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/pcgames/${slug}`
-  ).then((res) => res.json());
+  const product = await getDetailPc(params.slug);
   const previousImages = (await parent)?.openGraph?.images || [];
-
   return {
-    title: `${product.pcgames.title} - Reyvin Store`,
+    title: `${product.pcgames.title}`,
     openGraph: {
       images: [
         {
@@ -35,28 +40,19 @@ export async function generateMetadata(
     description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${product.pcgames.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
     manifest: "/manifest.json",
     keywords: [
-      'reyvin store',
-      'reyvinstore',
+      "reyvin store",
+      "reyvinstore",
       `top-up game ${product.pcgames.title} online murah`,
       `beli diamond ${product.pcgames.title} murah`,
-      `topup ${product.pcgames.title}`,
-      `topup mobile legends`,
-      'topup pubg mobile',
-      'topup free fire',
-      'topup valorant',
-      `topup game ${product.pcgames.title} termurah`,
-      `game voucher ${product.pcgames.title}`,
+      `topup games ${product.pcgames.title}`,
+      "topup pubg mobile",
+      "topup free fire",
+      "topup valorant",
+      "topup game termurah",
+      "game voucher",
       `game online ${product.pcgames.title}`,
     ],
   };
-}
-
-async function getDetailPc(slug: string) {
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/pcgames/${slug}`,
-    { cache: "no-store" }
-  );
-  return data.json();
 }
 
 export default async function page({ params }: any) {

@@ -72,7 +72,7 @@ const Navbar = () => {
                     </div>
                   </button>
                   {isOpen && (
-                    <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md ring-1 ring-black ring-opacity-5">
+                    <div className="origin-top-right absolute border border-slate-700 right-0 mt-2 w-48 rounded-md ring-1 ring-black ring-opacity-5">
                       <div
                         className="py-1"
                         role="menu"
@@ -80,13 +80,14 @@ const Navbar = () => {
                         aria-labelledby="options-menu">
                         <Link
                           href={"/dashboard/admin"}
-                          className="block px-4 py-2 text-sm dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-gray-900"
+                          className="block px-4 py-2 text-sm hover:bg-sky-400 hover:rounded hover:text-gray-900"
                           role="menuitem">
                           Dashboard
                         </Link>
+                        <hr className="border-gray-900 opacity-30" />
                         <button
                           onClick={handleLogout}
-                          className="block px-4 py-2 text-sm dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-gray-900 w-full text-left"
+                          className="block px-4 py-2 text-sm hover:bg-sky-400 hover:rounded hover:text-gray-900 w-full text-left"
                           role="menuitem">
                           Logout
                         </button>
@@ -102,12 +103,11 @@ const Navbar = () => {
                 //   Login
                 // </Link>
                 <motion.div
-                whileHover={{ scale: 1.2 }}
-                onHoverStart={(e) => {}}
-                onHoverEnd={(e) => {}}
-                >
+                  whileHover={{ scale: 1.2 }}
+                  onHoverStart={(e) => {}}
+                  onHoverEnd={(e) => {}}>
                   <button
-                    className="dark:hover:bg-gray-700 hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    className="hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     onClick={() => signIn()}>
                     Login
                   </button>
@@ -176,11 +176,11 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                  <button
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                    onClick={() => signIn()}>
-                    Login
-                  </button>
+              <button
+                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => signIn()}>
+                Login
+              </button>
             </div>
           )}
         </div>

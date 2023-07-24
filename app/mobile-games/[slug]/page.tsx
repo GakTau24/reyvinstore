@@ -3,6 +3,14 @@ import Link from "next/link";
 import { BsWhatsapp } from "react-icons/bs";
 import { Metadata } from "next";
 
+async function getDetailMobile(slug: string) {
+  const data = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/mobilegames/${slug}`,
+    { cache: "no-store" }
+  );
+  return data.json();
+}
+
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -12,14 +20,10 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: any
 ): Promise<Metadata> {
-  const slug = params.slug;
-  const product = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/mobilegames/${slug}`
-  ).then((res) => res.json());
+  const product = await getDetailMobile(params.slug);
   const previousImages = (await parent)?.openGraph?.images || [];
-
   return {
-    title: `${product.mobileGame.title} - Reyvin Store`,
+    title: `${product.mobileGame.title}`,
     openGraph: {
       images: [
         {
@@ -35,33 +39,23 @@ export async function generateMetadata(
     description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${product.mobileGame.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
     manifest: "/manifest.json",
     keywords: [
-      'reyvin store',
-      'reyvinstore',
+      "reyvin store",
+      "reyvinstore",
       `top-up game ${product.mobileGame.title} online murah`,
       `beli diamond ${product.mobileGame.title} murah`,
-      `topup ${product.mobileGame.title}`,
-      `topup mobile legends`,
-      'topup pubg mobile',
-      'topup free fire',
-      'topup valorant',
-      `topup game ${product.mobileGame.title} termurah`,
-      `game voucher ${product.mobileGame.title}`,
+      `topup games ${product.mobileGame.title}`,
+      "topup pubg mobile",
+      "topup free fire",
+      "topup valorant",
+      "topup game termurah",
+      "game voucher",
       `game online ${product.mobileGame.title}`,
     ],
   };
 }
 
-async function getDetailMobile(slug: string) {
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/mobilegames/${slug}`,
-    { cache: "no-store" }
-  );
-  return data.json();
-}
-
 export default async function page({ params }: any) {
   const res = await getDetailMobile(params.slug);
-
   return (
     <div className="flex justify-center items-center py-3">
       <div className="max-w-sm rounded-lg shadow-2xl">

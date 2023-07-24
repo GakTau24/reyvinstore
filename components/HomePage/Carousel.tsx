@@ -38,9 +38,12 @@ export default function Carousel() {
         loop={true}
         grabCursor={true}
         autoplay={{
-          delay: 3000,
+          delay: 2000,
         }}
         breakpoints={{
+          768: {
+            slidesPerView: 1.4,
+          },
           1024: {
             slidesPerView: 3,
           },

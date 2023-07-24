@@ -3,6 +3,14 @@ import Link from "next/link";
 import { BsWhatsapp } from "react-icons/bs";
 import { Metadata } from "next";
 
+async function getDetailVoucher(slug: string) {
+  const data = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/voucher/${slug}`,
+    { cache: "no-store" }
+  );
+  return data.json();
+}
+
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -12,14 +20,10 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: any
 ): Promise<Metadata> {
-  const slug = params.slug;
-  const product = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/voucher/${slug}`
-  ).then((res) => res.json());
+  const product = await getDetailVoucher(params.slug);
   const previousImages = (await parent)?.openGraph?.images || [];
-
   return {
-    title: `${product.voucher.title} - Reyvin Store`,
+    title: `${product.voucher.title}`,
     openGraph: {
       images: [
         {
@@ -35,28 +39,19 @@ export async function generateMetadata(
     description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${product.voucher.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
     manifest: "/manifest.json",
     keywords: [
-      'reyvin store',
-      `beli voucher ${product.voucher.title}`,
-      'reyvinstore',
-      'top-up game online murah',
-      'beli diamond murah',
-      'topup mobile legends',
-      'topup pubg mobile',
-      'topup free fire',
-      'topup valorant',
-      'topup game termurah',
-      `game voucher ${product.voucher.title}`,
-      'game online',
+      "reyvin store",
+      "reyvinstore",
+      `top-up game ${product.voucher.title} online murah`,
+      `beli diamond ${product.voucher.title} murah`,
+      `topup games ${product.voucher.title}`,
+      "topup pubg mobile",
+      "topup free fire",
+      "topup valorant",
+      "topup game termurah",
+      "game voucher",
+      `game online ${product.voucher.title}`,
     ],
   };
-}
-
-async function getDetailVoucher(slug: string) {
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/voucher/${slug}`,
-    { cache: "no-store" }
-  );
-  return data.json();
 }
 
 export default async function page({ params }: any) {

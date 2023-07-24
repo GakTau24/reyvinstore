@@ -7,6 +7,8 @@ import Footer from "@/components/Footer/Footer";
 import { SessionProvider } from "next-auth/react";
 import { BsSun } from "react-icons/bs";
 import { BsMoon } from "react-icons/bs";
+import { motion } from "framer-motion";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,25 +34,33 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={
+        className={`${inter.className} ${
           isDarkMode
-            ? " bg-slate-200 text-slate-800"
+            ? "bg-slate-200 text-slate-800"
             : "dark:bg-gradient-to-r from-slate-900 to-slate-500 dark:text-slate-300"
-        }>
+        }`}
+      >
         <SessionProvider>
           <Navbar />
           {children}
         </SessionProvider>
         <Footer />
-        <button
+
+        <div>
+        <motion.button
+         whileHover={{ scale: 1.2 }}
+         onHoverStart={(e) => {}}
+         onHoverEnd={(e) => {}}
           onClick={handleToggleMode}
-          className="fixed max-sm:bottom-10 md:bottom-4 right-4 p-5 rounded-full bg-sky-400">
+          className="fixed max-sm:bottom-10 md:bottom-4 right-4 p-5 rounded-full bg-sky-400"
+          >
           {isDarkMode ? (
             <BsSun size={20} color="white" />
           ) : (
             <BsMoon size={20} color="black" />
           )}
-        </button>
+          </motion.button>
+        </div>
       </body>
     </html>
   );
