@@ -3,16 +3,15 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
-function FormCarousel() {
-
+function FormApps() {
   const [image, setImage] = useState("")
 
   const router = useRouter()
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    if(!image ) {
-      alert("Image harus diisi!")
+    if(!image) {
+      alert("Slug, Image, Title dan Price harus diisi!")
       return
     }
     try {
@@ -24,7 +23,7 @@ function FormCarousel() {
         body: JSON.stringify({ image })
       })
       if(res.ok) {
-        router.push("/dashboard/admin/carousel")
+        router.push("/dashboard/admin/apps")
       } else {
         throw new Error("Gagal membuat data")
       }
@@ -34,19 +33,20 @@ function FormCarousel() {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen overflow-hidden">
+    <div className="flex justify-center items-center h-screen">
       <div className="w-[40rem]">
         <Link href={"/dashboard/admin/carousel"}>
-          <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">Back</button>
+          <button className="bg-sky-400 px-5 p-3 rounded-xl max-lg:mt-[4em]">Back</button>
         </Link>
-        <h1 className="text-2xl font-bold mb-4 text-center">Create Carousel</h1>
+        <h1 className="text-2xl font-bold mb-4 mt-2 text-center">
+          Create Carousel
+        </h1>
 
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-1">
           <div>
             <label
               htmlFor="image"
-              className="block mb-2 text-sm font-medium"
-            >
+              className="block mb-2 text-sm font-medium">
               Image
             </label>
             <input
@@ -60,8 +60,7 @@ function FormCarousel() {
           </div>
           <button
             type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Submit
           </button>
         </form>
@@ -70,4 +69,4 @@ function FormCarousel() {
   );
 }
 
-export default FormCarousel;
+export default FormApps;

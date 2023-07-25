@@ -11,7 +11,7 @@ interface EditFormTrendingProps {
   price: string;
 }
 
-export default function EditFormPcGames({
+export default function EditFormApps({
   id,
   slug: initialSlug,
   title: initialTitle,
@@ -38,7 +38,7 @@ export default function EditFormPcGames({
       if (!res.ok) {
         throw new Error("Failed to fetch data");
       }
-      router.push("/dashboard/admin/pc-games");
+      router.push("/dashboard/admin/apps");
     } catch (error) {
       console.log(error);
     }

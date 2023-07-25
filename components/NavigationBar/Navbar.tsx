@@ -10,7 +10,7 @@ const Navbar = () => {
   const session = useSession();
   const router = usePathname();
   const activeLink = "hover:bg-sky-400 hover:text-white px-3 py-2 mx-3 rounded-md text-sm font-medium bg-sky-400"
-  const nonActiveLink = "hover:bg-sky-400 mx-3"
+  const nonActiveLink = "hover:bg-sky-400 hover:text-white px-3 py-2 mx-3 rounded-md text-sm font-medium"
   const activeLinkDropdown = "hover:bg-sky-400 bg-sky-400 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
   const nonActiveLinkDropdown = "hover:bg-sky-400 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
 
