@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/free-mode";
 import "swiper/css";
 
 type TrendingItem = {
