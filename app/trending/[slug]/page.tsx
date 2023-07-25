@@ -77,9 +77,9 @@ export default async function page({ params }: any) {
           <h5 className="text-left font:bold text-lg py-3">
             Price List:
           </h5>
-          <pre className="mb-3 font-normal text-left">
+          <p className="whitespace-pre font-mono leading-6 mb-3 font-normal text-left">
             {res.trending.price}
-          </pre>
+          </p>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
           <Link
             href="https://wa.me/6285173125847"
