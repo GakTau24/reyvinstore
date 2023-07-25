@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Sidebar from "../Sidebar";
@@ -10,7 +10,10 @@ const MobileGamesDashboard = () => {
   useEffect(() => {
     const fetchMobileGames = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/mobilegames`, { cache: 'no-store' });
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/mobilegames`,
+          { cache: "no-store" }
+        );
         if (!res.ok) {
           throw new Error("Data not found!");
         }
@@ -30,11 +33,14 @@ const MobileGamesDashboard = () => {
   const handleDelete = async (id: any) => {
     const remove = confirm("Apakah anda yakin untuk menghapus?");
     if (remove) {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/mobilegames?id=${id}`, {
-        method: "DELETE"
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/mobilegames?id=${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (res.ok) {
-        router.refresh()
+        router.refresh();
       }
     }
   };
@@ -45,10 +51,12 @@ const MobileGamesDashboard = () => {
       <div className="p-2">
         <h1 className="text-3xl font-bold mb-5">Mobile Games</h1>
         <Link href={"/dashboard/admin/mobile-games/create"}>
-          <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">Create</button>
+          <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">
+            Create
+          </button>
         </Link>
         {/* Table */}
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto max-md:max-h-[40rem]">
           <table className="w-full table-auto border-collapse">
             <thead>
               <tr className="dark:bg-gray-800 dark:text-slate-300">
@@ -85,12 +93,16 @@ function TableRow({ data, handleDelete }: any) {
       <td className="p-2 border-current border-b">{title}</td>
       {/* <td className="p-2 border-b">{price}</td> */}
       <td className="p-2 border-current border-b">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">
-          <Link href={`/dashboard/admin/mobile-games/edit/${_id}`}>Edit</Link>
-        </button>
-        <button className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded ml-2" onClick={handleDeleteClick}>
-          Delete
-        </button>
+        <div className="mx-2">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 max-md:px-5 rounded md:mr-2">
+            <Link href={`/dashboard/admin/mobile-games/edit/${_id}`}>Edit</Link>
+          </button>
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded"
+            onClick={handleDeleteClick}>
+            Delete
+          </button>
+        </div>
       </td>
     </tr>
   );

@@ -3,10 +3,16 @@ import Link from "next/link";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useSession, signOut, signIn } from "next-auth/react";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const session = useSession();
+  const router = usePathname();
+  const activeLink = "hover:bg-sky-400 hover:text-white px-3 py-2 mx-3 rounded-md text-sm font-medium bg-sky-400"
+  const nonActiveLink = "hover:bg-sky-400 mx-3"
+  const activeLinkDropdown = "hover:bg-sky-400 bg-sky-400 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+  const nonActiveLinkDropdown = "hover:bg-sky-400 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -38,7 +44,7 @@ const Navbar = () => {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/"}
-                  className="hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                  className={router === "/" ? activeLink : nonActiveLink}>
                   Home
                 </Link>
               </motion.div>
@@ -48,7 +54,7 @@ const Navbar = () => {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/contact"}
-                  className="hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                  className={router === "/contact" ? activeLink : nonActiveLink}>
                   Contact
                 </Link>
               </motion.div>
@@ -107,7 +113,7 @@ const Navbar = () => {
                   onHoverStart={(e) => {}}
                   onHoverEnd={(e) => {}}>
                   <button
-                    className="hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    className={router === "/login/:path*" ? activeLink : nonActiveLink}
                     onClick={() => signIn()}>
                     Login
                   </button>
@@ -151,12 +157,12 @@ const Navbar = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               href={"/"}
-              className="hover:bg-sky-400 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+              className={router === "/" ? activeLinkDropdown : nonActiveLinkDropdown}>
               Home
             </Link>
             <Link
               href={"/contact"}
-              className="hover:bg-sky-400 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+              className={router === "/contact" ? activeLinkDropdown : nonActiveLinkDropdown}>
               Contact
             </Link>
           </div>
@@ -177,7 +183,7 @@ const Navbar = () => {
           ) : (
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <button
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                className={router === "/login/:path*" ? activeLinkDropdown : nonActiveLinkDropdown}
                 onClick={() => signIn()}>
                 Login
               </button>

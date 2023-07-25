@@ -34,7 +34,7 @@ const TrendingDashboard = () => {
           <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">Create</button>
         </Link>
         {/* Table */}
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto max-md:max-h-[40rem]">
           <table className="w-full table-auto border-collapse">
             <thead>
               <tr className="dark:bg-gray-800 dark:text-slate-300">
@@ -81,12 +81,14 @@ function TableRow({ data }: any) {
       <td className="p-2 border-current border-b">{title}</td>
       {/* <td className="p-2 border-b">{price}</td> */}
       <td className="p-2 border-current border-b">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">
+        <div className="mx-2">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 max-md:px-5 rounded md:mr-2">
           <Link href={`/dashboard/admin/trending/edit/${_id}`}>Edit</Link>
         </button>
         <button className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded" onClick={handleDelete}>
           Delete
         </button>
+        </div>
       </td>
     </tr>
   );

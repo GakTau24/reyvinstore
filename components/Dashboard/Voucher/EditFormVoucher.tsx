@@ -46,10 +46,10 @@ export default function EditFormVoucher({
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="w-[40rem]">
-        <h1 className="text-2xl font-bold mb-4 text-center">Edit {title}</h1>
+      <div className="w-[40rem] max-md:w-96">
+        <h1 className="text-2xl max-md:text-md font-bold mb-4 max-md:mt-20 text-center">Edit {title}</h1>
         <Link href={"/dashboard/admin/voucher"}>
-          <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">Back</button>
+          <button className="bg-sky-400 px-5 p-3 rounded-xl mb-5">Back</button>
         </Link>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <div>
@@ -96,7 +96,7 @@ export default function EditFormVoucher({
               Price
             </label>
             <textarea
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 resize-none h-96 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 resize-none h-96 max-md:h-60 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="example"
               onChange={(e) => setPrice(e.target.value)}
               value={price}

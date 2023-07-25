@@ -1,8 +1,15 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 function Sidebar() {
+  const router = usePathname();
+  console.log(router);
+  
+  const activeLink = "block p-2 rounded hover:bg-sky-400 bg-sky-400 font-bold"; 
+  const nonActiveLink = "block p-2 rounded";
+
   return (
     <>
       <div className="w-[10rem]">
@@ -24,7 +31,8 @@ function Sidebar() {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/dashboard/admin"}
-                  className="block p-2 rounded hover:bg-sky-400">
+                  className={router === "/dashboard/admin" ? activeLink : nonActiveLink}
+                  >
                   Home
                 </Link>
               </motion.div>
@@ -36,7 +44,7 @@ function Sidebar() {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/dashboard/admin/carousel"}
-                  className="block p-2 rounded hover:bg-sky-400">
+                  className={router === "/dashboard/admin/carousel" ? activeLink : nonActiveLink}>
                   Carousel
                 </Link>
               </motion.div>
@@ -48,7 +56,7 @@ function Sidebar() {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/dashboard/admin/trending"}
-                  className="block p-2 rounded hover:bg-sky-400">
+                  className={router === "/dashboard/admin/trending" ? activeLink : nonActiveLink}>
                   Trending
                 </Link>
               </motion.div>
@@ -60,7 +68,7 @@ function Sidebar() {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/dashboard/admin/mobile-games"}
-                  className="block p-2 rounded hover:bg-sky-400">
+                  className={router === "/dashboard/admin/mobile-games" ? activeLink : nonActiveLink}>
                   Mobile Games
                 </Link>
               </motion.div>
@@ -72,7 +80,7 @@ function Sidebar() {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/dashboard/admin/pc-games"}
-                  className="block p-2 rounded hover:bg-sky-400">
+                  className={router === "/dashboard/admin/pc-games" ? activeLink : nonActiveLink}>
                   PC Games
                 </Link>
               </motion.div>
@@ -84,7 +92,7 @@ function Sidebar() {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/dashboard/admin/apps"}
-                  className="block p-2 rounded hover:bg-sky-400">
+                  className={router === "/dashboard/admin/apps" ? activeLink : nonActiveLink}>
                   Apps
                 </Link>
               </motion.div>
@@ -96,7 +104,7 @@ function Sidebar() {
                 onHoverEnd={(e) => {}}>
                 <Link
                   href={"/dashboard/admin/voucher"}
-                  className="block p-2 rounded hover:bg-sky-400">
+                  className={router === "/dashboard/admin/voucher" ? activeLink : nonActiveLink}>
                   Voucher
                 </Link>
               </motion.div>
