@@ -48,6 +48,7 @@ export default function PcGames() {
         spaceBetween={8}
         slidesPerView={3.5}
         grabCursor={true}
+        freeMode={true}
         breakpoints={{
           640: {
             slidesPerView: 1,

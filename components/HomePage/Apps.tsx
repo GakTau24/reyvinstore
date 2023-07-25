@@ -45,6 +45,7 @@ export default function Apps() {
         spaceBetween={8}
         grabCursor={true}
         slidesPerView={3.5}
+        freeMode={true}
         breakpoints={{
           640: {
             slidesPerView: 1,

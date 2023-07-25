@@ -45,6 +45,7 @@ export default function MobileGames() {
         spaceBetween={8}
         slidesPerView={3.5}
         grabCursor={true}
+        freeMode={true}
         breakpoints={{
           640: {
             slidesPerView: 1,
