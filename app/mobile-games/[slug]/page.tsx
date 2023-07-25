@@ -5,7 +5,7 @@ import { Metadata } from "next";
 
 async function getDetailMobile(slug: string) {
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/mobilegames/${slug}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/mobilegames/detail/${slug}`,
     { cache: "no-store" }
   );
   return data.json();

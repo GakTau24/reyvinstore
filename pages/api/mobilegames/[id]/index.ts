@@ -5,35 +5,28 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   if (request.method === "PUT") {
     try {
-      const { slug: existingSlug } = request.query; // Menggunakan request.query untuk mendapatkan slug dari URL
-      const { newSlug, newImage, newTitle, newPrice } = request.body;
+      const { id } = request.query;
+      const { slug, title, image, price } = request.body;
 
       await connectToMongoDB();
+      await MobileGames.findByIdAndUpdate(id, { slug, title, image, price });
 
-      const updatedMobileGame = await MobileGames.findOneAndUpdate(
-        { slug: existingSlug }, // Menggunakan existingSlug untuk mencari data yang akan diubah
-        { slug: newSlug, image: newImage, title: newTitle, price: newPrice },
-        { new: true }
-      );
-
-      if (!updatedMobileGame) {
-        return response.status(404).json({ message: "Data tidak ditemukan" });
-      }
-
-      return response.status(200).json({ message: "Data berhasil diupdate!", mobileGame: updatedMobileGame });
+      return response.status(200).json({ message: "Mobile Games telah diupdate!" });
     } catch (error) {
+      console.error("Terjadi kesalahan saat mengupdate data:", error);
       return response.status(500).json({ message: "Kesalahan Server Internal" });
     }
   } else if (request.method === "GET") {
     try {
-      const { slug } = request.query; // Menggunakan request.query untuk mendapatkan slug dari URL
+      const { id } = request.query;
       await connectToMongoDB();
-      const mobileGame = await MobileGames.findOne({ slug });
+      const mobileGame = await MobileGames.findById(id);
       if (!mobileGame) {
         return response.status(404).json({ message: "Data tidak ditemukan" });
       }
       return response.status(200).json({ mobileGame });
     } catch (error) {
+      console.error("Terjadi kesalahan saat mengambil data dari database:", error);
       return response.status(500).json({ message: "Kesalahan Server Internal" });
     }
   } else {

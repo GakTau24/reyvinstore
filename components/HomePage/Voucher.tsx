@@ -6,8 +6,18 @@ import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
+type VoucherItem = {
+  slug: string;
+  title: string;
+  image: string;
+};
+
+type VoucherProps = {
+  voucher: VoucherItem[];
+};
+
 export default function Voucher() {
-  const [trending, setTrending] = useState([]);
+  const [voucher, setVoucher] = useState<VoucherItem[]>([]);
 
   useEffect(() => {
     const fetchTrending = async () => {
@@ -20,10 +30,10 @@ export default function Voucher() {
           throw new Error("Data not found!");
         }
         const data = await res.json();
-        setTrending(Array.isArray(data.voucher) ? data.voucher : []);
+        setVoucher(Array.isArray(data.voucher) ? data.voucher : []);
       } catch (error) {
         console.log("Error loading Data:", error);
-        setTrending([]);
+        setVoucher([]);
       }
     };
 
@@ -53,7 +63,7 @@ export default function Voucher() {
           },
         }}
       >
-        {trending.map((item, index) => (
+        {voucher.map((item, index) => (
           <SwiperSlide key={index}>
             <Cards data={item} />
           </SwiperSlide>
@@ -63,7 +73,11 @@ export default function Voucher() {
   );
 }
 
-function Cards({ data }: any) {
+type CardsProps = {
+  data: VoucherItem;
+};
+
+function Cards({ data }: CardsProps) {
   const { slug, title, image } = data;
   return (
     <motion.div

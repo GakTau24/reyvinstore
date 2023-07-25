@@ -6,8 +6,18 @@ import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
+type MobileItem = {
+  slug: string;
+  title: string;
+  image: string;
+};
+
+type VoucherProps = {
+  voucher: MobileItem[];
+};
+
 export default function MobileGames() {
-  const [mobileGames, setMobileGames] = useState([]);
+  const [mobileGames, setMobileGames] = useState<MobileItem[]>([]);
 
   useEffect(() => {
     const fetchMobileGames = async () => {
@@ -60,7 +70,11 @@ export default function MobileGames() {
   );
 }
 
-function Cards({ data }: any) {
+type CardsProps = {
+  data: MobileItem;
+};
+
+function Cards({ data }: CardsProps) {
   const { slug, title, image } = data;
   const containerVariants = {
     hidden: { opacity: 0 },

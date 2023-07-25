@@ -5,7 +5,7 @@ import { Metadata } from "next";
 
 async function getDetailVoucher(slug: string) {
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/voucher/${slug}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/voucher/detail/${slug}`,
     { cache: "no-store" }
   );
   return data.json();
@@ -15,10 +15,24 @@ type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
+type ParentData = {
+  openGraph?: {
+    images: { url: string; alt: string }[];
+  };
+};
+type PageProps = {
+  params: {
+    slug: string;
+  };
+};
+type PriceDataItem = {
+  text: string;
+  isLink: boolean;
+};
 
 export async function generateMetadata(
   { params, searchParams }: Props,
-  parent: any
+  parent: ParentData
 ): Promise<Metadata> {
   const product = await getDetailVoucher(params.slug);
   const previousImages = (await parent)?.openGraph?.images || [];
@@ -54,8 +68,15 @@ export async function generateMetadata(
   };
 }
 
-export default async function page({ params }: any) {
+export default async function page({ params }: PageProps) {
   const res = await getDetailVoucher(params.slug);
+  const vocuher = (priceData: string): PriceDataItem[] => {
+    const lines = priceData.split("\n");
+    return lines.map((line, index) => ({
+      text: line,
+      isLink: line.startsWith("http://") || line.startsWith("https://"),
+    }));
+  };
   return (
     <div className="flex justify-center items-center py-3 shadow-xl">
       <div className="max-w-sm rounded-lg shadow-2xl">
@@ -69,16 +90,33 @@ export default async function page({ params }: any) {
           alt={res.voucher.title}
         />
         <div className="p-3 text-center">
-          <h5 className="mb-2 text-xl font-bold tracking-tight">
+          <h1 className="mb-2 text-xl font-bold tracking-tight">
             {res.voucher.title}
-          </h5>
+          </h1>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
-          <h5 className="text-left font:bold text-lg py-3">
-            Price List:
-          </h5>
-          <pre className="mb-3 font-normal text-left">
-            {res.voucher.price}
-          </pre>
+          <h2 className="text-left font:bold text-lg py-3">
+            Daftar harga:
+          </h2>
+          {vocuher(res.voucher.price).map((item, index) =>
+            item.isLink ? (
+              <Link
+                key={index}
+                href={item.text}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sky-400 font-mono underline"
+              >
+                {item.text}
+              </Link>
+            ) : (
+              <p
+                key={index}
+                className="whitespace-pre font-mono text-left"
+              >
+                {item.text}
+              </p>
+            )
+          )}
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
           <Link
             href="https://wa.me/6285173125847"

@@ -3,36 +3,42 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-function EditFormTrending() {
-  const [slug, setSlug] = useState("");
-  const [image, setImage] = useState("");
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
+interface EditFormTrendingProps {
+  id: string;
+  slug: string;
+  title: string;
+  image: string;
+  price: string;
+}
 
-  const router = useRouter(); // Menggunakan useRouter() untuk mendapatkan router
+export default function EditFormTrending({
+  id,
+  slug: initialSlug,
+  title: initialTitle,
+  image: initialImage,
+  price: initialPrice,
+}: EditFormTrendingProps) {
+  const [slug, setSlug] = useState(initialSlug);
+  const [title, setTitle] = useState(initialTitle);
+  const [image, setImage] = useState(initialImage);
+  const [price, setPrice] = useState(initialPrice);
 
-  const handleSubmit = async (e: any) => {
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!slug || !image || !title || !price) {
-      alert("Slug, Image, Title, and Price must be filled!");
-      return;
-    }
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/trending/${slug}`, // Gunakan slug yang ada di state sebagai bagian dari URL
-        {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({ slug, newImage: image, newTitle: title, newPrice: price }), // Sertakan slug yang ada di state sebagai bagian dari payload
-        }
-      );
-      if (res.ok) {
-        router.push("/dashboard/admin/trending");
-      } else {
-        throw new Error("Failed to edit data");
+      const res = await fetch(`/api/trending/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ slug, title, image, price }),
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch data");
       }
+      router.push("/dashboard/admin/trending");
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +47,7 @@ function EditFormTrending() {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="w-[40rem]">
-        <h1 className="text-2xl font-bold mb-4 text-center">Edit Trending</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center">Edit {title}</h1>
         <Link href={"/dashboard/admin/trending"}>
           <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">Back</button>
         </Link>
@@ -108,5 +114,3 @@ function EditFormTrending() {
     </div>
   );
 }
-
-export default EditFormTrending;

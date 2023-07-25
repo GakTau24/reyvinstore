@@ -6,8 +6,18 @@ import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
+type PcGamesItem = {
+  slug: string;
+  title: string;
+  image: string;
+};
+
+type PcGamesProps = {
+  voucher: PcGamesItem[];
+};
+
 export default function PcGames() {
-  const [pcGames, setPcGames] = useState([]);
+  const [pcGames, setPcGames] = useState<PcGamesItem[]>([]);
 
   useEffect(() => {
     const fetchPcGames = async () => {
@@ -63,7 +73,11 @@ export default function PcGames() {
   );
 }
 
-function Cards({ data }: any) {
+type CardsProps = {
+  data: PcGamesItem;
+};
+
+function Cards({ data }: CardsProps) {
   const { slug, title, image } = data;
   const containerVariants = {
     hidden: { opacity: 0 },

@@ -6,8 +6,18 @@ import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
+type TrendingItem = {
+  slug: string;
+  title: string;
+  image: string;
+};
+
+type TrendingProps = {
+  trending: TrendingItem[];
+};
+
 export default function Trending() {
-  const [trending, setTrending] = useState([]);
+  const [trending, setTrending] = useState<TrendingItem[]>([]);
 
   useEffect(() => {
     const fetchTrending = async () => {
@@ -63,7 +73,11 @@ export default function Trending() {
   );
 }
 
-function Cards({ data }: any) {
+type CardsProps = {
+  data: TrendingItem;
+};
+
+function Cards({ data }: CardsProps) {
   const { slug, title, image } = data;
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -74,8 +88,10 @@ function Cards({ data }: any) {
       whileHover={{ scale: 1.2 }}
       onHoverStart={(e) => {}}
       onHoverEnd={(e) => {}}
-      variants={containerVariants} initial="hidden" animate="visible"
-      >
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <div className="w-full rounded-lg shadow-xl lg:max-w-sm max-lg:h-[200px] md:h-[235px]">
         <Link href={`/trending/${slug}`}>
           <Image

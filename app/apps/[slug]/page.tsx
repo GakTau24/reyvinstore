@@ -5,7 +5,7 @@ import { Metadata } from "next";
 
 async function getDetailApps(slug: string) {
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/apps/${slug}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/apps/detail/${slug}`,
     { cache: "no-store" }
   );
   return data.json();

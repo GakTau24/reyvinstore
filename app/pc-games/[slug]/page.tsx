@@ -3,14 +3,13 @@ import Link from "next/link";
 import { BsWhatsapp } from "react-icons/bs";
 import { Metadata } from "next";
 
-async function getDetailPc(slug: string) {
+async function getDetailMobile(slug: string) {
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/pcgames/${slug}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/pcgames/detail/${slug}`,
     { cache: "no-store" }
   );
   return data.json();
 }
-
 
 type Props = {
   params: { slug: string };
@@ -21,7 +20,7 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: any
 ): Promise<Metadata> {
-  const product = await getDetailPc(params.slug);
+  const product = await getDetailMobile(params.slug);
   const previousImages = (await parent)?.openGraph?.images || [];
   return {
     title: `${product.pcgames.title}`,
@@ -56,7 +55,8 @@ export async function generateMetadata(
 }
 
 export default async function page({ params }: any) {
-  const res = await getDetailPc(params.slug);
+  const res = await getDetailMobile(params.slug);
+  
   return (
     <div className="flex justify-center items-center py-3">
       <div className="max-w-sm rounded-lg shadow-2xl">
