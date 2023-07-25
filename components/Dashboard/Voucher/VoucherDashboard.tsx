@@ -57,7 +57,7 @@ const VoucherDashboard = () => {
         </Link>
         {/* Table */}
         <div className="overflow-x-auto">
-          <table className="w-full table-auto border-collapse">
+          <table className="w-full table-auto max-md:table-fixed border-collapse">
             <thead>
               <tr className="bg-gray-800">
                 <th className="p-2 border-b">Slug</th>

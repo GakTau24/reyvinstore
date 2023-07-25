@@ -56,8 +56,8 @@ const AppsDashboard = () => {
           </button>
         </Link>
         {/* Table */}
-        <div className="overflow-x-auto max-md:max-h-[40rem]">
-          <table className="w-full table-auto border-collapse">
+        <div className="overflow-x-auto max-md:max-h-[35rem]">
+          <table className="w-full table-auto max-md:table-fixed border-collapse">
             <thead>
               <tr className="dark:bg-gray-800 dark:text-slate-300">
                 <th className="p-2 border-b">Slug</th>
