@@ -3,11 +3,14 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Sidebar from "../Sidebar";
 import { useRouter } from "next/navigation";
-import Alerts from "@/components/Alert/Alerts";
+import Alerts from "@/components/Notif/Alerts";
+import Modal from "@/components/Notif/Modals";
 
 const PcGamesDashboard = () => {
   const [pcGames, setPcGames] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
   useEffect(() => {
     const fetchPcGames = async () => {
@@ -30,8 +33,6 @@ const PcGamesDashboard = () => {
   const router = useRouter();
 
   const handleDelete = async (id: any) => {
-    const remove = confirm("Apakah anda yakin untuk menghapus?");
-    if (remove) {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/pcgames?id=${id}`, {
         method: "DELETE"
       });
@@ -39,7 +40,11 @@ const PcGamesDashboard = () => {
         setShowAlert(true);
         router.refresh()
       }
-    }
+  };
+
+  const handleDeleteClick = (id: any) => {
+    setShowModal(true);
+    setDeleteId(id);
   };
 
   return (
@@ -71,22 +76,24 @@ const PcGamesDashboard = () => {
             </thead>
             <tbody>
               {pcGames.map((item, index) => (
-                <TableRow key={index} data={item} handleDelete={handleDelete} />
+                <TableRow key={index} data={item} handleDeleteClick={handleDeleteClick} />
               ))}
             </tbody>
           </table>
         </div>
       </div>
+      {showModal && (
+        <Modal
+          setShowModal={setShowModal}
+          handleDeleteClick={() => handleDelete(deleteId)}
+        />
+      )}
     </div>
   );
 };
 
-function TableRow({ data, handleDelete }: any) {
+function TableRow({ data, handleDeleteClick }: any) {
   const { _id, slug, image, title, price } = data;
-
-  const handleDeleteClick = () => {
-    handleDelete(_id);
-  };
 
   return (
     <tr>
@@ -101,7 +108,8 @@ function TableRow({ data, handleDelete }: any) {
           </button>
           <button
             className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded"
-            onClick={handleDeleteClick}>
+            onClick={() => handleDeleteClick(_id)}
+          >
             Delete
           </button>
         </div>

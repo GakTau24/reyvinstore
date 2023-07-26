@@ -76,7 +76,7 @@ export default function Carousel() {
                 width={500}
                 height={500}
                 alt=""
-                priority={true}
+                priority
                 layout="responsive"
                 objectFit="cover"
                 />

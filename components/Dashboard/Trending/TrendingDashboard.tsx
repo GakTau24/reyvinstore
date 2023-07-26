@@ -1,16 +1,19 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Sidebar from "../Sidebar";
 import { useRouter } from "next/navigation";
-import Alerts from "@/components/Alert/Alerts";
+import Alerts from "@/components/Notif/Alerts";
+import Modal from "@/components/Notif/Modals";
 
 const TrendingDashboard = () => {
   const [trending, setTrending] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
   useEffect(() => {
-    const fetchMobileGames = async () => {
+    const fetchTrending = async () => {
       try {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_URL}/api/trending`,
@@ -27,25 +30,27 @@ const TrendingDashboard = () => {
       }
     };
 
-    fetchMobileGames();
+    fetchTrending();
   }, []);
 
   const router = useRouter();
 
   const handleDelete = async (id: any) => {
-    const remove = confirm("Apakah anda yakin untuk menghapus?");
-    if (remove) {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/trending?id=${id}`,
-        {
-          method: "DELETE",
-        }
-      );
-      if (res.ok) {
-        setShowAlert(true);
-        router.refresh();
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/trending?id=${id}`,
+      {
+        method: "DELETE",
       }
+    );
+    if (res.ok) {
+      setShowAlert(true);
+      router.refresh();
     }
+  };
+
+  const handleDeleteClick = (id: any) => {
+    setShowModal(true);
+    setDeleteId(id);
   };
 
   return (
@@ -59,47 +64,46 @@ const TrendingDashboard = () => {
           </div>
         )}
         <Link href={"/dashboard/admin/trending/create"}>
-          <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">
-            Create
-          </button>
+          <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">Create</button>
         </Link>
-        {/* Table */}
         <div className="overflow-x-auto max-md:max-h-[33rem]">
           <table className="w-full table-auto max-md:table-fixed border-collapse">
             <thead>
               <tr className="dark:bg-gray-800 dark:text-slate-300">
                 <th className="p-2 border-b">Slug</th>
-                {/* <th className="p-2 border-b">Image</th> */}
                 <th className="p-2 border-b">Title</th>
-                {/* <th className="p-2 border-b">Price</th> */}
                 <th className="p-2 border-b">Actions</th>
               </tr>
             </thead>
             <tbody>
               {trending.map((item, index) => (
-                <TableRow key={index} data={item} handleDelete={handleDelete} />
+                <TableRow
+                  key={index}
+                  data={item}
+                  handleDeleteClick={handleDeleteClick}
+                />
               ))}
             </tbody>
           </table>
         </div>
       </div>
+      {showModal && (
+        <Modal
+          setShowModal={setShowModal}
+          handleDeleteClick={() => handleDelete(deleteId)}
+        />
+      )}
     </div>
   );
 };
 
-function TableRow({ data, handleDelete }: any) {
-  const { _id, slug, image, title, price } = data;
-
-  const handleDeleteClick = () => {
-    handleDelete(_id);
-  };
+function TableRow({ data, handleDeleteClick }: any) {
+  const { _id, slug, title } = data;
 
   return (
     <tr>
       <td className="p-2 border-current border-b">{slug}</td>
-      {/* <td className="p-2 border-b">{image}</td> */}
       <td className="p-2 border-current border-b">{title}</td>
-      {/* <td className="p-2 border-b">{price}</td> */}
       <td className="p-2 border-current border-b">
         <div className="mx-2">
           <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 max-md:px-5 rounded md:mr-2">
@@ -107,7 +111,8 @@ function TableRow({ data, handleDelete }: any) {
           </button>
           <button
             className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded"
-            onClick={handleDeleteClick}>
+            onClick={() => handleDeleteClick(_id)}
+          >
             Delete
           </button>
         </div>

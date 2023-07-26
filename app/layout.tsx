@@ -9,6 +9,7 @@ import { BsSun } from "react-icons/bs";
 import { BsMoon } from "react-icons/bs";
 import { motion } from "framer-motion";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
