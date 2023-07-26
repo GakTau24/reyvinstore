@@ -1,9 +1,15 @@
 import { connectToMongoDB } from "@/lib/mongodb";
 import Voucher from "@/models/voucher";
 import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth";
+import Nextauth from "../../auth/[...nextauth]";
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
+  const session = await getServerSession(request, response, Nextauth)
   if (request.method === "PUT") {
+    if (!session) {
+      return response.status(401).json({ error: "Anda belum Login" })
+    }
     try {
       const { id } = request.query;
       const { slug, title, image, price } = request.body;

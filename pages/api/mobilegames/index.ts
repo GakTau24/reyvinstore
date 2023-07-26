@@ -1,12 +1,18 @@
 import { connectToMongoDB } from "@/lib/mongodb";
 import MobileGames from "@/models/mobilegames";
 import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth";
+import Nextauth from "../auth/[...nextauth]";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const session = await getServerSession(req, res, Nextauth)
   if (req.method === "POST") {
+    if (!session) {
+      return res.status(401).json({ error: "Anda belum Login" })
+    }
     try {
       await connectToMongoDB();
 
@@ -27,6 +33,9 @@ export default async function handler(
       res.status(500).json({ message: "Kesalahan Server Internal" });
     }
   } else if (req.method === "DELETE") {
+    if (!session) {
+      return res.status(401).json({ error: "Anda belum Login" })
+    }
     try {
       const { id } = req.query;
       await connectToMongoDB();

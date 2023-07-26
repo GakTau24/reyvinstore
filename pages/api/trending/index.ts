@@ -1,9 +1,15 @@
 import { connectToMongoDB } from "@/lib/mongodb";
 import Trending from "@/models/trending";
 import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth/next"
+import Nextauth from "../auth/[...nextauth]";
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
+  const session = await getServerSession(request, response, Nextauth)
   if (request.method === "POST") {
+    if (!session) {
+      return response.status(401).json({ error: "Anda belum Login" })
+    }
     try {
       await connectToMongoDB();
 
@@ -24,6 +30,9 @@ export default async function handler(request: NextApiRequest, response: NextApi
       response.status(500).json({ message: "Kesalahan Server Internal" });
     }
   } else if (request.method === "DELETE") {
+    if (!session) {
+      return response.status(401).json({ error: "Anda belum Login" })
+    }
     try {
       const { id } = request.query;
       await connectToMongoDB();
