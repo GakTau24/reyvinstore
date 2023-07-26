@@ -89,7 +89,7 @@ function TableRow({ data, handleDelete }: any) {
       <td className="p-2 border-current border-b">
         <div className="mx-2">
           <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 max-md:px-5 rounded md:mr-2">
-            <Link href={`/dashboard/admin/mobile-games/edit/${_id}`}>Edit</Link>
+            <Link href={`/dashboard/admin/pc-games/edit/${_id}`}>Edit</Link>
           </button>
           <button
             className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded"
