@@ -54,6 +54,7 @@ export default function Carousel() {
         grabCursor={true}
         autoplay={{
           delay: 2000,
+          disableOnInteraction: false,
         }}
         breakpoints={{
           768: {
