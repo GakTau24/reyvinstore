@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css/free-mode";
+import { FreeMode } from "swiper/modules";
 import "swiper/css";
 import { RotatingLines } from "react-loader-spinner";
 
@@ -61,6 +61,7 @@ export default function PcGames() {
         </div>
       ) : (
         <Swiper
+          modules={[FreeMode]}
           spaceBetween={8}
           slidesPerView={3.5}
           grabCursor={true}
@@ -105,8 +106,9 @@ function Cards({ data }: CardsProps) {
       whileHover={{ scale: 1.2 }}
       onHoverStart={(e) => {}}
       onHoverEnd={(e) => {}}
-      variants={containerVariants} initial="hidden" animate="visible"
-    >
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible">
       <div className="w-full rounded-lg shadow-xl lg:max-w-sm max-lg:h-[175px] md:h-[235px]">
         <Link href={`/pc-games/${slug}`}>
           <Image

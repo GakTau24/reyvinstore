@@ -37,11 +37,6 @@ export async function generateMetadata(
       url: process.env.NEXT_PUBLIC_BASE_URL,
     },
     description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${product.trending.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
-    robots: {
-      index: false,
-      follow: true,
-      nocache: true,
-    },
     manifest: "/manifest.json",
     keywords: [
       "reyvin store",
@@ -63,7 +58,7 @@ export default async function page({ params }: any) {
   const res = await getDetailTrending(params.slug);
   
   return (
-    <div className="flex justify-center items-center py-3 shadow-xl">
+    <div className="flex justify-center items-center py-3">
       <div className="max-w-sm rounded-lg shadow-2xl">
         <Image
           className="rounded-t-lg"

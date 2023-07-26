@@ -1,15 +1,21 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-const withPWA = require("next-pwa")({
-  dest: "public"
-})
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
+  },
+};
 
-module.exports = nextConfig;
-module.exports = withPWA({
-    images: {
-      domains: [
-        "media.discordapp.net",
-      ],
-    },
-    experimental: { esmExternals: true },
-  });
+const withPWA = require("next-pwa")({
+  dest: "public",
+});
+
+module.exports = {
+  ...nextConfig,
+  ...withPWA,
+  experimental: { esmExternals: true },
+};

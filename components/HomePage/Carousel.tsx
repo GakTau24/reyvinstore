@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import Image from "next/image";
+import "swiper/css/free-mode";
 import "swiper/css";
 import { motion } from "framer-motion";
 import { RotatingLines } from "react-loader-spinner";

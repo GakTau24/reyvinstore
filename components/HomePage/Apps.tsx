@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css/free-mode";
+import { FreeMode } from "swiper/modules";
 import "swiper/css";
 import { RotatingLines } from "react-loader-spinner";
 
@@ -58,6 +58,7 @@ export default function Apps() {
         </div>
       ) : (
         <Swiper
+        modules={[FreeMode]}
           spaceBetween={8}
           slidesPerView={3.5}
           grabCursor={true}

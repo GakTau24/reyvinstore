@@ -63,7 +63,7 @@ export default async function page({ params }: any) {
   const res = await getDetailVoucher(params.slug);
   
   return (
-    <div className="flex justify-center items-center py-3 shadow-xl">
+    <div className="flex justify-center items-center py-3">
       <div className="max-w-sm rounded-lg shadow-2xl">
         <Image
           className="rounded-t-lg"
