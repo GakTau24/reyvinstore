@@ -16,52 +16,52 @@ async function getData(): Promise<Data[]> {
   return data;
 }
 
-export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  try {
-    const data: Data[] = await getData();
-
-    const dataSite = data.map((item) => {
-      return {
-        url: `${baseUrl}/api/reyvinstore/${item.slug}`,
-        lastModified: new Date(),
-        title: item.title,
-      };
-    });
-
-    const dataPrice = data.map((item) => {
-      return {
-        url: `${baseUrl}/api/reyvinstore/${item.slug}`,
-        lastModified: new Date(),
-        price: item.price,
-      };
-    });
-
-    const dataImage = data.map((item) => {
-      return {
-        url: item.image,
-        lastModified: new Date(),
-        title: item.title,
-        price: item.price,
-      };
-    });
-
-    return [
-      {
-        url: baseUrl,
-        lastModified: new Date(),
-      },
-      ...dataSite,
-      ...dataPrice,
-      ...dataImage,
-    ];
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return [
-      {
-        url: baseUrl,
-        lastModified: new Date(),
-      },
-    ];
-  }
-}
+const sitemap = async () => {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    try {
+      const data: Data[] = await getData();
+  
+      const dataSite = data.map((item) => {
+        return {
+          url: `${baseUrl}/api/reyvinstore/${item.slug}`,
+          lastModified: new Date(),
+          title: item.title,
+        };
+      });
+  
+      const dataPrice = data.map((item) => {
+        return {
+          url: `${baseUrl}/api/reyvinstore/${item.slug}`,
+          lastModified: new Date(),
+          price: item.price,
+        };
+      });
+  
+      const dataImage = data.map((item) => {
+        return {
+          url: item.image.replace(';', ''),
+          lastModified: new Date(),
+          title: item.title,
+          price: item.price,
+        };
+      });
+  
+      return [
+        {
+          url: baseUrl,
+          lastModified: new Date(),
+        },
+        ...dataSite,
+        ...dataPrice,
+        ...dataImage,
+      ];
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return [
+        {
+          url: baseUrl,
+          lastModified: new Date(),
+        },
+      ];
+    }
+  };
