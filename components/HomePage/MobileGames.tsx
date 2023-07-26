@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/free-mode";
 import "swiper/css";
+import { RotatingLines } from "react-loader-spinner";
 
 type MobileItem = {
   slug: string;
@@ -19,6 +20,7 @@ type VoucherProps = {
 
 export default function MobileGames() {
   const [mobileGames, setMobileGames] = useState<MobileItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchMobileGames = async () => {
@@ -29,9 +31,11 @@ export default function MobileGames() {
         }
         const data = await res.json();
         setMobileGames(Array.isArray(data.mobileGames) ? data.mobileGames : []);
+        setIsLoading(false)
       } catch (error) {
         console.log("Error loading Data:", error);
         setMobileGames([]);
+        setIsLoading(false)
       }
     };
 
@@ -42,32 +46,43 @@ export default function MobileGames() {
     <section>
       <hr className="my-6 sm:mx-auto border-gray-500 lg:my-4 opacity-30" />
       <h1 className="mb-3 font-semibold text-xl">● Mobile Games</h1>
-      <Swiper
-        spaceBetween={8}
-        slidesPerView={3.5}
-        grabCursor={true}
-        freeMode={true}
-        breakpoints={{
-          640: {
-            slidesPerView: 1,
-          },
-          768: {
-            slidesPerView: 10,
-          },
-          1024: {
-            slidesPerView: 10,
-          },
-          1280: {
-            slidesPerView: 10,
-          },
-        }}
-      >
-        {mobileGames.map((item, index) => (
-          <SwiperSlide key={index}>
-            <Cards data={item} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {isLoading ? (
+        <div className="flex justify-center items-center h-10">
+          <RotatingLines
+            strokeColor="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="54"
+            visible={true}
+          />
+        </div>
+      ) : (
+        <Swiper
+          spaceBetween={8}
+          slidesPerView={3.5}
+          grabCursor={true}
+          freeMode={true}
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 10,
+            },
+            1024: {
+              slidesPerView: 10,
+            },
+            1280: {
+              slidesPerView: 10,
+            },
+          }}>
+          {mobileGames.map((item, index) => (
+            <SwiperSlide key={index}>
+              <Cards data={item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </section>
   );
 }

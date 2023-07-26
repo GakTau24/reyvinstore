@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Sidebar from "../Sidebar";
 import { useRouter } from "next/navigation";
+import Alerts from "@/components/Alert/Alerts";
 
 const AppsDashboard = () => {
   const [apps, setApps] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     const fetchApps = async () => {
@@ -40,6 +42,7 @@ const AppsDashboard = () => {
         }
       );
       if (res.ok) {
+        setShowAlert(true);
         router.refresh();
       }
     }
@@ -50,6 +53,11 @@ const AppsDashboard = () => {
       <Sidebar />
       <div className="p-2">
         <h1 className="text-3xl font-bold mb-5">Apps</h1>
+        {showAlert && (
+          <div className="fixed top-16 right-5 max-md:h-10 max-md:right-0">
+            <Alerts />
+          </div>
+        )}
         <Link href={"/dashboard/admin/apps/create"}>
           <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">
             Create

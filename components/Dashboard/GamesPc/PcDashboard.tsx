@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Sidebar from "../Sidebar";
 import { useRouter } from "next/navigation";
+import Alerts from "@/components/Alert/Alerts";
 
 const PcGamesDashboard = () => {
   const [pcGames, setPcGames] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     const fetchPcGames = async () => {
@@ -34,6 +36,7 @@ const PcGamesDashboard = () => {
         method: "DELETE"
       });
       if (res.ok) {
+        setShowAlert(true);
         router.refresh()
       }
     }
@@ -44,7 +47,12 @@ const PcGamesDashboard = () => {
       <Sidebar />
       <div className="p-2">
         <h1 className="text-3xl font-bold mb-5">PC Games</h1>
-        <Link href={"/dashboard/admin/mobile-games/create"}>
+        {showAlert && (
+          <div className="fixed top-16 right-5 max-md:h-10 max-md:right-0">
+            <Alerts />
+          </div>
+        )}
+        <Link href={"/dashboard/admin/pc-games/create"}>
           <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">
             Create
           </button>

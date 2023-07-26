@@ -1,16 +1,21 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Sidebar from "../Sidebar";
 import { useRouter } from "next/navigation";
+import Alerts from "@/components/Alert/Alerts";
 
 const TrendingDashboard = () => {
   const [trending, setTrending] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
-    const fetchTrending = async () => {
+    const fetchMobileGames = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/trending`, { cache: 'no-store' });
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/trending`,
+          { cache: "no-store" }
+        );
         if (!res.ok) {
           throw new Error("Data not found!");
         }
@@ -22,16 +27,41 @@ const TrendingDashboard = () => {
       }
     };
 
-    fetchTrending();
+    fetchMobileGames();
   }, []);
+
+  const router = useRouter();
+
+  const handleDelete = async (id: any) => {
+    const remove = confirm("Apakah anda yakin untuk menghapus?");
+    if (remove) {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/trending?id=${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (res.ok) {
+        setShowAlert(true);
+        router.refresh();
+      }
+    }
+  };
 
   return (
     <div className="flex h-screen">
       <Sidebar />
       <div className="p-2">
         <h1 className="text-3xl font-bold mb-5">Trending</h1>
+        {showAlert && (
+          <div className="fixed top-16 right-5 max-md:h-10 max-md:right-0">
+            <Alerts />
+          </div>
+        )}
         <Link href={"/dashboard/admin/trending/create"}>
-          <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">Create</button>
+          <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">
+            Create
+          </button>
         </Link>
         {/* Table */}
         <div className="overflow-x-auto max-md:max-h-[33rem]">
@@ -47,7 +77,7 @@ const TrendingDashboard = () => {
             </thead>
             <tbody>
               {trending.map((item, index) => (
-                <TableRow key={index} data={item} />
+                <TableRow key={index} data={item} handleDelete={handleDelete} />
               ))}
             </tbody>
           </table>
@@ -57,22 +87,12 @@ const TrendingDashboard = () => {
   );
 };
 
-function TableRow({ data }: any) {
+function TableRow({ data, handleDelete }: any) {
   const { _id, slug, image, title, price } = data;
-  const router = useRouter()
 
-  const handleDelete = async () => {
-    const remove = confirm("Apakah anda yakin untuk menghapus?");
-    if (remove) {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/trending?id=${_id}`, {
-        method: "DELETE"
-      });
-      if(res.ok) {
-        router.refresh()
-      }
-    }
+  const handleDeleteClick = () => {
+    handleDelete(_id);
   };
-  
 
   return (
     <tr>
@@ -82,12 +102,14 @@ function TableRow({ data }: any) {
       {/* <td className="p-2 border-b">{price}</td> */}
       <td className="p-2 border-current border-b">
         <div className="mx-2">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 max-md:px-5 rounded md:mr-2">
-          <Link href={`/dashboard/admin/trending/edit/${_id}`}>Edit</Link>
-        </button>
-        <button className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded" onClick={handleDelete}>
-          Delete
-        </button>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 max-md:px-5 rounded md:mr-2">
+            <Link href={`/dashboard/admin/trending/edit/${_id}`}>Edit</Link>
+          </button>
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded"
+            onClick={handleDeleteClick}>
+            Delete
+          </button>
         </div>
       </td>
     </tr>

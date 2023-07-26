@@ -5,6 +5,7 @@ import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 import "swiper/css";
 import { motion } from "framer-motion";
+import { RotatingLines } from "react-loader-spinner";
 
 async function getCarousel() {
   const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/carousel`, {
@@ -15,6 +16,7 @@ async function getCarousel() {
 
 export default function Carousel() {
   const [carousel, setCarousel] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 1 } },
@@ -25,14 +27,26 @@ export default function Carousel() {
       const res = await getCarousel();
       setCarousel(res.carousel);
     };
-
+    setIsLoading(false);
     fetchCarousel();
   }, []);
 
   return (
     <>
+    {isLoading ? (
+      <div className="flex justify-center items-center h-10">
+      <RotatingLines
+        strokeColor="grey"
+        strokeWidth="5"
+        animationDuration="0.75"
+        width="54"
+        visible={true}
+      />
+    </div>
+    ): (
+
       <Swiper
-        modules={[Autoplay]}
+      modules={[Autoplay]}
         spaceBetween={3}
         slidesPerView={1}
         loop={true}
@@ -63,11 +77,12 @@ export default function Carousel() {
                 priority={true}
                 layout="responsive"
                 objectFit="cover"
-              />
+                />
             </motion.div>
           </SwiperSlide>
         ))}
       </Swiper>
+    )}
     </>
   );
 }

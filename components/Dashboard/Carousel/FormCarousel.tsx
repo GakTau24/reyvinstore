@@ -23,7 +23,7 @@ function FormApps() {
         body: JSON.stringify({ image })
       })
       if(res.ok) {
-        router.push("/dashboard/admin/apps")
+        router.push("/dashboard/admin/carousel")
       } else {
         throw new Error("Gagal membuat data")
       }
