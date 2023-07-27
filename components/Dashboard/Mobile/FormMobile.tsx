@@ -2,12 +2,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import AlertsCreateMobile from "@/components/Notif/AlertCreateMobile";
 
 function FormMobile() {
   const [slug, setSlug] = useState("");
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   const router = useRouter();
 
@@ -29,7 +31,7 @@ function FormMobile() {
         }
       );
       if (res.ok) {
-        router.push("/dashboard/admin/mobile-games");
+        setShowAlert(true);
       } else {
         throw new Error("Gagal membuat data");
       }
@@ -39,15 +41,17 @@ function FormMobile() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-[40rem]">
+    <div className="flex justify-center items-center max-sm:h-1/2 h-screen md:h-screen">
+      <div className="w-[40rem] max-sm:w-96">
+        <h1 className="text-2xl max-md:text-md font-bold mb-4 max-sm:mt-5 lg:mt-5 text-center">Create Mobile Games</h1>
+        {showAlert && (
+          <div className="fixed top-16 right-5 max-md:h-10 max-md:right-0">
+            <AlertsCreateMobile title={title} />
+          </div>
+        )}
         <Link href={"/dashboard/admin/mobile-games"}>
-        <button className="bg-sky-400 px-5 p-3 rounded-xl max-lg:mt-[4em]">Back</button>
+        <button className="bg-sky-400 px-5 p-3 rounded-xl mb-3">Back</button>
         </Link>
-        <h1 className="text-2xl font-bold mb-4 text-center">
-          Create Mobile Games
-        </h1>
-
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <div>
             <label
@@ -101,7 +105,8 @@ function FormMobile() {
               Price
             </label>
             <textarea
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 resize-none h-72 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 resize-none lg:h-48 max-sm:h-60 md:h-96 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="example"
               onChange={(e) => setPrice(e.target.value)}
               value={price}
               required

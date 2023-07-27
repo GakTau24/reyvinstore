@@ -2,13 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsWhatsapp } from "react-icons/bs";
 import { Metadata } from "next";
+import Handler from "@/components/Handler/Handler";
 
 async function getDetailTrending(slug: string) {
   const data = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/trending/detail/${slug}`,
     { cache: "no-store" }
   );
-  return data.json();
+  return data.json()
 }
 
 type Props = {
@@ -18,67 +19,75 @@ type Props = {
 
 export async function generateMetadata(
   { params, searchParams }: Props,
-  parent: any
+  parent: any,
 ): Promise<Metadata> {
-  const product = await getDetailTrending(params.slug);
+  const { trending } = await getDetailTrending(params.slug);
   const previousImages = (await parent)?.openGraph?.images || [];
-  return {
-    title: `${product.trending.title}`,
-    openGraph: {
-      images: [
-        {
-          url: product.trending.image,
-          alt: product.trending.title,
-        },
-        ...previousImages,
+  if(!trending) {
+    return {
+      ...Handler
+    }
+  }
+    return {
+      title: `${trending.title}`,
+      openGraph: {
+        images: [
+          {
+            url: trending.image,
+            alt: trending.title,
+          },
+          ...previousImages,
+        ],
+        title: `${trending.title} - Reyvin Store`,
+        description: `Beli top-up game online dengan harga paling murah hanya di Reyvin Store! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${trending.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
+        url: process.env.NEXT_PUBLIC_BASE_URL,
+      },
+      description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${trending.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
+      manifest: "/manifest.json",
+      keywords: [
+        "reyvin store",
+        "reyvinstore",
+        `top-up game ${trending.title} online murah`,
+        `beli diamond ${trending.title} murah`,
+        `topup games ${trending.title}`,
+        "topup pubg mobile",
+        "topup free fire",
+        "topup valorant",
+        "topup game termurah",
+        "game voucher",
+        `game online ${trending.title}`,
       ],
-      title: `${product.trending.title} - Reyvin Store`,
-      description: `Beli top-up game online dengan harga paling murah hanya di Reyvin Store! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${product.trending.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
-      url: process.env.NEXT_PUBLIC_BASE_URL,
-    },
-    description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${product.trending.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
-    manifest: "/manifest.json",
-    keywords: [
-      "reyvin store",
-      "reyvinstore",
-      `top-up game ${product.trending.title} online murah`,
-      `beli diamond ${product.trending.title} murah`,
-      `topup games ${product.trending.title}`,
-      "topup pubg mobile",
-      "topup free fire",
-      "topup valorant",
-      "topup game termurah",
-      "game voucher",
-      `game online ${product.trending.title}`,
-    ],
-  };
+    };
+
 }
 
-export default async function page({ params }: any) {
-  const res = await getDetailTrending(params.slug);
-  
+export default async function page({ params }: Props) {
+  const { trending } = await getDetailTrending(params.slug);
+  if(!trending) {
+    return <Handler title={params.slug} />;
+  }
   return (
     <div className="flex justify-center items-center py-3">
-      <div className="max-w-sm rounded-lg shadow-2xl">
+      <div className="md:max-w-md max-sm:max-w-[375px] rounded-lg shadow-2xl">
         <Image
-          className="rounded-t-lg"
-          src={res.trending.image}
+          className="rounded-md"
+          src={trending.image}
           width="100"
           height="100"
           layout="responsive"
           objectFit="cover"
-          alt={res.trending.title}
+          alt={trending.title}
         />
         <div className="p-3 text-center">
-          <h5 className="mb-2 text-xl font-bold tracking-tight">
-            {res.trending.title}
-          </h5>
+          <h1 className="mb-2 text-xl font-bold tracking-tight">
+            {trending.title}
+          </h1>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
-          <h5 className="text-left font:bold text-lg py-3">
+          <h1 className="text-left font:bold text-lg py-3">
             Price List:
-          </h5>
+          </h1>
           <p className="whitespace-pre font-mono leading-6 mb-3 font-normal text-left">
-            {res.trending.price}
+            {trending.price}
           </p>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
           <Link

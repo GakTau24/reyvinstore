@@ -10,6 +10,11 @@ const nextConfig = {
   },
 };
 
+const cors = {
+  origin: process.env.NEXT_PUBLIC_BASE_URL,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+};
+
 const withPWA = require("next-pwa")({
   dest: "public",
 });
@@ -17,5 +22,6 @@ const withPWA = require("next-pwa")({
 module.exports = {
   ...nextConfig,
   ...withPWA,
+  ...cors,
   experimental: { esmExternals: true },
 };

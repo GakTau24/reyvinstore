@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsWhatsapp } from "react-icons/bs";
 import { Metadata } from "next";
+import Handler from "@/components/Handler/Handler";
 
 async function getDetailApps(slug: string) {
   const data = await fetch(
@@ -20,23 +21,28 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: any
 ): Promise<Metadata> {
-  const product = await getDetailApps(params.slug);
+  const { apps } = await getDetailApps(params.slug);
+  if(!apps) {
+    return {
+      ...Handler
+    }
+  }
   const previousImages = (await parent)?.openGraph?.images || [];
   return {
-    title: `${product.apps.title}`,
+    title: `${apps.title}`,
     openGraph: {
       images: [
         {
-          url: product.apps.image,
-          alt: product.apps.title,
+          url: apps.image,
+          alt: apps.title,
         },
         ...previousImages,
       ],
-      title: `${product.apps.title} - Reyvin Store`,
-      description: `Beli top-up game online dengan harga paling murah hanya di Reyvin Store! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${product.apps.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
+      title: `${apps.title} - Reyvin Store`,
+      description: `Beli top-up game online dengan harga paling murah hanya di Reyvin Store! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${apps.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
       url: process.env.NEXT_PUBLIC_BASE_URL,
     },
-    description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${product.apps.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
+    description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${apps.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
     robots: {
       index: false,
       follow: true,
@@ -46,43 +52,46 @@ export async function generateMetadata(
     keywords: [
       "reyvin store",
       "reyvinstore",
-      `top-up game ${product.apps.title} online murah`,
-      `beli diamond ${product.apps.title} murah`,
-      `topup games ${product.apps.title}`,
+      `top-up game ${apps.title} online murah`,
+      `beli diamond ${apps.title} murah`,
+      `topup games ${apps.title}`,
       "topup pubg mobile",
       "topup free fire",
       "topup valorant",
       "topup game termurah",
       "game voucher",
-      `game online ${product.apps.title}`,
+      `game online ${apps.title}`,
     ],
   };
 }
 
-export default async function page({ params }: any) {
-  const res = await getDetailApps(params.slug);
+export default async function page({ params }: Props) {
+  const { apps } = await getDetailApps(params.slug);
+  if(!apps) {
+    return <Handler title={params.slug} />
+  }
   return (
     <div className="flex justify-center items-center py-3">
-      <div className="max-w-sm rounded-lg shadow-2xl">
+      <div className="md:max-w-md max-sm:max-w-[375px] rounded-lg shadow-2xl">
         <Image
-          className="rounded-t-lg"
-          src={res.apps.image}
-          width="100"
-          height="100"
+          className="rounded-md"
+          src={apps.image}
+          width={100}
+          height={100}
           layout="responsive"
           objectFit="cover"
-          alt={res.apps.title}
+          alt={apps.title}
         />
         <div className="p-3 text-center">
-            <h2 className="mb-2 text-xl font-bold tracking-tight">
-              {res.apps.title}
+            <h2 className="mb-2 md:text-xl font-bold tracking-tight">
+              {apps.title}
             </h2>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
           <h3 className="text-left font:bold text-lg py-3">
             Price List:
           </h3>
           <p className="whitespace-pre font-mono leading-6 mb-3 font-normal text-left">
-            {res.apps.price}
+            {apps.price}
           </p>
           <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
           <Link

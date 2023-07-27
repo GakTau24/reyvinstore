@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 function Contact() {
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 1 } },
+    visible: { opacity: 1, transition: { duration: 0.5 } },
   };
   return (
     <motion.div variants={containerVariants} initial="hidden" animate="visible">

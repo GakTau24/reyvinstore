@@ -8,27 +8,28 @@ import Voucher from "@/components/HomePage/Voucher";
 
 export const metadata: Metadata = {
   title: `Top-up Game Online Murah | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
-  description: 'Top-up game online dengan harga murah dan proses cepat. Dapatkan bonus menarik saat membeli game online di Reyvin Store.',
+  description:
+    "Top-up game online dengan harga murah dan proses cepat. Dapatkan bonus menarik saat membeli game online di Reyvin Store.",
   manifest: "/manifest.json",
   keywords: [
-    'reyvin store',
-    'reyvinstore',
-    'topup reyvinsotre',
-    'top-up game online murah',
-    'beli diamond murah',
-    'topup mobile legends',
-    'topup pubg mobile',
-    'topup free fire',
-    'topup valorant',
-    'topup game termurah',
-    'game voucher',
-    'game online',
+    "reyvin store",
+    "reyvinstore",
+    "topup reyvinsotre",
+    "top-up game online murah",
+    "beli diamond murah",
+    "topup mobile legends",
+    "topup pubg mobile",
+    "topup free fire",
+    "topup valorant",
+    "topup game termurah",
+    "game voucher",
+    "game online",
   ],
   openGraph: {
     images: [
       {
-        url: 'https://media.discordapp.net/attachments/987438938966872186/1107444191669272666/IMG_20230515_060654.jpg?width=426&height=402',
-        alt: 'Logo Reyvin Store',
+        url: "https://media.discordapp.net/attachments/987438938966872186/1107444191669272666/IMG_20230515_060654.jpg?width=426&height=402",
+        alt: "Logo Reyvin Store",
       },
     ],
   },

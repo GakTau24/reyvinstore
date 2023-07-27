@@ -23,7 +23,7 @@ export default async function sitemap() {
 
     const dataSite = data.map((item) => {
       return {
-        url: `${baseUrl}/api/reyvinstore/${item.slug}`,
+        url: `${baseUrl}api/reyvinstore/${item.slug}`,
         lastModified: new Date(),
         title: item.title,
       };
@@ -31,14 +31,14 @@ export default async function sitemap() {
 
     const dataPrice = data.map((item) => {
       return {
-        url: `${baseUrl}/api/reyvinstore/${item.price}`,
+        url: `${baseUrl}api/reyvinstore/${item.price}`,
         lastModified: new Date(),
       };
     });
 
     const datatitle = data.map((item) => {
       return {
-        url: `${baseUrl}/api/reyvinstore/${item.title}`,
+        url: `${baseUrl}api/reyvinstore/${item.title}`,
         lastModified: new Date(),
       };
     });

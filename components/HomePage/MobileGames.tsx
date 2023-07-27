@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -25,17 +25,20 @@ export default function MobileGames() {
   useEffect(() => {
     const fetchMobileGames = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/mobilegames`, { cache: 'no-store' });
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/mobilegames`,
+          { cache: "no-store" }
+        );
         if (!res.ok) {
           throw new Error("Data not found!");
         }
         const data = await res.json();
         setMobileGames(Array.isArray(data.mobileGames) ? data.mobileGames : []);
-        setIsLoading(false)
+        setIsLoading(false);
       } catch (error) {
         console.log("Error loading Data:", error);
         setMobileGames([]);
-        setIsLoading(false)
+        setIsLoading(false);
       }
     };
 
@@ -58,22 +61,18 @@ export default function MobileGames() {
         </div>
       ) : (
         <Swiper
-        modules={[FreeMode]}
+          modules={[FreeMode]}
           spaceBetween={8}
-          slidesPerView={3.5}
           grabCursor={true}
           freeMode={true}
           breakpoints={{
-            640: {
-              slidesPerView: 1,
+            300: {
+              slidesPerView: 3.4,
             },
             768: {
-              slidesPerView: 10,
+              slidesPerView: 6,
             },
             1024: {
-              slidesPerView: 10,
-            },
-            1280: {
               slidesPerView: 10,
             },
           }}>
@@ -100,32 +99,31 @@ function Cards({ data }: CardsProps) {
   };
   return (
     <motion.div
-      whileHover={{ scale: 1.2 }}
+      whileHover={{ scale: 1.1 }}
       onHoverStart={(e) => {}}
       onHoverEnd={(e) => {}}
-      variants={containerVariants} initial="hidden" animate="visible"
-      >
-    <div className="w-full rounded-lg shadow-xl lg:max-w-sm max-lg:h-[200px] md:h-[235px]">
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible">
       <Link href={`/mobile-games/${slug}`}>
-        <Image
-          className="rounded-lg"
-          src={image}
-          width="100"
-          height="100"
-          layout="responsive"
-          objectFit="contain"
-          alt={title}
-          loading="lazy"
-        />
+        <div className="w-auto rounded-lg shadow-xl max-sm:h-44 md:h-52 lg:h-56">
+          <Image
+            className="rounded-lg"
+            src={image}
+            width={100}
+            height={100}
+            layout="responsive"
+            objectFit="contain"
+            alt={title}
+            loading="lazy"
+          />
+          <div className="md:p-3 max-md:py-2">
+            <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center">
+              {title}
+            </h1>
+          </div>
+        </div>
       </Link>
-      <div className="md:p-3 max-md:py-2">
-        <Link href={`/mobile-games/${slug}`}>
-          <h2 className="text-lg text-center font-medium tracking-tight">
-            {title}
-          </h2>
-        </Link>
-      </div>
-    </div>
     </motion.div>
   );
 }

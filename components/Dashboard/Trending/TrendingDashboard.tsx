@@ -106,7 +106,7 @@ function TableRow({ data, handleDeleteClick }: any) {
       <td className="p-2 border-current border-b">{title}</td>
       <td className="p-2 border-current border-b">
         <div className="mx-2">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 max-md:px-5 rounded md:mr-2">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 max-md:px-4 max-md:my-1 rounded md:mr-2">
             <Link href={`/dashboard/admin/trending/edit/${_id}`}>Edit</Link>
           </button>
           <button

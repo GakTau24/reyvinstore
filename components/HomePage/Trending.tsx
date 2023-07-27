@@ -63,20 +63,16 @@ export default function Trending() {
         <Swiper
           modules={[FreeMode]}
           spaceBetween={8}
-          slidesPerView={3.5}
           grabCursor={true}
           freeMode={true}
           breakpoints={{
-            640: {
-              slidesPerView: 1,
+            300: {
+              slidesPerView: 3.4,
             },
             768: {
-              slidesPerView: 10,
+              slidesPerView: 6,
             },
             1024: {
-              slidesPerView: 10,
-            },
-            1280: {
               slidesPerView: 10,
             },
           }}>
@@ -103,14 +99,14 @@ function Cards({ data }: CardsProps) {
   };
   return (
     <motion.div
-      whileHover={{ scale: 1.2 }}
+      whileHover={{ scale: 1.1 }}
       onHoverStart={(e) => {}}
       onHoverEnd={(e) => {}}
       variants={containerVariants}
       initial="hidden"
       animate="visible">
-      <div className="w-full rounded-lg shadow-xl lg:max-w-sm max-lg:h-[200px] md:h-[235px]">
-        <Link href={`/trending/${slug}`}>
+      <Link href={`/trending/${slug}`}>
+        <div className="w-auto rounded-lg shadow-xl max-sm:h-44 md:h-52 lg:h-56">
           <Image
             className="rounded-lg"
             src={image}
@@ -121,15 +117,13 @@ function Cards({ data }: CardsProps) {
             alt={title}
             loading="lazy"
           />
-        </Link>
-        <div className="md:p-3 max-md:py-2">
-          <Link href={`/trending/${slug}`}>
-            <h2 className="text-lg text-center font-medium tracking-tight ">
+          <div className="md:p-3 max-md:py-2">
+            <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center">
               {title}
-            </h2>
-          </Link>
+            </h1>
+          </div>
         </div>
-      </div>
+      </Link>
     </motion.div>
   );
 }

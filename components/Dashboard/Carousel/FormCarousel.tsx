@@ -2,9 +2,11 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import AlertsCreateCarousel from "@/components/Notif/AlertCreateCarousel"
 
 function FormApps() {
   const [image, setImage] = useState("")
+  const [showAlert, setShowAlert] = useState(false);
 
   const router = useRouter()
 
@@ -23,7 +25,7 @@ function FormApps() {
         body: JSON.stringify({ image })
       })
       if(res.ok) {
-        router.push("/dashboard/admin/carousel")
+        setShowAlert(true);
       } else {
         throw new Error("Gagal membuat data")
       }
@@ -35,13 +37,15 @@ function FormApps() {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="w-[40rem]">
+        <h1 className="text-2xl font-bold mb-4 mt-2 text-center">Create Carousel</h1>
+        {showAlert && (
+          <div className="fixed top-16 right-5 max-md:h-10 max-md:right-0">
+            <AlertsCreateCarousel />
+          </div>
+        )}
         <Link href={"/dashboard/admin/carousel"}>
           <button className="bg-sky-400 px-5 p-3 rounded-xl max-lg:mt-[4em]">Back</button>
         </Link>
-        <h1 className="text-2xl font-bold mb-4 mt-2 text-center">
-          Create Carousel
-        </h1>
-
         <form onSubmit={handleSubmit} className="flex flex-col space-y-1">
           <div>
             <label

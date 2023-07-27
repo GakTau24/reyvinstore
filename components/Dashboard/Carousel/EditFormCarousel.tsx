@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import AlertsEditCarousel from "@/components/Notif/AlertEditCarousel";
 
 interface EditFormCarouselProps {
   id: string;
@@ -13,6 +14,7 @@ export default function EditFormCarousel({
   image: initialImage,
 }: EditFormCarouselProps) {
   const [image, setImage] = useState(initialImage);
+  const [showAlert, setShowAlert] = useState(false);
 
   const router = useRouter();
 
@@ -31,7 +33,7 @@ export default function EditFormCarousel({
         throw new Error("Failed to update data");
       }
 
-      router.push("/dashboard/admin/carousel");
+      setShowAlert(true);
     } catch (error) {
       console.error("Error while updating data:", error);
     }
@@ -40,9 +42,12 @@ export default function EditFormCarousel({
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="w-[40rem] max-md:w-96">
-        <h1 className="text-2xl max-md:text-md font-bold mb-4 max-md:mt-20 text-center">
-          Edit Carousel
-        </h1>
+        <h1 className="text-2xl max-md:text-md font-bold mb-4 max-md:mt-20 text-center">Edit Carousel</h1>
+        {showAlert && (
+          <div className="fixed top-16 right-5 max-md:h-10 max-md:right-0">
+            <AlertsEditCarousel />
+          </div>
+        )}
         <Link href={"/dashboard/admin/carousel"}>
           <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">Back</button>
         </Link>
