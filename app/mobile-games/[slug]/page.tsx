@@ -50,17 +50,20 @@ export async function generateMetadata(
     },
     manifest: "/manifest.json",
     keywords: [
-      "reyvin store",
+      `${process.env.NEXT_PUBLIC_SITE_NAME}`,
       "reyvinstore",
       `top-up game ${mobileGame.title} online murah`,
+      `topup game terpercaya hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+      `topup ${mobileGame.title}`,
+      `${process.env.NEXT_PUBLIC_SITE_NAME} topup games ${mobileGame.title}`,
       `beli diamond ${mobileGame.title} murah`,
       `topup games ${mobileGame.title}`,
       "topup pubg mobile",
       "topup free fire",
       "topup valorant",
       "topup game termurah",
-      "game voucher",
       `game online ${mobileGame.title}`,
+      `games online ${mobileGame.title}`,
     ],
   };
 }

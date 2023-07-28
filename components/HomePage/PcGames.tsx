@@ -99,7 +99,7 @@ function Cards({ data }: CardsProps) {
   };
   return (
     <motion.div
-      whileHover={{ scale: 1.2 }}
+      whileHover={{ scale: 1.1 }}
       onHoverStart={(e) => {}}
       onHoverEnd={(e) => {}}
       variants={containerVariants}
