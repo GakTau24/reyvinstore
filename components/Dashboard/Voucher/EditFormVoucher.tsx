@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import AlertsEditVoucher from "@/components/Notif/AlertEditVoucher";
+import slugify from "slugify";
 
 interface EditFormTrendingProps {
   id: string;
@@ -26,6 +27,20 @@ export default function EditFormVoucher({
   const [showAlert, setShowAlert] = useState(false);
 
   const router = useRouter();
+
+  const generateSlugFromTitle = (title: string) => {
+    return slugify(title, {
+      lower: true,
+      remove: /[*+~.()'"!:@]/g,
+    });
+  };
+
+  useEffect(() => {
+    if (title) {
+      const generatedSlug = generateSlugFromTitle(title);
+      setSlug(generatedSlug);
+    }
+  }, [title]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,6 +85,7 @@ export default function EditFormVoucher({
               value={slug}
               type="text"
               required
+              readOnly
             />
           </div>
           <div>

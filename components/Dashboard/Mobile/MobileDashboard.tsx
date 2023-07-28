@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Sidebar from "../Sidebar";
 import { useRouter } from "next/navigation";
-import Alerts from "@/components/Notif/Alerts";
+import Alerts from "@/components/Notif/AlertsDelete";
 import Modal from "@/components/Notif/Modals";
 
 const MobileGamesDashboard = () => {

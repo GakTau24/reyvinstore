@@ -106,7 +106,7 @@ function Cards({ data }: CardsProps) {
       initial="hidden"
       animate="visible">
       <Link href={`/mobile-games/${slug}`}>
-        <div className="w-auto rounded-lg shadow-xl max-sm:h-44 md:h-52 lg:h-56">
+        <div className="card w-auto rounded-lg shadow-xl max-sm:h-44 md:h-52 lg:h-56">
           <Image
             className="rounded-lg"
             src={image}

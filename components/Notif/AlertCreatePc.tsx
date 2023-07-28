@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 type props = {
-  title: string
-}
+  title: string;
+};
 
-export default function AlertsCreatePc({title}: props) {
+export default function AlertsCreatePc({ title }: props) {
   const [showAlert, setShowAlert] = useState(true);
   const [progress, setProgress] = useState(100);
 
@@ -33,7 +33,7 @@ export default function AlertsCreatePc({title}: props) {
 
   useEffect(() => {
     if (!showAlert) {
-      window.location.replace("/dashboard/admin/pc-games")
+      window.location.replace("/dashboard/admin/pc-games");
     }
   }, [showAlert]);
 
@@ -53,12 +53,21 @@ export default function AlertsCreatePc({title}: props) {
           className="absolute top-0 left-0 bg-teal-500 h-1"
           style={{ width: `${progress}%` }}></div>
         <div className="flex items-center">
-          <svg
+          <motion.svg
             className="h-6 w-6 text-teal-500 mr-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20">
-            <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
-          </svg>
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 1, repeat: Infinity }}>
+            <motion.path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M5 13l4 4L19 7"></motion.path>
+          </motion.svg>
           <div>
             <p className="font-bold text-teal-900">Success</p>
             <p className="text-sm text-teal-900">

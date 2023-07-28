@@ -1,8 +1,9 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import AlertsUpdateTrending from "@/components/Notif/AlertEditTrending";
+import AlertsEditTrending from "@/components/Notif/AlertEditTrending";
+import slugify from "slugify";
 
 interface EditFormTrendingProps {
   id: string;
@@ -27,6 +28,20 @@ export default function EditFormTrending({
 
   const router = useRouter();
 
+  const generateSlugFromTitle = (title: string) => {
+    return slugify(title, {
+      lower: true,
+      remove: /[*+~.()'"!:@]/g,
+    });
+  };
+
+  useEffect(() => {
+    if (title) {
+      const generatedSlug = generateSlugFromTitle(title);
+      setSlug(generatedSlug);
+    }
+  }, [title]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -49,10 +64,10 @@ export default function EditFormTrending({
   return (
     <div className="flex justify-center items-center max-sm:h-1/2 h-screen md:h-screen">
       <div className="w-[40rem] max-sm:w-96">
-      <h1 className="text-2xl max-md:text-md font-bold mb-4 max-sm:mt-5 lg:mt-5 text-center">Edit {title}</h1>
+      <h1 className="text-2xl max-md:text-md font-bold mb-4 max-sm:mt-5 lg:mt-10 text-center">Edit {title}</h1>
       {showAlert && (
           <div className="fixed top-16 right-5 max-md:h-10 max-md:right-0">
-            <AlertsUpdateTrending title={title} />
+            <AlertsEditTrending title={title} />
           </div>
         )}
         <Link href={"/dashboard/admin/trending"}>
@@ -70,6 +85,7 @@ export default function EditFormTrending({
               value={slug}
               type="text"
               required
+              readOnly
             />
           </div>
           <div>

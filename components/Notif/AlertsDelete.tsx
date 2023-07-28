@@ -46,15 +46,26 @@ export default function Alerts() {
     <motion.div variants={containerVariants} initial="hidden" animate="visible">
       <div className="bg-slate-100 relative px-4 py-3 shadow-md rounded-b">
         <div
-          className="absolute top-0 left-0 bg-teal-500 h-1"
+          className="absolute top-0 left-0 bg-red-500 h-1"
           style={{ width: `${progress}%` }}></div>
         <div className="flex items-center">
-          <svg
-            className="h-6 w-6 text-teal-500 mr-4"
+          <motion.svg
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 1, repeat: Infinity }}
+            className="h-6 w-6 text-red-500 mr-4"
+            aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20">
-            <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
-          </svg>
+            fill="none"
+            viewBox="0 0 18 20">
+            <motion.path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"
+            />
+          </motion.svg>
           <div>
             <p className="font-bold text-teal-900">Success</p>
             <p className="text-sm text-teal-900">

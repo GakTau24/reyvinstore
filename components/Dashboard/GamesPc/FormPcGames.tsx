@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import AlertsCreatePc from "@/components/Notif/AlertCreatePc";
+import slugify from "slugify";
 
 function FormPcGames() {
   const [slug, setSlug] = useState("");
@@ -13,10 +14,24 @@ function FormPcGames() {
 
   const router = useRouter();
 
+  const generateSlugFromTitle = (title: string) => {
+    return slugify(title, {
+      lower: true,
+      remove: /[*+~.()'"!:@]/g,
+    });
+  };
+
+  useEffect(() => {
+    if (title) {
+      const generatedSlug = generateSlugFromTitle(title);
+      setSlug(generatedSlug);
+    }
+  }, [title]);
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (!slug || !image || !title || !price) {
-      alert("Slug, Image, Title dan Price harus diisi!");
+    if (!image || !title || !price) {
+      alert("Image, Title dan Price harus diisi!");
       return;
     }
     try {
@@ -66,6 +81,7 @@ function FormPcGames() {
               value={slug}
               type="text"
               required
+              readOnly
             />
           </div>
           <div>

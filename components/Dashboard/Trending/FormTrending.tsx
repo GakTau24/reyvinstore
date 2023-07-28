@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import AlertsCreateTrending from "@/components/Notif/AlertCreateTrending";
+import slugify from "slugify";
 
 function FormTrending() {
   const [slug, setSlug] = useState("");
@@ -13,10 +14,24 @@ function FormTrending() {
 
   const router = useRouter();
 
+  const generateSlugFromTitle = (title: string) => {
+    return slugify(title, {
+      lower: true,
+      remove: /[*+~.()'"!:@]/g,
+    });
+  };
+
+  useEffect(() => {
+    if (title) {
+      const generatedSlug = generateSlugFromTitle(title);
+      setSlug(generatedSlug);
+    }
+  }, [title]);
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (!slug || !image || !title || !price) {
-      alert("Slug, Image, Title dan Price harus diisi!");
+    if (!image || !title || !price) {
+      alert("Image, Title dan Price harus diisi!");
       return;
     }
     try {
@@ -43,7 +58,7 @@ function FormTrending() {
   return (
     <div className="flex justify-center items-center max-sm:h-1/2 h-screen md:h-screen">
       <div className="w-[40rem] max-sm:w-96">
-        <h1 className="text-2xl max-md:text-md font-bold mb-4 max-sm:mt-5 lg:mt-5 text-center">Create Trending</h1>
+        <h1 className="text-2xl max-md:text-md font-bold mb-4 max-sm:mt-5 lg:mt-10 text-center">Create Trending</h1>
         {showAlert && (
           <div className="fixed top-16 right-5 max-md:h-10 max-md:right-0">
             <AlertsCreateTrending title={title} />
@@ -66,6 +81,7 @@ function FormTrending() {
               value={slug}
               type="text"
               required
+              readOnly
             />
           </div>
           <div>

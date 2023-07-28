@@ -41,10 +41,12 @@ export default function RootLayout({
         }`}
       >
         <SessionProvider>
-          <Navbar />
-          {children}
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </div>
         </SessionProvider>
-        <Footer />
 
         <div>
         <motion.button
