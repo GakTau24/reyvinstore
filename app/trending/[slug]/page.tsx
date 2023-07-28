@@ -29,7 +29,7 @@ export async function generateMetadata(
     }
   }
     return {
-      title: `${trending.title}`,
+      title: `${trending.title} - Reyvin Store`,
       openGraph: {
         images: [
           {
