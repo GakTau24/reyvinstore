@@ -55,7 +55,7 @@ export default function RootLayout({
          onHoverStart={(e) => {}}
          onHoverEnd={(e) => {}}
           onClick={handleToggleMode}
-          className="fixed max-sm:bottom-10 md:bottom-4 right-4 p-5 rounded-full bg-sky-400 z-10"
+          className="fixed opacity-70 hover:opacity-100 max-sm:bottom-10 md:bottom-4 right-4 p-5 rounded-full bg-sky-400 z-10"
           >
           {isDarkMode ? (
             <BsSun size={20} color="white" />

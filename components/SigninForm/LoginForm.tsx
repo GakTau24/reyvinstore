@@ -64,25 +64,25 @@ const LoginForm = () => {
       <div className="fixed top-16 right-5 max-md:h-10 max-md:right-0">{submitError && <AlertsLogin submitError={submitError} />}</div>
       <div className="flex justify-center items-center h-screen">
         <form
-          className="bg-white bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-125 shadow-2xl rounded px-10 py-7 mb-4"
+          className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110 shadow-2xl rounded px-10 py-7 mb-4"
           onSubmit={handleLogin}>
           <motion.div
             whileHover={{ scale: 1.2 }}
             onHoverStart={(e) => {}}
             onHoverEnd={(e) => {}}>
-            <h1 className="text-xl text-center text-gray-700 font-bold py-3 cursor-pointer">
+            <h1 className="text-xl text-center font-bold py-3 cursor-pointer">
               Reyvin <span className="text-sky-400">Store</span>
             </h1>
           </motion.div>
           <hr className="my-3 sm:mx-auto border-gray-500 lg:my-4 opacity-30" />
           <div className="mb-4">
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-sm font-bold mb-2"
               htmlFor="email">
               Email
             </label>
             <input
-              className="shadow-xl appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-xl"
+              className="shadow-xl bg-transparent ring-1 focus:ring-fuchsia-500 appearance-none rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-xl"
               id="email"
               type="text"
               name="email"
@@ -94,12 +94,12 @@ const LoginForm = () => {
           </div>
           <div className="mb-6 relative">
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-sm font-bold mb-2"
               htmlFor="password">
               Password
             </label>
             <input
-              className="shadow-xl appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-xl"
+              className="shadow-xl ring-1 focus:ring-fuchsia-500 bg-transparent  appearance-none rounded w-full py-2 px-3 mb-3 leading-tight focus:outline-none focus:shadow-xl"
               id="password"
               type={showPassword ? "text" : "password"}
               name="password"
@@ -110,7 +110,7 @@ const LoginForm = () => {
             />
             <span
               onClick={handleShowPassword}
-              className="absolute right-0 flex items-center px-3 rounded py-3 cursor-pointer top-[28px] bg-sky-400 hover:bg-sky-700">
+              className="absolute right-0 flex items-center px-3 rounded py-3 cursor-pointer top-[26px] bg-sky-400 hover:bg-sky-700">
               {showPassword ? (
                 <BsEyeSlash color="black" />
               ) : (

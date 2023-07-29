@@ -7,7 +7,7 @@ import Carousel from "@/components/HomePage/Carousel";
 import Voucher from "@/components/HomePage/Voucher";
 
 export const metadata: Metadata = {
-  title: `Top-up Game Online Murah | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+  title: `Topup Game | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
   description:
     "Top-up game online dengan harga murah dan proses cepat. Dapatkan bonus menarik saat membeli game online di Reyvin Store.",
   manifest: "/manifest.json",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://media.discordapp.net/attachments/987438938966872186/1107444191669272666/IMG_20230515_060654.jpg?width=426&height=402",
-        alt: "Logo Reyvin Store",
+        alt: "Reyvin Store",
       },
     ],
   },

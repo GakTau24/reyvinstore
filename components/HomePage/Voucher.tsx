@@ -69,7 +69,7 @@ export default function Voucher() {
             300: {
               slidesPerView: 3.4,
             },
-            768: {
+            700: {
               slidesPerView: 6,
             },
             1024: {
@@ -93,13 +93,22 @@ type CardsProps = {
 
 function Cards({ data }: CardsProps) {
   const { slug, title, image } = data;
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 1 } },
+  };
   return (
     <motion.div
       whileHover={{ scale: 1.1 }}
       onHoverStart={(e) => {}}
-      onHoverEnd={(e) => {}}>
+      onHoverEnd={(e) => {}}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110"
+      >
       <Link href={`/voucher/${slug}`}>
-        <div className="w-auto rounded-lg shadow-xl max-sm:h-44 md:h-52 lg:h-56">
+        <div className="w-auto rounded-lg shadow-md max-sm:h-44 md:h-52 lg:h-56">
           <Image
             className="rounded-lg"
             src={image}

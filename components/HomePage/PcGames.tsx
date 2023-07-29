@@ -69,7 +69,7 @@ export default function PcGames() {
             300: {
               slidesPerView: 3.4,
             },
-            768: {
+            700: {
               slidesPerView: 6,
             },
             1024: {
@@ -104,9 +104,11 @@ function Cards({ data }: CardsProps) {
       onHoverEnd={(e) => {}}
       variants={containerVariants}
       initial="hidden"
-      animate="visible">
+      animate="visible"
+      className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110"
+      >
       <Link href={`/pc-games/${slug}`}>
-        <div className="w-auto rounded-lg shadow-xl max-sm:h-44 md:h-52 lg:h-56">
+        <div className="w-auto rounded-lg shadow-md max-sm:h-44 md:h-52 lg:h-56">
           <Image
             className="rounded-lg"
             src={image}

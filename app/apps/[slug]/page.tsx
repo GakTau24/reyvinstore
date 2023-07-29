@@ -90,14 +90,14 @@ export default async function page({ params }: Props) {
             <h2 className="mb-2 md:text-xl font-bold tracking-tight">
               {apps.title}
             </h2>
-          <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
+          <hr className="my-3 border-black sm:mx-auto lg:my-4 opacity-20" />
           <h3 className="text-left font:bold text-lg py-3">
             Price List:
           </h3>
           <p className="whitespace-pre font-mono leading-6 mb-3 font-normal text-left">
             {apps.price}
           </p>
-          <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
+          <hr className="my-3 border-black sm:mx-auto lg:my-4 opacity-20" />
           <Link
             href={`https://wa.me/6285173125847`}
             className="inline-flex dark:text-slate-600 items-center px-4 py-3 text-sm font-medium text-center bg-lime-500 rounded-lg hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-blue-300">
