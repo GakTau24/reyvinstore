@@ -108,7 +108,7 @@ function Cards({ data }: CardsProps) {
       className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110"
       >
       <Link href={`/pc-games/${slug}`}>
-        <div className="w-auto rounded-lg shadow-md max-sm:h-44 md:h-52 lg:h-56">
+        <div className="w-auto rounded-lg shadow-md max-sm:h-44 md:h-52 lg:h-60">
           <Image
             className="rounded-lg"
             src={image}

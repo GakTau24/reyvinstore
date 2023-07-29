@@ -38,7 +38,7 @@ export default function RootLayout({
         className={`${inter.className} ${
           isDarkMode
             ? "bg-slate-200 text-slate-800"
-            : "dark:bg-gradient-to-r from-slate-900 to-slate-500 dark:text-slate-300"
+            : "bg-gradient-to-r from-slate-900 to-slate-500 text-slate-300"
         }`}
       >
         <SessionProvider>
