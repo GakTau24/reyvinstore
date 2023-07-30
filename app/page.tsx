@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://media.discordapp.net/attachments/987438938966872186/1107444191669272666/IMG_20230515_060654.jpg?width=426&height=402",
+        url: "https://media.discordapp.net/attachments/987438938966872186/1135192344984043540/REYVN_LOGO.png?width=284&height=402",
         alt: "Reyvin Store",
       },
     ],
