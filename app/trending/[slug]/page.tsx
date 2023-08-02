@@ -44,6 +44,7 @@ export async function generateMetadata(
       },
       description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${trending.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
       manifest: "/manifest.json",
+      icons: "https://media.discordapp.net/attachments/987438938966872186/1135192344984043540/REYVN_LOGO.png?width=284&height=402",
       keywords: [
         `${process.env.NEXT_PUBLIC_SITE_NAME}`,
         "reyvinstore",
