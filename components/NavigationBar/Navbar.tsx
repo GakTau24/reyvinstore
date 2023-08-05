@@ -8,7 +8,6 @@ import { usePathname } from "next/navigation";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const session = useSession();
-  console.log("session",session)
   const router = usePathname();
   const activeLink =
     "hover:bg-sky-400 hover:text-white px-3 py-2 mx-3 rounded-md text-sm font-medium bg-sky-400";
