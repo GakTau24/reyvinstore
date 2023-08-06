@@ -29,7 +29,7 @@ export async function generateMetadata(
     }
   }
     return {
-      title: `${trending.title} - Reyvin Store`,
+      title: `${trending.title} -${process.env.NEXT_PUBLIC_SITE_NAME}`,
       openGraph: {
         images: [
           {
@@ -38,13 +38,18 @@ export async function generateMetadata(
           },
           ...previousImages,
         ],
-        title: `${trending.title} - Reyvin Store`,
-        description: `Beli top-up game online dengan harga paling murah hanya di Reyvin Store! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${trending.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
+        title: `${trending.title} - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+        description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${trending.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
         url: process.env.NEXT_PUBLIC_BASE_URL,
       },
       description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${trending.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
+      robots: {
+        index: true,
+        follow: true,
+        nocache: true,
+      },
       manifest: "/manifest.json",
-      icons: "https://media.discordapp.net/attachments/987438938966872186/1135192344984043540/REYVN_LOGO.png?width=284&height=402",
+      icons: "/reyvinstore.png",
       keywords: [
         `${process.env.NEXT_PUBLIC_SITE_NAME}`,
         "reyvinstore",

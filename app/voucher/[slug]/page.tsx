@@ -33,7 +33,7 @@ export async function generateMetadata(
   }
   const previousImages = (await parent)?.openGraph?.images || [];
     return {
-      title: `${voucher.title} - Reyvin Store`,
+      title: `${voucher.title} - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
       openGraph: {
         images: [
           {
@@ -42,13 +42,13 @@ export async function generateMetadata(
           },
           ...previousImages,
         ],
-        title: `${voucher.title} - Reyvin Store`,
-        description: `Beli top-up game online dengan harga paling murah hanya di Reyvin Store! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${voucher.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
+        title: `${voucher.title} - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+        description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${voucher.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
         url: process.env.NEXT_PUBLIC_BASE_URL,
       },
       description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${voucher.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
       robots: {
-        index: false,
+        index: true,
         follow: true,
         nocache: true,
       },
