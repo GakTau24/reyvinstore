@@ -11,12 +11,14 @@ export const metadata: Metadata = {
   description:
     "Top-up game online dengan harga murah dan proses cepat. Dapatkan bonus menarik saat membeli game online di Reyvin Store.",
   manifest: "/manifest.json",
-  icons: "/reyvinstore.png",
+  icons: "https://media.discordapp.net/attachments/987438938966872186/1135192344984043540/REYVN_LOGO.png?width=284&height=402",
   keywords: [
     "reyvin store",
     "reyvinstore",
     "topup reyvinsotre",
-    "top-up game online murah",
+    "topup games",
+    "topup game",
+    "topup game online murah",
     "beli diamond murah",
     "topup mobile legends",
     "topup pubg mobile",
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "/reyvinstore.png",
+        url: "https://media.discordapp.net/attachments/987438938966872186/1135192344984043540/REYVN_LOGO.png?width=284&height=402",
         alt: "Reyvin Store",
       },
     ],
