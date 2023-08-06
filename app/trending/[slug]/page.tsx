@@ -29,7 +29,7 @@ export async function generateMetadata(
     }
   }
     return {
-      title: `${trending.title} -${process.env.NEXT_PUBLIC_SITE_NAME}`,
+      title: `${trending.title} - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
       openGraph: {
         images: [
           {
