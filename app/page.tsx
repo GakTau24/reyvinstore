@@ -11,11 +11,14 @@ export const metadata: Metadata = {
   description:
     "Top-up game online dengan harga murah dan proses cepat. Dapatkan bonus menarik saat membeli game online di Reyvin Store.",
   manifest: "/manifest.json",
-  icons: "https://media.discordapp.net/attachments/987438938966872186/1135192344984043540/REYVN_LOGO.png?width=284&height=402",
+  icons:
+    "https://media.discordapp.net/attachments/987438938966872186/1135192344984043540/REYVN_LOGO.png?width=284&height=402",
   keywords: [
     "reyvin store",
     "reyvinstore",
     "topup reyvinsotre",
+    "Top Up dan Jual Voucher Game Termurah dan Lengkap",
+    `Tempat Top up Game murah cepat dan terpercaya - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
     "topup games",
     "topup game",
     "topup game online murah",

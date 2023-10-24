@@ -65,6 +65,8 @@ export async function generateMetadata(
       "topup game termurah",
       `game online ${mobileGame.title}`,
       `games online ${mobileGame.title}`,
+      "Top Up dan Jual Voucher Game Termurah dan Lengkap",
+      `Tempat Top up Game murah cepat dan terpercaya - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
     ],
   };
 }

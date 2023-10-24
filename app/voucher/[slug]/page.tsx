@@ -53,7 +53,8 @@ export async function generateMetadata(
         nocache: true,
       },
       manifest: "/manifest.json",
-      icons: "https://media.discordapp.net/attachments/987438938966872186/1135192344984043540/REYVN_LOGO.png?width=284&height=402",
+      icons:
+        "https://media.discordapp.net/attachments/987438938966872186/1135192344984043540/REYVN_LOGO.png?width=284&height=402",
       keywords: [
         `${process.env.NEXT_PUBLIC_SITE_NAME}`,
         "reyvinstore",
@@ -68,6 +69,7 @@ export async function generateMetadata(
         "topup game termurah",
         `voucher ${voucher.title}`,
         `game online ${voucher.title}`,
+        "Top Up dan Jual Voucher Game Termurah dan Lengkap",
       ],
     };
 
