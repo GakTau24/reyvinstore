@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
@@ -10,7 +9,7 @@ import Link from "next/link";
 import { CardsProps } from "@/helper";
 
 const Trending = () => {
-  const { data, isLoading, isFetching } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["trending"],
     queryFn: async () => {
       const response = await axios.get(
@@ -26,17 +25,22 @@ const Trending = () => {
   };
 
   return (
-    <>
-    {isLoading ? null :
-      <h1 className="mb-3 font-bold md:text-center md:text-2xl max-sm:text-xl">
-        Trending
-      </h1>
-    }
-      <div className="flex flex-col justify-center items-center p-4 mx-auto">
+    <div className="p-4 mx-auto">
+      {isLoading ? null : (
+        <h1 className="mb-3 font-bold md:text-center md:text-2xl max-sm:text-xl">
+          Trending
+        </h1>
+      )}
+      <div className="flex flex-col justify-center items-center">
         <div className="grid grid-cols-1 max-sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-sm:gap-[10px]">
-          {data &&
-            data.trending.map((item: CardsProps) => {
-              return (
+          {isLoading
+            ? Array.from({ length: 10 }, (_, index) => (
+                <div key={index}>
+                  <Skeleton height={200} width={200} />
+                  <Skeleton height={20} width={200} />
+                </div>
+              ))
+            : data?.trending?.map((item: CardsProps) => (
                 <div key={item.id}>
                   <Link href={`/trending/${item.slug}`}>
                     <motion.div
@@ -47,38 +51,27 @@ const Trending = () => {
                       initial="hidden"
                       animate="visible"
                       className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110 rounded-xl shadow-xl">
-                      {isLoading || isFetching || !item ? (
-                        <>
-                          <Skeleton height={210} />
-                        </>
-                      ) : (
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          width={100}
-                          height={100}
-                          objectFit="cover"
-                          priority
-                          className="rounded-md lg:h-[10rem] max-sm:h-[5.5rem] md:h-40 w-full"
-                        />
-                      )}
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={100}
+                        height={100}
+                        objectFit="cover"
+                        priority
+                        className="rounded-md lg:h-[10rem] max-sm:h-[5.5rem] md:h-40 w-full"
+                      />
                       <div className="py-3">
-                        {!data || isLoading || isFetching ? (
-                          <Skeleton height={20} />
-                        ) : (
-                          <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center">
-                            {item.title}
-                          </h1>
-                        )}
+                        <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center">
+                          {item.title}
+                        </h1>
                       </div>
                     </motion.div>
                   </Link>
                 </div>
-              );
-            })}
+              ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

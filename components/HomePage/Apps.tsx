@@ -26,34 +26,40 @@ export default function Apps() {
     <section>
       <hr className="my-3 sm:mx-auto border-gray-500 lg:my-4 opacity-30" />
       <h1 className="mb-3 font-semibold text-xl">● Apps</h1>
-        <Swiper
-          modules={[FreeMode]}
-          spaceBetween={8}
-          grabCursor={true}
-          freeMode={true}
-          breakpoints={{
-            300: {
-              slidesPerView: 3.4,
-            },
-            700: {
-              slidesPerView: 6,
-            },
-            1024: {
-              slidesPerView: 10,
-            },
-          }}>
-          {data?.apps.map((item: CardsProps) => (
-            <SwiperSlide key={item.id}>
-              <Cards data={item} loading={isLoading} isFetching={isFetching} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      <Swiper
+        modules={[FreeMode]}
+        spaceBetween={8}
+        grabCursor={true}
+        freeMode={true}
+        breakpoints={{
+          300: {
+            slidesPerView: 3.4,
+          },
+          700: {
+            slidesPerView: 6,
+          },
+          1024: {
+            slidesPerView: 10,
+          },
+        }}>
+        {isLoading
+          ? Array.from({ length: 10 }, (_, index) => (
+              <SwiperSlide key={index}>
+                <Cards data={{}} loading={isLoading} />
+              </SwiperSlide>
+            ))
+          : data?.apps.map((item: CardsProps) => (
+              <SwiperSlide key={item.id}>
+                <Cards data={item} loading={isLoading} />
+              </SwiperSlide>
+            ))}
+      </Swiper>
     </section>
   );
 }
 
-function Cards({ data }: any) {
-  const { slug, title, image, loading, isFetching } = data;
+function Cards({ data, loading }: any) {
+  const { slug, title, image } = data;
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 1 } },
@@ -68,15 +74,15 @@ function Cards({ data }: any) {
       animate="visible"
       className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110">
       <Link href={`/apps/${slug}`}>
-        <div className="w-auto rounded-lg shadow-md max-sm:h-44 md:h-52 lg:h-60">
-          {loading || isFetching || !data ? (
-            <Skeleton height={100} />
+        <div className="card w-auto rounded-lg shadow-md max-sm:h-44 md:h-52 lg:h-60">
+          {loading ? (
+            <Skeleton height={200} width={170} />
           ) : (
             <Image
               className="rounded-lg"
               src={image}
-              width="100"
-              height="100"
+              width={100}
+              height={100}
               layout="responsive"
               objectFit="contain"
               alt={title}
@@ -84,8 +90,8 @@ function Cards({ data }: any) {
             />
           )}
           <div className="md:p-3 max-md:py-2">
-            {loading || isFetching || !data ? (
-              <Skeleton height={20} />
+            {loading ? (
+              <Skeleton height={20} width={210} />
             ) : (
               <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center">
                 {title}

@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import Image from "next/image";
@@ -50,28 +51,35 @@ export default function Carousel() {
           },
         }}
         className="rounded-lg shadow-2xl">
-        {data?.carousel.map((item: CardsProps, index: number) => (
-          <SwiperSlide key={index}>
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible">
-              {isFetching || isLoading ? (
-                <Skeleton height={210} />
-              ) : (
-                <Image
-                  src={item?.image}
-                  width={500}
-                  height={500}
-                  alt=""
-                  priority
-                  layout="responsive"
-                  objectFit="cover"
-                />
-              )}
-            </motion.div>
-          </SwiperSlide>
-        ))}
+        {isLoading
+          ? Array.from({ length: 3 }, (_, index) => (
+              <SwiperSlide key={index}>
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible">
+                  <Skeleton height={350} width={590} />
+                </motion.div>
+              </SwiperSlide>
+            ))
+          : data?.carousel.map((item: CardsProps, index: number) => (
+              <SwiperSlide key={index}>
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible">
+                  <Image
+                    src={item?.image}
+                    width={500}
+                    height={500}
+                    alt=""
+                    priority
+                    layout="responsive"
+                    objectFit="cover"
+                  />
+                </motion.div>
+              </SwiperSlide>
+            ))}
       </Swiper>
     </>
   );
