@@ -96,7 +96,7 @@ export default async function page({ params }: Props) {
           <h1 className="text-left font:bold text-lg py-3">
             Price List:
           </h1>
-          <p className="whitespace-pre font-mono leading-6 mb-3 font-normal text-left">
+          <p className="whitespace-pre-line font-mono leading-6 mb-3 font-normal text-left">
             {trending.price}
           </p>
           <hr className="my-3 border-black sm:mx-auto lg:my-4 opacity-20" />

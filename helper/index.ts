@@ -9,3 +9,10 @@ export interface LoginUserParams {
     email: string
     password: string
 }
+
+export interface CardsProps {
+  id: string;
+  title: string;
+  image: string;
+  slug: string;
+};

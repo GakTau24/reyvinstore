@@ -1,13 +1,51 @@
 type Data = {
   slug: string;
-  image: string;
   title: string;
-  price: string;
 };
 
-async function getData(): Promise<Data[]> {
+async function getDataTrending(): Promise<Data[]> {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/reyvinstore`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/trending`
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch data from API");
+  }
+  const data = await response.json();
+  return data;
+}
+async function getDataMobile(): Promise<Data[]> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/mobilegames`
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch data from API");
+  }
+  const data = await response.json();
+  return data;
+}
+async function getDataPc(): Promise<Data[]> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/pcgames`
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch data from API");
+  }
+  const data = await response.json();
+  return data;
+}
+async function getDataApps(): Promise<Data[]> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/apps`
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch data from API");
+  }
+  const data = await response.json();
+  return data;
+}
+async function getDataVoucher(): Promise<Data[]> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/voucher`
   );
   if (!response.ok) {
     throw new Error("Failed to fetch data from API");
@@ -19,27 +57,45 @@ async function getData(): Promise<Data[]> {
 export default async function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   try {
-    const data: Data[] = await getData();
+    const { trending }: any = await getDataTrending();
+    const { mobileGames }: any = await getDataMobile();
+    const { pcgames }: any = await getDataPc();
+    const { apps }: any = await getDataApps();
+    const { voucher }: any = await getDataVoucher();
 
-    const dataSite = data.map((item) => {
+    const dataSiteTrending = trending.map((item: any) => {
       return {
-        url: `${baseUrl}/api/reyvinstore/${item.slug}`,
+        url: `${baseUrl}/trending/${item.slug}`,
         lastModified: new Date(),
         title: item.title,
       };
     });
-
-    const dataPrice = data.map((item) => {
+    const dataSiteMobile = mobileGames.map((item: any) => {
       return {
-        url: `${baseUrl}/api/reyvinstore/${item.price}`,
+        url: `${baseUrl}/mobile-games/${item.slug}`,
         lastModified: new Date(),
+        title: item.title,
       };
     });
-
-    const datatitle = data.map((item) => {
+    const dataSitePc = pcgames.map((item: any) => {
       return {
-        url: `${baseUrl}/api/reyvinstore/${item.title}`,
+        url: `${baseUrl}/pc-games/${item.slug}`,
         lastModified: new Date(),
+        title: item.title,
+      };
+    });
+    const dataSiteApps = apps.map((item: any) => {
+      return {
+        url: `${baseUrl}/apps/${item.slug}`,
+        lastModified: new Date(),
+        title: item.title,
+      };
+    });
+    const dataSiteVoucher = voucher.map((item: any) => {
+      return {
+        url: `${baseUrl}/voucher/${item.slug}`,
+        lastModified: new Date(),
+        title: item.title,
       };
     });
 
@@ -48,9 +104,11 @@ export default async function sitemap() {
         url: baseUrl,
         lastModified: new Date(),
       },
-      ...dataSite,
-      ...dataPrice,
-      ...datatitle,
+      ...dataSiteTrending,
+      ...dataSiteMobile,
+      ...dataSitePc,
+      ...dataSiteApps,
+      ...dataSiteVoucher,
     ];
   } catch (error) {
     console.error("Error fetching data:", error);

@@ -1,131 +1,85 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode } from "swiper/modules";
-import "swiper/css";
-import { RotatingLines } from "react-loader-spinner";
+import Link from "next/link";
+import { CardsProps } from "@/helper";
 
-type TrendingItem = {
-  slug: string;
-  title: string;
-  image: string;
-};
+const Trending = () => {
+  const { data, isLoading, isFetching } = useQuery({
+    queryKey: ["trending"],
+    queryFn: async () => {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/trending`
+      );
+      return response.data;
+    },
+  });
 
-type TrendingProps = {
-  trending: TrendingItem[];
-};
-
-export default function Trending() {
-  const [trending, setTrending] = useState<TrendingItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchTrending = async () => {
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/trending`,
-          { cache: "no-store" }
-        );
-        if (!res.ok) {
-          throw new Error("Data not found!");
-        }
-        const data = await res.json();
-        setTrending(Array.isArray(data.trending) ? data.trending : []);
-        setIsLoading(false);
-      } catch (error) {
-        console.log("Error loading Data:", error);
-        setTrending([]);
-        setIsLoading(false);
-      }
-    };
-
-    fetchTrending();
-  }, []);
-
-  return (
-    <section>
-      <hr className="my-6 sm:mx-auto border-gray-500 lg:my-4 opacity-30" />
-      <h1 className="mb-3 font-semibold text-xl">● Trending</h1>
-      {isLoading ? (
-        <div className="flex justify-center items-center h-10">
-          <RotatingLines
-            strokeColor="grey"
-            strokeWidth="5"
-            animationDuration="0.75"
-            width="54"
-            visible={true}
-          />
-        </div>
-      ) : (
-        <Swiper
-          modules={[FreeMode]}
-          spaceBetween={8}
-          grabCursor={true}
-          freeMode={true}
-          breakpoints={{
-            300: {
-              slidesPerView: 3.4,
-            },
-            700: {
-              slidesPerView: 6,
-            },
-            1024: {
-              slidesPerView: 10,
-            },
-          }}>
-          {trending.map((item, index) => (
-            <SwiperSlide key={index}>
-              <Cards data={item} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      )}
-    </section>
-  );
-}
-
-type CardsProps = {
-  data: TrendingItem;
-};
-
-function Cards({ data }: CardsProps) {
-  const { slug, title, image } = data;
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 1 } },
   };
+
   return (
-    <motion.div
-      whileHover={{ scale: 1.1 }}
-      onHoverStart={(e) => {}}
-      onHoverEnd={(e) => {}}
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110"
-      >
-      <Link href={`/trending/${slug}`}>
-        <div className="w-auto rounded-lg shadow-md max-sm:h-44 md:h-52 lg:h-60">
-          <Image
-            className="rounded-lg"
-            src={image}
-            width="100"
-            height="100"
-            layout="responsive"
-            objectFit="contain"
-            alt={title}
-            loading="lazy"
-          />
-          <div className="md:p-3 max-md:py-2">
-            <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center">
-              {title}
-            </h1>
-          </div>
+    <>
+    {isLoading ? null :
+      <h1 className="mb-3 font-bold md:text-center md:text-2xl max-sm:text-xl">
+        Trending
+      </h1>
+    }
+      <div className="flex flex-col justify-center items-center p-4 mx-auto">
+        <div className="grid grid-cols-1 max-sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-sm:gap-[10px]">
+          {data &&
+            data.trending.map((item: CardsProps) => {
+              return (
+                <div key={item.id}>
+                  <Link href={`/trending/${item.slug}`}>
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      onHoverStart={(e) => {}}
+                      onHoverEnd={(e) => {}}
+                      variants={containerVariants}
+                      initial="hidden"
+                      animate="visible"
+                      className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110 rounded-xl shadow-xl">
+                      {isLoading || isFetching || !item ? (
+                        <>
+                          <Skeleton height={210} />
+                        </>
+                      ) : (
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          width={100}
+                          height={100}
+                          objectFit="cover"
+                          priority
+                          className="rounded-md lg:h-[10rem] max-sm:h-[5.5rem] md:h-40 w-full"
+                        />
+                      )}
+                      <div className="py-3">
+                        {!data || isLoading || isFetching ? (
+                          <Skeleton height={20} />
+                        ) : (
+                          <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center">
+                            {item.title}
+                          </h1>
+                        )}
+                      </div>
+                    </motion.div>
+                  </Link>
+                </div>
+              );
+            })}
         </div>
-      </Link>
-    </motion.div>
+      </div>
+    </>
   );
-}
+};
+
+export default Trending;
