@@ -32,12 +32,11 @@ const Trending = () => {
         </h1>
       )}
       <div className="flex flex-col justify-center items-center">
-        <div className="grid grid-cols-1 max-sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-sm:gap-[10px]">
+        <div className="grid grid-cols-1 max-sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-sm:gap-[10px] md:w-[65%] max-sm:w-[100%]">
           {isLoading
             ? Array.from({ length: 10 }, (_, index) => (
                 <div key={index}>
-                  <Skeleton height={200} width={200} />
-                  <Skeleton height={20} width={200} />
+                  <Skeleton width="100%" height="150px" />
                 </div>
               ))
             : data?.trending?.map((item: CardsProps) => (

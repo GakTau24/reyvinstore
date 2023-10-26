@@ -46,7 +46,7 @@ export default function Voucher() {
         {isLoading
           ? Array.from({ length: 10 }, (_, index) => (
               <SwiperSlide key={index}>
-                <Cards data={{}} loading={isLoading} />
+                <Skeleton width="100%" height="200px" />
               </SwiperSlide>
             ))
           : data?.voucher.map((item: CardsProps) => (
@@ -75,29 +75,21 @@ function Cards({ data, loading }: any) {
       animate="visible"
       className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110">
       <Link href={`/voucher/${slug}`}>
-        <div className="w-auto rounded-lg shadow-md max-sm:h-44 md:h-52 lg:h-60">
-          {loading ? (
-            <Skeleton height={100} />
-          ) : (
-            <Image
-              className="rounded-lg"
-              src={image}
-              width={100}
-              height={100}
-              layout="responsive"
-              objectFit="contain"
-              alt={title}
-              loading="lazy"
-            />
-          )}
+        <div className="card w-auto rounded-lg shadow-md max-sm:h-44 md:h-52 lg:h-60">
+          <Image
+            className="rounded-lg"
+            src={image}
+            width={100}
+            height={100}
+            layout="responsive"
+            objectFit="contain"
+            alt={title}
+            loading="lazy"
+          />
           <div className="md:p-3 max-md:py-2">
-            {loading ? (
-              <Skeleton height={20} />
-            ) : (
-              <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center">
-                {title}
-              </h1>
-            )}
+            <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center">
+              {title}
+            </h1>
           </div>
         </div>
       </Link>
