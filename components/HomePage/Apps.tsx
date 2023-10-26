@@ -28,24 +28,27 @@ export default function Apps() {
       <h1 className="mb-3 font-semibold text-xl">● Apps</h1>
       <Swiper
         modules={[FreeMode]}
-        spaceBetween={8}
+        // spaceBetween={8}
         grabCursor={true}
         freeMode={true}
         breakpoints={{
           300: {
             slidesPerView: 3.4,
+            spaceBetween: 10,
           },
           700: {
             slidesPerView: 6,
+            spaceBetween: 15,
           },
           1024: {
             slidesPerView: 10,
+            spaceBetween: 15,
           },
         }}>
         {isLoading
           ? Array.from({ length: 10 }, (_, index) => (
               <SwiperSlide key={index}>
-                <Skeleton width="100%" height="200px" />
+                <Skeleton width="100%" className="md:h-40 max-sm:h-28" />
               </SwiperSlide>
             ))
           : data?.apps.map((item: CardsProps) => (
@@ -58,7 +61,15 @@ export default function Apps() {
   );
 }
 
-function Cards({ data }: any) {
+interface DataProps {
+  data: {
+    slug: string;
+    title: string;
+    image: string;
+  };
+}
+
+function Cards({ data }: DataProps) {
   const { slug, title, image } = data;
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -74,16 +85,16 @@ function Cards({ data }: any) {
       animate="visible"
       className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110">
       <Link href={`/apps/${slug}`}>
-        <div className="card w-auto rounded-lg shadow-md max-sm:h-44 md:h-52 lg:h-60">
+        <div className="rounded-lg shadow-md max-sm:h-44 sm:h-60 md:h-52">
           <Image
-            className="rounded-lg"
+            className="rounded-lg w-full max-w-sm lg:h-[120px] md:h-24"
             src={image}
-            width={100}
-            height={100}
-            layout="responsive"
-            objectFit="contain"
+            width={700}
+            height={700}
+            objectFit="cover"
             alt={title}
-            loading="lazy"
+            quality={100}
+            priority
           />
           <div className="md:p-3 max-md:py-2">
             <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center">

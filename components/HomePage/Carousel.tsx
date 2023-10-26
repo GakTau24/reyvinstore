@@ -58,7 +58,7 @@ export default function Carousel() {
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible">
-                  <Skeleton width="100%" height="200px" />
+                  <Skeleton width="100%" height="140px" />
                 </motion.div>
               </SwiperSlide>
             ))
@@ -70,12 +70,12 @@ export default function Carousel() {
                   animate="visible">
                   <Image
                     src={item?.image}
+                    alt=""
                     width={500}
                     height={500}
-                    alt=""
-                    priority
-                    layout="responsive"
                     objectFit="cover"
+                    priority
+                    className="rounded-md lg:h-64 max-sm:h-40 md:h-64 w-full"
                   />
                 </motion.div>
               </SwiperSlide>

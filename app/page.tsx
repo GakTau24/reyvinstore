@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <div className="md:mt-10 md:pt-10 md:px-3 pt-3 bg-transparent">
+      <div className="mt-6 max-sm:p-3 md:px-3 bg-transparent">
         <Carousel />
       </div>
       <div className="p-5">

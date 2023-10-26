@@ -23,20 +23,22 @@ const Trending = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 1 } },
   };
+  
 
   return (
     <div className="p-4 mx-auto">
+      <hr className="sm:mx-auto border-gray-500 lg:my-4 opacity-30" />
       {isLoading ? null : (
-        <h1 className="mb-3 font-bold md:text-center md:text-2xl max-sm:text-xl">
+        <h1 className="mb-3 font-bold md:text-center text-2xl">
           Trending
         </h1>
       )}
       <div className="flex flex-col justify-center items-center">
-        <div className="grid grid-cols-1 max-sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-sm:gap-[10px] md:w-[65%] max-sm:w-[100%]">
+        <div className="grid sm:grid-cols-3 max-sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-3 max-sm:gap-2.5 md:gap-2.5 md:w-2/3 lg:w-1/2 max-sm:w-full">
           {isLoading
             ? Array.from({ length: 10 }, (_, index) => (
                 <div key={index}>
-                  <Skeleton width="100%" height="150px" />
+                  <Skeleton width="100%" className="md:h-40 max-sm:h-28" />
                 </div>
               ))
             : data?.trending?.map((item: CardsProps) => (
@@ -49,15 +51,15 @@ const Trending = () => {
                       variants={containerVariants}
                       initial="hidden"
                       animate="visible"
-                      className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110 rounded-xl shadow-xl">
+                      className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110 rounded-xl shadow-xl lg:h-48 md:h-52">
                       <Image
                         src={item.image}
                         alt={item.title}
-                        width={100}
-                        height={100}
+                        width={800}
+                        height={800}
                         objectFit="cover"
                         priority
-                        className="rounded-md lg:h-[10rem] max-sm:h-[5.5rem] md:h-40 w-full"
+                        className="rounded-md lg:h-[120px] max-sm:h-[5.5rem] md:h-28 w-full"
                       />
                       <div className="py-3">
                         <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center">
