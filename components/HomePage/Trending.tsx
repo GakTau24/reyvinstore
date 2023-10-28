@@ -17,6 +17,7 @@ const Trending = () => {
       );
       return response.data;
     },
+    
   });
 
   const containerVariants = {
@@ -27,7 +28,7 @@ const Trending = () => {
 
   return (
     <div className="p-4 mx-auto">
-      <hr className="sm:mx-auto border-gray-500 lg:my-4 opacity-30" />
+      <hr className="sm:mx-auto border-gray-500 lg:my-4 opacity-30 py-3" />
       {isLoading ? null : (
         <h1 className="mb-3 font-bold md:text-center text-2xl">
           Trending
