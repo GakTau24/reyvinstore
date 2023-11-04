@@ -7,12 +7,24 @@ import Carousel from "@/components/HomePage/Carousel";
 import Voucher from "@/components/HomePage/Voucher";
 import { CardsProps, MetaProps } from "@/helper";
 
-const getData = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/reyvinstore`
-  );
-  return res.json();
-};
+async function getData() {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/reyvinstore`,
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+}
 
 export async function generateMetadata(
   { params, searchParams }: MetaProps,
@@ -20,7 +32,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const data = await getData();
   const title = data.map((game: CardsProps) => game.title);
-  const keywords = title.map((title: string) => `topup games ${title}`);
+  const keywords = data.map((title: any) => title.title);
 
   const previousImages = (await parent)?.openGraph?.images || [];
   return {
@@ -57,10 +69,6 @@ export async function generateMetadata(
       "topup game online murah",
       "beli diamond murah",
       "topup game termurah",
-      ...title.map(
-        (title: string) =>
-          `${process.env.NEXT_PUBLIC_SITE_NAME} topup games ${title}`
-      ),
     ],
   };
 }
