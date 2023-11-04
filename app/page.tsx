@@ -32,8 +32,8 @@ export async function generateMetadata(
     openGraph: {
       images: [
         {
-          url: "./reyvinstore.png",
-          alt: data.title,
+          url: "https://media.discordapp.net/attachments/987438938966872186/1135192344984043540/REYVN_LOGO.png?ex=6550c9c1&is=653e54c1&hm=23bb7b73327019d5a82078b30b4e0d2bb66c28e6caaecc57d2cffacdab601240&=&width=268&height=379",
+          alt: "Reyvin Store",
         },
         ...previousImages,
       ],
