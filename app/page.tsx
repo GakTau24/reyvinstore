@@ -32,16 +32,16 @@ export async function generateMetadata(
     openGraph: {
       images: [
         {
-          url: data.image,
+          url: "./reyvinstore.png",
           alt: data.title,
         },
         ...previousImages,
       ],
-      title: `${data.title} - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
-      description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${data.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
+      title: `Topup Game - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+      description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga murah. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
       url: process.env.NEXT_PUBLIC_BASE_URL,
     },
-    description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga ${data.price}. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
+    description: `Beli top-up game online dengan harga paling murah hanya di ${process.env.NEXT_PUBLIC_SITE_NAME}! Dapatkan harga spesial untuk top-up game seperti Mobile Legends, PUBG Mobile, Free Fire, Valorant, dan game online lainnya. tersedia dengan harga murah. Pesan sekarang dan nikmati pengalaman bermain game online yang lebih menyenangkan.`,
     robots: {
       index: true,
       follow: true,
