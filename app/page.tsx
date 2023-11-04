@@ -1,29 +1,25 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Trending from "@/components/HomePage/Trending";
 import MobileGames from "@/components/HomePage/MobileGames";
 import PcGames from "@/components/HomePage/PcGames";
 import Apps from "@/components/HomePage/Apps";
 import Carousel from "@/components/HomePage/Carousel";
 import Voucher from "@/components/HomePage/Voucher";
-import axios from "axios";
+import { CardsProps, MetaProps } from "@/helper";
 
 const getData = async () => {
-  const res = await axios.get(
+  const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/reyvinstore`
   );
-  return res.data;
-};
-type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  return res.json();
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: any
+  { params, searchParams }: MetaProps,
+  parent: ResolvingMetadata
 ): Promise<Metadata> {
   const data = await getData();
-  const title = data.map((game: any) => game.title);
+  const title = data.map((game: CardsProps) => game.title);
   const keywords = title.map((title: string) => `topup games ${title}`);
 
   const previousImages = (await parent)?.openGraph?.images || [];

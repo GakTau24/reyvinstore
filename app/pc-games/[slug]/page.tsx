@@ -1,4 +1,5 @@
-import { Metadata } from "next";
+import { CardsProps, MetaProps } from "@/helper";
+import { Metadata, ResolvingMetadata } from "next";
 import Handler from "@/components/Handler/Handler";
 import DetailPcGames from "@/components/DetailPage/PcGames";
 
@@ -10,20 +11,15 @@ async function getDetailMobile(slug: string) {
   return data.json();
 }
 
-type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
 export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: any
+  { params, searchParams }: MetaProps,
+  parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { pcgames } = await getDetailMobile(params.slug);
-  if(!pcgames) {
+  if (!pcgames) {
     return {
-      ...Handler
-    }
+      ...Handler,
+    };
   }
   const previousImages = (await parent)?.openGraph?.images || [];
   return {
@@ -70,13 +66,11 @@ export async function generateMetadata(
   };
 }
 
-export default async function page({ params }: Props) {
+export default async function page({ params }: MetaProps) {
   const { pcgames } = await getDetailMobile(params.slug);
-  if(!pcgames) {
-    return <Handler title={params.slug} />
+  if (!pcgames) {
+    return <Handler title={params.slug} />;
   }
-  
-  return (
-    <DetailPcGames slug={params.slug} />
-  );
+
+  return <DetailPcGames slug={params.slug} />;
 }

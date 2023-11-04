@@ -1,6 +1,7 @@
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 import Handler from "@/components/Handler/Handler";
 import DetailTrending from "@/components/DetailPage/Trending";
+import { MetaProps } from "@/helper";
 
 async function getDetailTrending(slug: string) {
   const data = await fetch(
@@ -10,14 +11,9 @@ async function getDetailTrending(slug: string) {
   return data.json()
 }
 
-type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
 export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: any,
+  { params, searchParams }: MetaProps,
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { trending } = await getDetailTrending(params.slug);
   const previousImages = (await parent)?.openGraph?.images || [];
@@ -70,7 +66,7 @@ export async function generateMetadata(
     };
 }
 
-export default async function page({ params }: Props) {
+export default async function page({ params }: MetaProps) {
   const { trending } = await getDetailTrending(params.slug);
   if(!trending) {
     return <Handler title={params.slug} />;
