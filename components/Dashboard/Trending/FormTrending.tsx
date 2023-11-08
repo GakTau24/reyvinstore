@@ -28,7 +28,7 @@ function FormTrending() {
     }
   }, [title]);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!image || !title || !price) {
       alert("Image, Title dan Price harus diisi!");

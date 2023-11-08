@@ -6,8 +6,9 @@ import Link from "next/link";
 import { BsWhatsapp } from "react-icons/bs";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { CardsProps } from "@/helper";
 
-const DetailPcGames = ({ slug }: any) => {
+const DetailPcGames = ({ slug }: CardsProps) => {
   const { data, isLoading } = useQuery({
     queryKey: ["detailPcGames"],
     queryFn: async () => {

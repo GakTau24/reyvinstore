@@ -28,11 +28,11 @@ function FormApps() {
     }
   }, [title]);
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault()
-    if(!image || !title || !price) {
-      alert("Image, Title dan Price harus diisi!")
-      return
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!image || !title || !price) {
+      alert("Image, Title dan Price harus diisi!");
+      return;
     }
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/apps`, {
@@ -40,17 +40,17 @@ function FormApps() {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ slug, image, title, price })
-      })
-      if(res.ok) {
+        body: JSON.stringify({ slug, image, title, price }),
+      });
+      if (res.ok) {
         setShowAlert(true);
       } else {
-        throw new Error("Gagal membuat data")
+        throw new Error("Gagal membuat data");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div className="flex justify-center items-center max-sm:h-1/2 h-screen md:h-screen">

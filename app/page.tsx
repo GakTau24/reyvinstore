@@ -32,7 +32,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const data = await getData();
   const title = data.map((game: CardsProps) => game.title);
-  const keywords = data.map((title: any) => title.title);
+  const keywords = data.map((title: CardsProps) => title.title);
 
   const previousImages = (await parent)?.openGraph?.images || [];
   return {

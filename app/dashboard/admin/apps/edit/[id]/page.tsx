@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import EditFormApps from '@/components/Dashboard/Apps/EditFormApps'
+import { CardsProps } from '@/helper';
 
 export const metadata: Metadata = {
     title: `Dashboard Edit | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
     manifest: "/manifest.json",
   }
 
-  const getTrendingById = async (id: any) => {
+  const getTrendingById = async (id: CardsProps) => {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/apps/${id}`, {
         cache: "no-store",
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     }
   };
 
-async function page({ params }: any) {
+async function page({ params }: {params: { id: any }}) {
   const { id } = params
   const { apps } = await getTrendingById(id)
   const { slug, title, image, price } = apps

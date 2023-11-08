@@ -22,3 +22,8 @@ export interface MetaProps {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
+
+export interface Data {
+  slug: string;
+  title: string;
+}

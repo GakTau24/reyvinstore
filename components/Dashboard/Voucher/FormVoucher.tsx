@@ -13,7 +13,7 @@ function FormVoucher() {
 
   const router = useRouter();
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!slug || !image || !title || !price) {
       alert("Slug, Image, Title dan Price harus diisi!");

@@ -1,4 +1,5 @@
 "use client";
+import { CardsProps } from "@/helper";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
@@ -7,7 +8,7 @@ import { BsWhatsapp } from "react-icons/bs";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const DetailTrending = ({ slug }: any) => {
+const DetailTrending = ({ slug }: CardsProps) => {
   const { data, isLoading } = useQuery({
     queryKey: ["detailTrending"],
     queryFn: async () => {

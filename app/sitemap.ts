@@ -1,7 +1,4 @@
-type Data = {
-  slug: string;
-  title: string;
-};
+import { Data } from "@/helper";
 
 async function getDataTrending(): Promise<Data[]> {
   const response = await fetch(
@@ -63,35 +60,35 @@ export default async function sitemap() {
     const { apps }: any = await getDataApps();
     const { voucher }: any = await getDataVoucher();
 
-    const dataSiteTrending = trending.map((item: any) => {
+    const dataSiteTrending = trending.map((item: Data) => {
       return {
         url: `${baseUrl}/trending/${item.slug}`,
         lastModified: new Date(),
         title: item.title,
       };
     });
-    const dataSiteMobile = mobileGames.map((item: any) => {
+    const dataSiteMobile = mobileGames.map((item: Data) => {
       return {
         url: `${baseUrl}/mobile-games/${item.slug}`,
         lastModified: new Date(),
         title: item.title,
       };
     });
-    const dataSitePc = pcgames.map((item: any) => {
+    const dataSitePc = pcgames.map((item: Data) => {
       return {
         url: `${baseUrl}/pc-games/${item.slug}`,
         lastModified: new Date(),
         title: item.title,
       };
     });
-    const dataSiteApps = apps.map((item: any) => {
+    const dataSiteApps = apps.map((item: Data) => {
       return {
         url: `${baseUrl}/apps/${item.slug}`,
         lastModified: new Date(),
         title: item.title,
       };
     });
-    const dataSiteVoucher = voucher.map((item: any) => {
+    const dataSiteVoucher = voucher.map((item: Data) => {
       return {
         url: `${baseUrl}/voucher/${item.slug}`,
         lastModified: new Date(),

@@ -58,7 +58,7 @@ export default function Carousel() {
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible">
-                  <Skeleton width="100%" height="140px" />
+                  <Skeleton width="100%" className="md:h-60 max-sm:h-40" />
                 </motion.div>
               </SwiperSlide>
             ))

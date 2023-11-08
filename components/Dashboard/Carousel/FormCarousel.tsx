@@ -10,29 +10,32 @@ function FormApps() {
 
   const router = useRouter()
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault()
-    if(!image) {
-      alert("Slug, Image, Title dan Price harus diisi!")
-      return
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!image) {
+      alert("Slug, Image, Title dan Price harus diisi!");
+      return;
     }
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/carousel`, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ image })
-      })
-      if(res.ok) {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/carousel`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ image }),
+        }
+      );
+      if (res.ok) {
         setShowAlert(true);
       } else {
-        throw new Error("Gagal membuat data")
+        throw new Error("Gagal membuat data");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div className="flex justify-center items-center h-screen">

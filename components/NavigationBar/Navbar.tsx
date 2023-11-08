@@ -93,7 +93,7 @@ const Navbar = () => {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}>
-                        <div className="origin-top-right absolute border border-slate-700 right-0 mt-2 w-48 rounded-md ring-1 ring-black ring-opacity-5">
+                        <div className="origin-top-right z-10 absolute border border-slate-700 right-0 mt-2 w-48 rounded-md ring-1 ring-black ring-opacity-5">
                           <div
                             className="py-1"
                             role="menu"
