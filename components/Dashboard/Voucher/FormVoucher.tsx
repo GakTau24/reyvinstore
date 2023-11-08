@@ -43,20 +43,20 @@ function FormVoucher() {
   return (
     <div className="flex justify-center items-center max-sm:h-1/2 h-screen md:h-screen">
       <div className="w-[40rem] max-sm:w-96">
-        <h1 className="text-2xl max-md:text-md font-bold mb-4 max-sm:mt-5 lg:mt-5 text-center">Create Voucher</h1>
+        <h1 className="text-2xl max-md:text-md font-bold mb-4 max-sm:mt-5 lg:mt-5 text-center">
+          Create Voucher
+        </h1>
         {showAlert && (
           <div className="fixed top-16 right-5 max-md:h-10 max-md:right-0">
             <AlertsCreateVoucher title={title} />
           </div>
         )}
         <Link href={"/dashboard/admin/voucher"}>
-        <button className="bg-sky-400 px-5 p-3 rounded-xl mb-3">Back</button>
+          <button className="bg-sky-400 px-5 p-3 rounded-xl mb-3">Back</button>
         </Link>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-          <div>
-            <label
-              htmlFor="slug"
-              className="block mb-2 text-sm font-medium">
+          <div className="hidden">
+            <label htmlFor="slug" className="block mb-2 text-sm font-medium">
               slug
             </label>
             <input
@@ -69,9 +69,7 @@ function FormVoucher() {
             />
           </div>
           <div>
-            <label
-              htmlFor="image"
-              className="block mb-2 text-sm font-medium">
+            <label htmlFor="image" className="block mb-2 text-sm font-medium">
               Image
             </label>
             <input
@@ -84,9 +82,7 @@ function FormVoucher() {
             />
           </div>
           <div>
-            <label
-              htmlFor="title"
-              className="block mb-2 text-sm font-medium">
+            <label htmlFor="title" className="block mb-2 text-sm font-medium">
               Title
             </label>
             <input
@@ -99,9 +95,7 @@ function FormVoucher() {
             />
           </div>
           <div>
-            <label
-              htmlFor="price"
-              className="block mb-2 text-sm font-medium">
+            <label htmlFor="price" className="block mb-2 text-sm font-medium">
               Price
             </label>
             <textarea

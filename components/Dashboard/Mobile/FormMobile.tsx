@@ -68,7 +68,7 @@ function FormMobile() {
         <button className="bg-sky-400 px-5 p-3 rounded-xl mb-3">Back</button>
         </Link>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-          <div>
+          <div className="hidden">
             <label
               htmlFor="slug"
               className="block mb-2 text-sm font-medium">

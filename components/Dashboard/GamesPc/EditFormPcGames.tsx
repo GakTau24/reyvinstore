@@ -64,7 +64,9 @@ export default function EditFormPcGames({
   return (
     <div className="flex justify-center items-center max-sm:h-1/2 h-screen md:h-screen">
       <div className="w-[40rem] max-sm:w-96">
-        <h1 className="text-2xl max-md:text-md font-bold mb-4 max-sm:mt-5 lg:mt-5 text-center">Edit {title}</h1>
+        <h1 className="text-2xl max-md:text-md font-bold mb-4 max-sm:mt-5 lg:mt-5 text-center">
+          Edit {title}
+        </h1>
         {showAlert && (
           <div className="fixed top-16 right-5 max-md:h-10 max-md:right-0">
             <AlertsUpdatePc title={title} />
@@ -74,7 +76,7 @@ export default function EditFormPcGames({
           <button className="bg-sky-400 px-5 p-3 rounded-xl my-3">Back</button>
         </Link>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-          <div>
+          <div className="hidden">
             <label htmlFor="slug" className="block mb-2 text-sm font-medium">
               Slug
             </label>

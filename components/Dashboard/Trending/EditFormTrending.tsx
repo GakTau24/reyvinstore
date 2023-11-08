@@ -64,8 +64,10 @@ export default function EditFormTrending({
   return (
     <div className="flex justify-center items-center max-sm:h-1/2 h-screen md:h-screen">
       <div className="w-[40rem] max-sm:w-96">
-      <h1 className="text-2xl max-md:text-md font-bold mb-4 max-sm:mt-5 lg:mt-10 text-center">Edit {title}</h1>
-      {showAlert && (
+        <h1 className="text-2xl max-md:text-md font-bold mb-4 max-sm:mt-5 lg:mt-10 text-center">
+          Edit {title}
+        </h1>
+        {showAlert && (
           <div className="fixed top-16 right-5 max-md:h-10 max-md:right-0">
             <AlertsEditTrending title={title} />
           </div>
@@ -74,7 +76,7 @@ export default function EditFormTrending({
           <button className="bg-sky-400 px-5 p-3 rounded-xl my-3">Back</button>
         </Link>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-          <div>
+          <div className="hidden">
             <label htmlFor="slug" className="block mb-2 text-sm font-medium">
               Slug
             </label>
@@ -128,8 +130,7 @@ export default function EditFormTrending({
           </div>
           <button
             type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Edit
           </button>
         </form>
