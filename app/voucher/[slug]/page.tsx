@@ -69,12 +69,10 @@ export async function generateMetadata(
 
 }
 
-export default async function page({ params }: MetaProps) {
+export default async function page({ params }: { params: { slug: string } }) {
   const { voucher } = await getDetailVoucher(params.slug);
-    if(!voucher) {
-      return <Handler title={params.slug} />;
-    }
-  return (
-    <DetailVoucher slug={params.slug} />
-  );
+  if (!voucher) {
+    return <Handler title={params.slug} />;
+  }
+  return <DetailVoucher slug={params.slug} />;
 }

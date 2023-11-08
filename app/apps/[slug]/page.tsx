@@ -66,7 +66,7 @@ export async function generateMetadata(
   };
 }
 
-export default async function page({ params }: MetaProps) {
+export default async function page({ params }: { params: { slug: string } }) {
   const { apps } = await getDetailApps(params.slug);
   if (!apps) {
     return <Handler title={params.slug} />;

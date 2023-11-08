@@ -66,12 +66,10 @@ export async function generateMetadata(
     };
 }
 
-export default async function page({ params }: MetaProps) {
+export default async function page({ params }: { params: { slug: string } }) {
   const { trending } = await getDetailTrending(params.slug);
-  if(!trending) {
+  if (!trending) {
     return <Handler title={params.slug} />;
   }
-  return (
-    <DetailTrending slug={params.slug} />
-  );
+  return <DetailTrending slug={params.slug} />;
 }

@@ -18,6 +18,10 @@ export interface CardsProps {
   price: string;
 }
 
+export interface DetailProps {
+  slug: string
+}
+
 export interface MetaProps {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };

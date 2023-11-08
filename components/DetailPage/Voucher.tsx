@@ -1,5 +1,5 @@
 "use client";
-import { CardsProps } from "@/helper";
+import { DetailProps } from "@/helper";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import { BsWhatsapp } from "react-icons/bs";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const DetailVoucher = ({ slug }: CardsProps) => {
+const DetailVoucher = ({ slug }: DetailProps) => {
   const { data, isLoading } = useQuery({
     queryKey: ["detailVoucher"],
     queryFn: async () => {

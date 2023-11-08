@@ -66,7 +66,7 @@ export async function generateMetadata(
   };
 }
 
-export default async function page({ params }: MetaProps) {
+export default async function page({ params }: { params: { slug: string } }) {
   const { pcgames } = await getDetailMobile(params.slug);
   if (!pcgames) {
     return <Handler title={params.slug} />;
