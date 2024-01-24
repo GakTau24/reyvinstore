@@ -26,6 +26,8 @@ const Count = () => {
   return (
     <div className='flex justify-center items-center py-3'>
       <h1 className="font-bold text-bold">Status: <span className={`${textColor}`}>{status}</span></h1>
+      <p>Open: 10:00 (WIB)</p>
+      <p>Close: 21:00 (WIB)</p>
     </div>
   );
 };
