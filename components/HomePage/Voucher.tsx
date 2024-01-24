@@ -26,7 +26,7 @@ export default function Voucher() {
   return (
     <section>
       <hr className="my-6 sm:mx-auto border-gray-500 lg:my-4 opacity-30" />
-      <h1 className="mb-3 font-semibold text-xl">● Voucher</h1>
+      <h1 className="mb-3 font-semibold text-xl">● Pulsa / Token</h1>
       <Swiper
         modules={[FreeMode]}
         spaceBetween={8}
@@ -84,7 +84,7 @@ function Cards({ data }: DataProps) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110">
+      className="rounded-lg bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110 border border-yellow-500">
       <Link href={`/voucher/${slug}`}>
         <div className="rounded-lg shadow-md max-sm:h-44 sm:h-60 md:h-52">
           <Image

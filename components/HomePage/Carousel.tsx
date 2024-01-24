@@ -47,10 +47,10 @@ export default function Carousel() {
             slidesPerView: 1.2,
           },
           1024: {
-            slidesPerView: 3,
+            slidesPerView: 1,
           },
         }}
-        className="rounded-lg shadow-2xl">
+        className="rounded-lg shadow-2xl w-1/2">
         {isLoading
           ? Array.from({ length: 3 }, (_, index) => (
               <SwiperSlide key={index}>
@@ -67,12 +67,13 @@ export default function Carousel() {
                 <motion.div
                   variants={containerVariants}
                   initial="hidden"
-                  animate="visible">
+                  animate="visible"
+                  className="flex justify-center items-center">
                   <Image
                     src={item?.image}
                     alt=""
-                    width={500}
-                    height={500}
+                    width={700}
+                    height={700}
                     objectFit="cover"
                     priority
                     className="rounded-md lg:h-64 max-sm:h-40 md:h-64 w-full"

@@ -88,7 +88,7 @@ function Cards({ data }: DataProps) {
       animate="visible"
       className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110">
       <Link href={`/mobile-games/${slug}`}>
-        <div className="rounded-lg shadow-md max-sm:h-44 sm:h-60 md:h-52">
+        <div className="rounded-lg shadow-md max-sm:h-44 sm:h-60 md:h-52 border border-yellow-500">
           <Image
             className="rounded-lg w-full max-w-sm lg:h-[120px] md:h-24"
             src={image}

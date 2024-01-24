@@ -7,7 +7,7 @@ function Sidebar() {
   const router = usePathname();
   console.log(router);
   
-  const activeLink = "block p-2 rounded hover:bg-sky-400 bg-sky-400 font-bold"; 
+  const activeLink = "block p-2 rounded hover:bg-yellow-500 bg-yellow-500 font-bold"; 
   const nonActiveLink = "block p-2 rounded";
 
   return (

@@ -1,6 +1,9 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Lilita_One } from "next/font/google";
+
+const font = Lilita_One({ subsets: ["latin"], weight: "400" });
 
 export default function Footer() {
   const getTime = new Date().getFullYear();
@@ -14,9 +17,9 @@ export default function Footer() {
               onHoverStart={(e) => {}}
               onHoverEnd={(e) => {}}
               className="w-1/2">
-              <Link href={"/"}>
-                Reyvin
-                <span className="text-sky-400">Store</span>{" "}
+              <Link href={"/"} className="flex">
+                <h1 className={`${font.className} lg:text-2xl font-bold text-xl`}>Reyvin{" "}
+                <span className="text-yellow-500">Store</span></h1>
               </Link>
             </motion.div>
           </div>

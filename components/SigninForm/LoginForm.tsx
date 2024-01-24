@@ -71,7 +71,7 @@ const LoginForm = () => {
             onHoverStart={(e) => {}}
             onHoverEnd={(e) => {}}>
             <h1 className="text-xl text-center font-bold py-3 cursor-pointer">
-              Reyvin <span className="text-sky-400">Store</span>
+              Reyvin <span className="text-yellow-500">Store</span>
             </h1>
           </motion.div>
           <hr className="my-3 sm:mx-auto border-gray-500 lg:my-4 opacity-30" />
@@ -110,7 +110,7 @@ const LoginForm = () => {
             />
             <span
               onClick={handleShowPassword}
-              className="absolute right-0 flex items-center px-3 rounded py-3 cursor-pointer top-[26px] bg-sky-400 hover:bg-sky-700">
+              className="absolute right-0 flex items-center px-3 rounded py-3 cursor-pointer top-[26px] bg-yellow-500 hover:bg-sky-700">
               {showPassword ? (
                 <BsEyeSlash color="black" />
               ) : (
@@ -124,7 +124,7 @@ const LoginForm = () => {
               onHoverStart={(e) => {}}
               onHoverEnd={(e) => {}}>
               <button
-                className="bg-sky-400 hover:bg-sky-700 text-white shadow-xl font-bold py-2 px-4 rounded focus:outline-none focus:shadow-xl"
+                className="bg-yellow-500 hover:bg-sky-700 text-white shadow-xl font-bold py-2 px-4 rounded focus:outline-none focus:shadow-xl"
                 type="submit"
                 disabled={loading}>
                 {loading ? (

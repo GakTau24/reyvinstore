@@ -47,7 +47,7 @@ function FormApps() {
           </div>
         )}
         <Link href={"/dashboard/admin/carousel"}>
-          <button className="bg-sky-400 px-5 p-3 rounded-xl max-lg:mt-[4em]">Back</button>
+          <button className="bg-yellow-500 px-5 p-3 rounded-xl max-lg:mt-[4em]">Back</button>
         </Link>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-1">
           <div>

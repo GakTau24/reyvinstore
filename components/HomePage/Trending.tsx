@@ -52,7 +52,7 @@ const Trending = () => {
                       variants={containerVariants}
                       initial="hidden"
                       animate="visible"
-                      className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110 rounded-xl shadow-xl lg:h-48 md:h-52">
+                      className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110 rounded-xl shadow-xl lg:h-48 md:h-52 border border-yellow-500">
                       <Image
                         src={item.image}
                         alt={item.title}
@@ -60,10 +60,10 @@ const Trending = () => {
                         height={800}
                         objectFit="cover"
                         priority
-                        className="rounded-md lg:h-[120px] max-sm:h-[5.5rem] md:h-28 w-full"
+                        className="rounded-md lg:h-24 max-sm:h-[5.5rem] md:h-28 w-full"
                       />
                       <div className="py-3">
-                        <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center">
+                        <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center px-3">
                           {item.title}
                         </h1>
                       </div>

@@ -83,7 +83,7 @@ function Cards({ data }: DataProps) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110">
+      className="rounded-lg bg-opacity-70 backdrop-filter backdrop-blur-xl backdrop-brightness-110 border border-yellow-500">
       <Link href={`/apps/${slug}`}>
         <div className="rounded-lg shadow-md max-sm:h-44 sm:h-60 md:h-52">
           <Image

@@ -17,7 +17,7 @@ const NotFound = () => {
         <h1 className="text-4xl font-bold text-sky-400 mb-4">404</h1>
         <h2 className="text-2xl font-semibold mb-4"><span className='text-sky-400'>Oops!</span> Halaman tidak ditemukan</h2>
         <p className="mb-6">Maaf, kami tidak dapat menemukan halaman yang Anda cari. Pastikan URL yang Anda masukkan benar.</p>
-        <Link href={"/"} className="inline-block bg-sky-400 text-white py-2 px-4 rounded-lg hover:bg-sky-600 transition duration-300 ease-in-out">Kembali ke Halaman Utama</Link>
+        <Link href={"/"} className="inline-block bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-sky-600 transition duration-300 ease-in-out">Kembali ke Halaman Utama</Link>
       </div>
     </div>
   );

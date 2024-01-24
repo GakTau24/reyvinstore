@@ -44,8 +44,8 @@ export default function RootLayout({
       <body
         className={`${inter.className} ${
           isDarkMode
-            ? "bg-slate-200 text-slate-800"
-            : "bg-gradient-to-r from-slate-900 to-slate-500 text-slate-300"
+            ? "bg-neutral-200 text-slate-800"
+            : "bg-neutral-800 text-white"
         }`}>
         <SessionProvider>
           <QueryClientProvider client={queryClient}>
@@ -65,11 +65,11 @@ export default function RootLayout({
             onHoverStart={(e) => {}}
             onHoverEnd={(e) => {}}
             onClick={handleToggleMode}
-            className="fixed opacity-70 hover:opacity-100 max-sm:bottom-10 md:bottom-4 right-4 p-5 rounded-full bg-sky-400 z-10">
+            className="fixed opacity-70 hover:opacity-100 max-sm:bottom-10 md:bottom-4 right-4 p-5 rounded-full bg-yellow-500 z-10">
             {isDarkMode ? (
-              <BsSun size={20} color="white" />
+              <BsSun size={20} color="black" />
             ) : (
-              <BsMoon size={20} color="black" />
+              <BsMoon size={20} color="white" />
             )}
           </motion.button>
         </div>

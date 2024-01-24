@@ -49,7 +49,7 @@ export default function EditFormCarousel({
           </div>
         )}
         <Link href={"/dashboard/admin/carousel"}>
-          <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">Back</button>
+          <button className="bg-yellow-500 px-5 p-3 rounded-xl my-5">Back</button>
         </Link>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <caption className="caption-top">

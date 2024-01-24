@@ -24,7 +24,7 @@ export default function Handler({ title }: any) {
         </p>
         <Link
           href={"/"}
-          className="inline-block bg-sky-400 text-white py-2 px-4 rounded-lg hover:bg-sky-600 transition duration-300 ease-in-out">
+          className="inline-block bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-sky-600 transition duration-300 ease-in-out">
           Kembali ke Halaman Utama
         </Link>
       </div>

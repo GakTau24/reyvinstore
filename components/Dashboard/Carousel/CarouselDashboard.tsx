@@ -61,7 +61,7 @@ const CarouselDashboard = () => {
           </div>
         )}
         <Link href={"/dashboard/admin/carousel/create"}>
-          <button className="bg-sky-400 px-5 p-3 rounded-xl my-5">
+          <button className="bg-yellow-500 px-5 p-3 rounded-xl my-5">
             Create
           </button>
         </Link>

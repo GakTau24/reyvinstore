@@ -4,19 +4,22 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { useSession, signOut, signIn } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { Lilita_One } from "next/font/google";
+
+const inter = Lilita_One({ subsets: ["latin"], weight: "400" });
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const session = useSession();
   const router = usePathname();
   const activeLink =
-    "hover:bg-sky-400 hover:text-white px-3 py-2 mx-3 rounded-md text-sm font-medium bg-sky-400";
+    "hover:bg-yellow-500 hover:text-white px-3 py-2 mx-3 rounded-md text-sm font-medium bg-yellow-500";
   const nonActiveLink =
-    "hover:bg-sky-400 hover:text-white px-3 py-2 mx-3 rounded-md text-sm font-medium";
+    "hover:bg-yellow-500 hover:text-white px-3 py-2 mx-3 rounded-md text-sm font-medium";
   const activeLinkDropdown =
-    "hover:bg-sky-400 bg-sky-400 hover:text-white block px-3 py-2 rounded-md text-base font-medium";
+    "hover:bg-yellow-500 bg-yellow-500 hover:text-white block px-3 py-2 rounded-md text-base font-medium";
   const nonActiveLinkDropdown =
-    "hover:bg-sky-400 hover:text-white block px-3 py-2 rounded-md text-base font-medium";
+    "hover:bg-yellow-500 hover:text-white block px-3 py-2 rounded-md text-base font-medium";
 
   const closeDropdown = () => {
     setIsOpen(false);
@@ -39,8 +42,8 @@ const Navbar = () => {
             onHoverStart={(e) => {}}
             onHoverEnd={(e) => {}}>
             <Link href={"/"}>
-              <h1 className="lg:text-xl font-bold text-xl">
-                Reyvin <span className="text-sky-400">Store</span>
+              <h1 className={`${inter.className} lg:text-2xl font-bold text-xl`}>
+                Reyvin <span className="text-yellow-500">Store</span>
               </h1>
             </Link>
           </motion.div>
@@ -65,13 +68,25 @@ const Navbar = () => {
                   className={
                     router === "/contact" ? activeLink : nonActiveLink
                   }>
-                  Contact
+                  Contacts
+                </Link>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.2 }}
+                onHoverStart={(e) => {}}
+                onHoverEnd={(e) => {}}>
+                <Link
+                  href={"/payments"}
+                  className={
+                    router === "/payments" ? activeLink : nonActiveLink
+                  }>
+                  Payments
                 </Link>
               </motion.div>
               {session.data ? (
                 <div className="relative inline-block text-left">
                   <button
-                    className="hover:bg-sky-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
+                    className="hover:bg-yellow-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
                     onClick={toggleDropdown}>
                     <div className="flex">
                       <motion.div
@@ -102,14 +117,14 @@ const Navbar = () => {
                             <Link
                               href={"/dashboard/admin"}
                               onClick={closeDropdown}
-                              className="block px-4 py-2 text-sm hover:bg-sky-400 hover:rounded hover:text-gray-900"
+                              className="block px-4 py-2 text-sm hover:bg-yellow-500 hover:rounded hover:text-gray-900"
                               role="menuitem">
                               Dashboard
                             </Link>
                             <hr className="border-gray-900 opacity-30" />
                             <button
                               onClick={handleLogout}
-                              className="block px-4 py-2 text-sm hover:bg-sky-400 hover:rounded hover:text-gray-900 w-full text-left"
+                              className="block px-4 py-2 text-sm hover:bg-yellow-500 hover:rounded hover:text-gray-900 w-full text-left"
                               role="menuitem">
                               Logout
                             </button>
@@ -138,7 +153,7 @@ const Navbar = () => {
           <div className="-mr-2 flex md:hidden">
             <button
               type="button"
-              className="hover:bg-sky-400 hover:text-white inline-flex items-center justify-center p-2 rounded-md focus:outline-none"
+              className="hover:bg-yellow-500 hover:text-white inline-flex items-center justify-center p-2 rounded-md focus:outline-none"
               onClick={toggleDropdown}>
               <svg
                 className="h-6 w-6"
@@ -200,12 +215,12 @@ const Navbar = () => {
                   <Link
                     href={"/dashboard/admin"}
                     onClick={closeDropdown}
-                    className="hover:bg-sky-400 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                    className="hover:bg-yellow-500 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
                     Dashboard
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="hover:bg-sky-400 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left">
+                    className="hover:bg-yellow-500 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left">
                     Logout
                   </button>
                 </div>

@@ -64,7 +64,7 @@ function FormApps() {
           </div>
         )}
         <Link href={"/dashboard/admin/apps"}>
-          <button className="bg-sky-400 px-5 p-3 rounded-xl mb-3">Back</button>
+          <button className="bg-yellow-500 px-5 p-3 rounded-xl mb-3">Back</button>
         </Link>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <div className="hidden">

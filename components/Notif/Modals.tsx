@@ -31,7 +31,7 @@ export default function Modal({ setShowModal, handleDeleteClick }: any) {
               </div>
               <div className="flex justify-center p-6 border-t border-solid border-slate-200 rounded-b">
                 <button
-                  className="bg-sky-400 text-white active:bg-sky-600 hover:bg-sky-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  className="bg-yellow-500 text-white active:bg-sky-600 hover:bg-sky-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                   type="button"
                   onClick={() => setShowModal(false)}>
                   Cancel
