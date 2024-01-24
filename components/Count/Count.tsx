@@ -24,7 +24,7 @@ const Count = () => {
   const textColor = status === 'Sedang Buka' ? 'text-green-700' : 'text-red-700';
 
   return (
-    <div className='flex justify-center items-center py-3'>
+    <div className='flex flex-col justify-center items-center py-3'>
       <h1 className="font-bold text-bold">Status: <span className={`${textColor}`}>{status}</span></h1>
       <p>Open: 10:00 (WIB)</p>
       <p>Close: 21:00 (WIB)</p>
