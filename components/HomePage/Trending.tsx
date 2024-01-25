@@ -27,15 +27,15 @@ const Trending = () => {
   
 
   return (
-    <div className="p-4 mx-auto">
+    <div className="flex flex-col md:p-4 mx-auto">
       <hr className="sm:mx-auto border-gray-500 lg:my-4 opacity-30 py-3" />
       {isLoading ? null : (
-        <h1 className="mb-3 font-bold md:text-center text-2xl">
+        <h1 className="flex justify-center items-center mb-3 font-bold md:text-center text-2xl">
           Trending
         </h1>
       )}
       <div className="flex flex-col justify-center items-center">
-        <div className="grid sm:grid-cols-3 max-sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-3 max-sm:gap-2.5 md:gap-2.5 md:w-2/3 lg:w-1/2 max-sm:w-full">
+        <div className="grid sm:grid-cols-3 max-sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-3 max-sm:gap-2.5 md:gap-2.5 md:w-2/3 lg:w-[55%] max-sm:w-full">
           {isLoading
             ? Array.from({ length: 10 }, (_, index) => (
                 <div key={index}>
@@ -60,7 +60,7 @@ const Trending = () => {
                         height={800}
                         objectFit="cover"
                         priority
-                        className="rounded-md lg:h-24 max-sm:h-[5.5rem] md:h-28 w-full"
+                        className="rounded-md lg:h-[6.5rem] max-sm:h-[5.5rem] md:h-28 w-full"
                       />
                       <div className="py-3">
                         <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center px-3">

@@ -26,6 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
+
   useEffect(() => {
     const storedMode = localStorage.getItem("darkMode");
     if (storedMode !== null) {
@@ -38,7 +39,6 @@ export default function RootLayout({
     setIsDarkMode(newMode);
     localStorage.setItem("darkMode", String(newMode));
   };
-
   return (
     <html lang="en">
       <body
@@ -51,28 +51,13 @@ export default function RootLayout({
           <QueryClientProvider client={queryClient}>
             <SkeletonTheme baseColor="#202020" highlightColor="#444">
               <div className="flex flex-col min-h-screen">
-                <Navbar />
+                <Navbar isDarkMode={isDarkMode} handleToggleMode={handleToggleMode} />
                 <main className="flex-grow">{children}</main>
                 <Footer />
               </div>
             </SkeletonTheme>
           </QueryClientProvider>
         </SessionProvider>
-
-        <div>
-          <motion.button
-            whileHover={{ scale: 1.2 }}
-            onHoverStart={(e) => {}}
-            onHoverEnd={(e) => {}}
-            onClick={handleToggleMode}
-            className="fixed opacity-70 hover:opacity-100 max-sm:bottom-10 md:bottom-4 right-4 p-5 rounded-full bg-yellow-500 z-10">
-            {isDarkMode ? (
-              <BsSun size={20} color="black" />
-            ) : (
-              <BsMoon size={20} color="white" />
-            )}
-          </motion.button>
-        </div>
       </body>
     </html>
   );

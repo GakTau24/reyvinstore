@@ -97,7 +97,7 @@ function Cards({ data }: DataProps) {
             priority
           />
           <div className="md:p-3 max-md:py-2">
-            <h1 className="md:text-md max-md:text-sm max-md:font-semibold max-md:font-sans text-center">
+            <h1 className="md:text-md max-md:text-xs max-md:font-semibold max-md:font-sans text-center">
               {title}
             </h1>
           </div>
