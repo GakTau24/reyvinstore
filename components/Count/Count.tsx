@@ -3,29 +3,26 @@ import React, { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
 
 const Count = () => {
-  const [status, setStatus] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const checkTime = () => {
       const jakartaTime = DateTime.now().setZone('Asia/Jakarta');
       const currentTime = jakartaTime.hour;
 
-      if (currentTime >= 10 && currentTime < 21) {
-        setStatus('Online (Open Order)');
-      } else {
-        setStatus('Offline (Close Order)');
-      }
+      setIsOpen(currentTime >= 10 && currentTime < 21);
     };
 
-    const intervalId = setInterval(checkTime, 1000)
+    const intervalId = setInterval(checkTime, 1000);
     return () => clearInterval(intervalId);
   }, []);
 
-  const textColor = status === 'Sedang Buka' ? 'text-green-700' : 'text-red-700';
+  const textColor = isOpen ? 'text-green-700' : 'text-red-700';
+  const statusText = isOpen ? 'Online (Open Order)' : 'Offline (Close Order)';
 
   return (
     <div className='flex flex-col justify-center items-center py-3'>
-      <h1 className="font-bold text-bold">Status: <span className={`${textColor}`}>{status}</span></h1>
+      <h1 className="font-bold text-bold">Status: <span className={`${textColor}`}>{statusText}</span></h1>
       <p>Open: 10:00 (WIB)</p>
       <p>Close: 21:00 (WIB)</p>
     </div>

@@ -1,35 +1,47 @@
-"use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import AlertsCreateVoucher from "@/components/Notif/AlertCreateVoucher";
+"use client"
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import Link from "next/link"
+import AlertsCreateVoucher from "@/components/Notif/AlertCreateVoucher"
+import slugify from "slugify"
 
-function FormVoucher() {
-  const [slug, setSlug] = useState("");
-  const [image, setImage] = useState("");
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
+function FormApps() {
+  const [slug, setSlug] = useState("")
+  const [image, setImage] = useState("")
+  const [title, setTitle] = useState("")
+  const [price, setPrice] = useState("")
   const [showAlert, setShowAlert] = useState(false);
 
-  const router = useRouter();
+  const router = useRouter()
+
+  const generateSlugFromTitle = (title: string) => {
+    return slugify(title, {
+      lower: true,
+      remove: /[*+~.()'"!:@]/g,
+    });
+  };
+
+  useEffect(() => {
+    if (title) {
+      const generatedSlug = generateSlugFromTitle(title);
+      setSlug(generatedSlug);
+    }
+  }, [title]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!slug || !image || !title || !price) {
-      alert("Slug, Image, Title dan Price harus diisi!");
+    if (!image || !title || !price) {
+      alert("Image, Title dan Price harus diisi!");
       return;
     }
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/voucher`,
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({ slug, image, title, price }),
-        }
-      );
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/voucher`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ slug, image, title, price }),
+      });
       if (res.ok) {
         setShowAlert(true);
       } else {
@@ -66,6 +78,7 @@ function FormVoucher() {
               value={slug}
               type="text"
               required
+              readOnly
             />
           </div>
           <div>
@@ -117,4 +130,4 @@ function FormVoucher() {
   );
 }
 
-export default FormVoucher;
+export default FormApps;
