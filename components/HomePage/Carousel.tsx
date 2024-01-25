@@ -50,7 +50,7 @@ export default function Carousel() {
             slidesPerView: 1,
           },
         }}
-        className="rounded-lg shadow-2xl w-1/2">
+        className="rounded-lg shadow-2xl md:w-1/2 sm:w-full">
         {isLoading
           ? Array.from({ length: 3 }, (_, index) => (
               <SwiperSlide key={index}>

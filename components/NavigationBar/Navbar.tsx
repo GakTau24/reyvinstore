@@ -208,6 +208,16 @@ const Navbar = () => {
                   }>
                   Contact
                 </Link>
+                <Link
+                  href={"/payments"}
+                  onClick={closeDropdown}
+                  className={
+                    router === "/payments"
+                      ? activeLinkDropdown
+                      : nonActiveLinkDropdown
+                  }>
+                  Payments
+                </Link>
               </div>
               <hr className="my-3 border-gray-700 sm:mx-auto dark:border-gray-300 lg:my-4 opacity-20" />
               {session.data ? (

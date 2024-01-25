@@ -6,6 +6,7 @@ import Apps from "@/components/HomePage/Apps";
 import Carousel from "@/components/HomePage/Carousel";
 import Voucher from "@/components/HomePage/Voucher";
 import { CardsProps, MetaProps } from "@/helper";
+import Count from "@/components/Count/Count";
 
 async function getData() {
   try {
@@ -76,9 +77,10 @@ export async function generateMetadata(
 export default function Home() {
   return (
     <>
-      <div className="mt-6 max-sm:p-3 md:px-3 bg-transparent">
+      {/* <div className="mt-6 max-sm:p-3 md:px-3 bg-transparent">
+      </div> */}
+    <Count />
         <Carousel />
-      </div>
       <div className="p-5">
         <Trending />
         <MobileGames />
