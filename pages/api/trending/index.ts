@@ -3,9 +3,14 @@ import Trending from "@/models/trending";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next"
 import Nextauth from "../auth/[...nextauth]";
+import { generateApiKey } from "@/handler/header";
+
+const res = generateApiKey()
+const API_KEY = `${res}`;
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   const session = await getServerSession(request, response, Nextauth)
+  
   if (request.method === "POST") {
     if (!session) {
       return response.status(401).json({ error: "Anda belum Login" })
@@ -22,13 +27,18 @@ export default async function handler(request: NextApiRequest, response: NextApi
     }
   } else if (request.method === "GET") {
     try {
-      await connectToMongoDB();
+      const apiKey = request.headers['api-key'];
+      if (!apiKey || apiKey !== API_KEY) {
+        return response.status(401).json({ error: "Unauthorized" });
+      }
 
+      await connectToMongoDB();
       const trending = await Trending.find();
       response.status(200).json({ trending });
     } catch (error) {
-      response.status(500).json({ message: "Kesalahan Server Internal" });
+      response.status(500).json({ message: "Internal Server Error" });
     }
+
   } else if (request.method === "DELETE") {
     if (!session) {
       return response.status(401).json({ error: "Anda belum Login" })

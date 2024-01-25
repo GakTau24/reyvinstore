@@ -7,15 +7,27 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { CardsProps } from "@/helper";
+import { generateApiKey } from "@/handler/header";
+
+const API_KEY = generateApiKey()
 
 const Trending = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["trending"],
     queryFn: async () => {
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/trending`
-      );
-      return response.data;
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/trending`,
+          {
+            headers: {
+              'api-key': `${API_KEY}`
+            }
+          }
+        );
+        return response.data;
+      } catch (error) {
+        throw new Error('Failed to fetch trending data');
+      }
     },
     
   });

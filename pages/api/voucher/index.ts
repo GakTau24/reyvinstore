@@ -3,6 +3,10 @@ import Voucher from "@/models/voucher";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import Nextauth from "../auth/[...nextauth]";
+import { generateApiKey } from "@/handler/header";
+
+const res = generateApiKey()
+const API_KEY = `${res}`;
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   const session = await getServerSession(request, response, Nextauth)
@@ -21,6 +25,10 @@ export default async function handler(request: NextApiRequest, response: NextApi
       response.status(500).json({ message: "Kesalahan Server Internal" });
     }
   } else if (request.method === "GET") {
+    const apiKey = request.headers['api-key'];
+      if (!apiKey || apiKey !== API_KEY) {
+        return response.status(401).json({ error: "Unauthorized" });
+      }
     try {
       await connectToMongoDB();
 

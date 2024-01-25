@@ -3,6 +3,10 @@ import MobileGames from "@/models/mobilegames";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import Nextauth from "../auth/[...nextauth]";
+import { generateApiKey } from "@/handler/header";
+
+const res = generateApiKey()
+const API_KEY = `${res}`;
 
 export default async function handler(
   req: NextApiRequest,
@@ -25,6 +29,10 @@ export default async function handler(
     }
   } else if (req.method === "GET") {
     try {
+      const apiKey = req.headers['api-key'];
+      if (!apiKey || apiKey !== API_KEY) {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
       await connectToMongoDB();
 
       const mobileGames = await MobileGames.find();

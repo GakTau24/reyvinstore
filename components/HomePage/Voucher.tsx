@@ -11,13 +11,21 @@ import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CardsProps } from "@/helper";
+import { generateApiKey } from "@/handler/header";
+
+const API_KEY = generateApiKey()
 
 export default function Voucher() {
   const { data, isLoading } = useQuery({
     queryKey: ["voucher"],
     queryFn: async () => {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/voucher`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/voucher`,
+        {
+          headers: {
+            'api-key': `${API_KEY}`
+          }
+        }
       );
       return response.data;
     },
