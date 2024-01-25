@@ -17,7 +17,7 @@ const Count = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const textColor = isOpen ? 'text-green-700' : 'text-red-700';
+  const textColor = isOpen ? 'text-green-400' : 'text-red-500';
   const statusText = isOpen ? 'Online (Open Order)' : 'Offline (Close Order)';
 
   return (

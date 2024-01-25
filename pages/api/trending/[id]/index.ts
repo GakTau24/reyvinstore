@@ -6,6 +6,7 @@ import Nextauth from "../../auth/[...nextauth]";
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   const session = await getServerSession(request, response, Nextauth)
+  console.log(session)
   if (request.method === "PUT") {
     if (!session) {
       return response.status(401).json({ error: "Anda belum Login" })

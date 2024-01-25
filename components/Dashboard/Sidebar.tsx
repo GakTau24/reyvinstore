@@ -6,7 +6,7 @@ import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 function Sidebar() {
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(true);
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
@@ -183,7 +183,7 @@ function Sidebar() {
           </ul>
         </div>
       </motion.div>
-      <button className="px-2 hover:bg-yellow-500 rounded-md md:hidden" onClick={toggleSidebar}>
+      <button className="px-2 hover:bg-yellow-500 rounded-md" onClick={toggleSidebar}>
         {showSidebar ? <FaArrowLeft /> : <FaArrowRight />}
       </button>
     </>
