@@ -63,10 +63,10 @@ const TrendingDashboard = () => {
             <Alerts />
           </div>
         )}
-        <Link href={"/dashboard/admin/trending/create"}>
+        <Link href={"/dashboard/admin/mobile-games/create"}>
           <button className="bg-yellow-500 px-5 p-3 rounded-xl my-5">Create</button>
         </Link>
-        <div className="overflow-x-auto max-md:max-h-[33rem]">
+        <div className="overflow-x-auto max-md:max-h-[33rem] lg:max-h-[33rem]">
           <table className="w-full table-auto max-md:table-fixed border-collapse">
             <thead>
               <tr className="dark:bg-gray-800 dark:text-slate-300">

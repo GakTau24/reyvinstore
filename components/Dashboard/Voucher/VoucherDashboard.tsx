@@ -72,7 +72,7 @@ const VoucherDashboard = () => {
         <div className="overflow-x-auto max-md:max-h-[33rem] lg:max-h-[33rem]">
           <table className="w-full table-auto max-md:table-fixed border-collapse">
             <thead>
-              <tr className="bg-gray-800">
+              <tr className="dark:bg-gray-800 dark:text-slate-300">
                 <th className="p-2 border-b">Slug</th>
                 {/* <th className="p-2 border-b">Image</th> */}
                 <th className="p-2 border-b">Title</th>
