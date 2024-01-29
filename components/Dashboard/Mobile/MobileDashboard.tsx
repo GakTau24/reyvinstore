@@ -5,6 +5,9 @@ import Sidebar from "../Sidebar";
 import { useRouter } from "next/navigation";
 import Alerts from "@/components/Notif/AlertsDelete";
 import Modal from "@/components/Notif/Modals";
+import { generateApiKey } from "@/handler/header";
+
+const API_KEY = generateApiKey()
 
 const MobileGamesDashboard = () => {
   const [mobileGames, setMobileGames] = useState([]);
@@ -17,7 +20,12 @@ const MobileGamesDashboard = () => {
       try {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_URL}/api/mobilegames`,
-          { cache: "no-store" }
+          {
+            cache: "no-store",
+            headers: {
+              "api-key": `${API_KEY}`,
+            },
+          }
         );
         if (!res.ok) {
           throw new Error("Data not found!");

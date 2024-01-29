@@ -5,6 +5,9 @@ import Sidebar from "../Sidebar";
 import { useRouter } from "next/navigation";
 import Alerts from "@/components/Notif/AlertsDelete";
 import Modal from "@/components/Notif/Modals";
+import { generateApiKey } from "@/handler/header";
+
+const API_KEY = generateApiKey()
 
 const PcGamesDashboard = () => {
   const [pcGames, setPcGames] = useState([]);
@@ -15,7 +18,14 @@ const PcGamesDashboard = () => {
   useEffect(() => {
     const fetchPcGames = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/pcgames`, { cache: 'no-store' });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/pcgames`, 
+        {
+          cache: "no-store",
+          headers: {
+            "api-key": `${API_KEY}`,
+          },
+        }
+        );
         if (!res.ok) {
           throw new Error("Data not found!");
         }
