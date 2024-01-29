@@ -11,8 +11,17 @@ const API_KEY = `${res}`;
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   const session = await getServerSession(request, response, Nextauth)
 
-  const getLocation = async () => {
-    const res = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.API_KEY}`)
+  const getIp = async () => {
+    const res = await fetch("https://api.ipify.org/?format=json")
+    const data = await res.json()
+    const ip = data.ip
+    getLocation(ip)
+  }
+
+  getIp()
+
+  const getLocation = async (ip: string) => {
+    const res = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.API_KEY}&ip=${ip}`)
     const data = await res.json()
     await sendToDisocrd(data)
     return data
@@ -90,7 +99,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
         return response.status(401).json({ error: "Unauthorized" });
       }
 
-      await getLocation()
+      await getIp()
 
       await connectToMongoDB();
       const trending = await Trending.find();
