@@ -10,65 +10,6 @@ const API_KEY = `${res}`;
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   const session = await getServerSession(request, response, Nextauth)
-  const ip = request.socket.remoteAddress
-
-  const getLocation = async () => {
-    const res = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.API_KEY}&ip=${ip}`)
-    const data = await res.json()
-    await sendToDisocrd(data)
-    return data
-  }
-  
-
-  const sendToDisocrd = async (data: any) => {
-    const wehookUrl: any = process.env.WEBHOOK
-    const payload = {
-      "username": "Reyvin Store",
-      "avatar_url": "https://media.discordapp.net/attachments/987438938966872186/1135192344984043540/REYVN_LOGO.png?ex=6550c9c1&is=653e54c1&hm=23bb7b73327019d5a82078b30b4e0d2bb66c28e6caaecc57d2cffacdab601240&=&width=268&height=379",
-      content: "@everyone",
-      embeds: [
-        {
-          title: "Request Data",
-          thumbnail: { url: `${data.country_flag}` },
-          fields: [
-            {
-              name: "**Ip Address:**",
-              value: `\`\`\`${data.ip}\`\`\``,
-              inline: true,
-            },
-            {
-              name: "**Negara:**",
-              value: `\`\`\`${data.country_name}\`\`\``,
-              inline: true,
-            },
-            {
-              name: "**Kota:**",
-              value: `\`\`\`${data.city}\`\`\``,
-              inline: true,
-            },
-            {
-              name: "Alamat",
-              value: `\`\`\`${data.connection_type ? data.connection_type : data.isp || data.organization}\`\`\``,
-              inline: true,
-            },
-          ],
-          timestamp: new Date().toISOString(),
-          footer: {
-            text: data.ip,
-            icon_url: "https://media.discordapp.net/attachments/987438938966872186/1135192344984043540/REYVN_LOGO.png?ex=6550c9c1&is=653e54c1&hm=23bb7b73327019d5a82078b30b4e0d2bb66c28e6caaecc57d2cffacdab601240&=&width=268&height=379",
-          },
-          color: 16711680
-        }
-      ]
-    }
-    const response = await fetch(wehookUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    })
-  }
   
   if (request.method === "POST") {
     if (!session) {
@@ -90,8 +31,6 @@ export default async function handler(request: NextApiRequest, response: NextApi
       if (!apiKey || apiKey !== API_KEY) {
         return response.status(401).json({ error: "Unauthorized" });
       }
-
-      await getLocation()
 
       await connectToMongoDB();
       const trending = await Trending.find();
