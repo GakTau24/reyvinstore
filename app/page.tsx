@@ -7,6 +7,7 @@ import Carousel from "@/components/HomePage/Carousel";
 import Voucher from "@/components/HomePage/Voucher";
 import { CardsProps, MetaProps } from "@/helper";
 import Count from "@/components/Count/Count";
+import Request from "@/components/HomePage/Request";
 
 async function getData() {
   try {
@@ -79,6 +80,7 @@ export default function Home() {
     <>
       {/* <div className="mt-6 max-sm:p-3 md:px-3 bg-transparent">
       </div> */}
+      <Request />
     <Count />
         <Carousel />
       <div className="p-5">
